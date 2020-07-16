@@ -100,14 +100,17 @@ def build_sample(project_name, project_path, app_name, language, languages, outp
 
     lang_change = ''
     lang_change_url = ''
+    github_main_project = 'https://github.com/supernovaengine/supernova-samples' + '/blob/master/' + project_path
     if language == 'cpp':
         lang_label = 'C++'
+        github_url = github_main_project + '/main.cpp'
         compile_lang = '--no-lua-init'
         if 'lua' in languages:
             lang_change = 'Change to Lua sample'
             lang_change_url = '../' + app_name + '-lua'
     else:
         lang_label = 'Lua'
+        github_url = github_main_project + '/lua/main.lua'
         compile_lang = '--no-cpp-init'
         if 'cpp' in languages:
             lang_change = 'Change to C++ sample'
@@ -121,6 +124,7 @@ def build_sample(project_name, project_path, app_name, language, languages, outp
         sample_language=lang_label,
         sample_change=lang_change,
         sample_change_url=lang_change_url,
+        sample_github_url=github_url,
         sample_output=output
         )
 
