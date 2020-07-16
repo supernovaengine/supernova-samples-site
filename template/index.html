@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link  href="css/viewer.min.css" rel="stylesheet"/>
+		<script src="js/viewer.min.js"></script>
+
+		<link href="css/supernova.css" rel="stylesheet"/>
+		<link href="css/fontello.css" rel="stylesheet"/>
+		<link rel="shortcut icon" href="img/favicon.png"/>
+
+		<title>Supernova</title>
+	</head>
+	<body>
+		<div class="cabecalho">
+			<div class="wrapper">
+				<a href="http://docs.supernovaengine.org"><img class="cabecalho-logo" src="img/logo.png"/></a>
+				<div class="cabecalho-links">
+					<ul>
+						<li>
+							<a href="http://docs.supernovaengine.org">
+								<span class="cabecalho-link-imagem icon-book"></span>
+								<span class="cabecalho-link-texto">Documentation</span>
+							</a>
+						</li>
+						<li>
+							<a href="http://samples.supernovaengine.org">
+								<span class="cabecalho-link-imagem icon-doc-text"></span>
+								<span class="cabecalho-link-texto">Samples</span>
+							</a>
+						</li>
+						<li>
+							<a href="https://github.com/supernovaengine/supernova">
+								<span class="cabecalho-link-imagem icon-github"></span>
+								<span class="cabecalho-link-texto">Source</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="corpo">
+			<div class="wrapper">
+				<div class="lista-2-colunas">
+					<ul>
+						{% for sample in samples_list -%}
+						<li>
+							<div class="samples-imagem"><a href="{{ sample.url }}"><img src="{{ sample.thumb }}" alt="{{ sample.name }}" /></a></div>
+							<a href="{{ sample.url }}"><h3>{{ sample.name }}</h3></a>
+							<p>
+								{% for lang in sample.langs %}
+								<a href="{{ lang.link }}">{{ lang.name }}</a>{% if not loop.last %} / {% endif %}
+								{% endfor %}
+							</p>
+							<p>{{ sample.description }}</p>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="rodape">
+			<p>Copyright © 2020, Supernova Engine</p>
+			<p>
+			This is an open source project<br/>
+			Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>
+			Images, logos, text and website are licensed by <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a><br/>
+			</p>
+		</div>
+	</body>
+</html>

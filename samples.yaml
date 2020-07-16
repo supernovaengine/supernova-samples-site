@@ -1,0 +1,75 @@
+repo: https://github.com/supernovaengine/supernova.git
+repoRef: master
+
+samplesRepo: https://github.com/supernovaengine/supernova-samples.git
+samplesRepoRef: master
+
+samples:
+
+  - name: "Simple Triangle"
+    desc: "Drawing a simple colored triangle"
+    path: simple_triangle
+    langs:
+      - cpp
+      - lua
+
+  - name: "Block Constructor"
+    desc: "Simple block constructor"
+    path: block_constructor
+    langs:
+      - lua
+
+  - name: "Persistence"
+    desc: "Saving and loading persistent data"
+    path: persistence
+    output: true
+    langs:
+      - cpp
+
+  - name: "Car"
+    desc: "Drive a car in a open world with lights and fog"
+    path: car
+    langs:
+      - cpp
+
+  - name: "Particles"
+    desc: "Using a mouse to set particles origin"
+    path: particles
+    langs:
+      - cpp
+
+  - name: "Physics 2D"
+    desc: "Simple sample with physics 2D"
+    path: physics_2d
+    langs:
+      - cpp
+
+  - name: "User Interface"
+    desc: "User interface sample with button and textedit"
+    path: user_interface
+    langs:
+      - cpp    
+      
+  - name: "Actions"
+    desc: "Using actions to move objects"
+    path: actions
+    langs:
+      - cpp 
+
+  - name: "Terrain"
+    desc: "Navigate through a heightmap terrain"
+    path: terrain
+    langs:
+     - cpp 
+
+  - name: "Skeletal Animation"
+    desc: "Walking model with skeletal animation"
+    path: skeletal_animation
+    langs:
+      - cpp 
+
+  - name: "Morph Targets"
+    desc: "Morphing a cube model with animation"
+    path: morph_targets
+    langs:
+     - cpp 

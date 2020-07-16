@@ -1,0 +1,4 @@
+gitpython
+pygments
+pyyaml
+jinja2
