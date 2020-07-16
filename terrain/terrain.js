@@ -188,7 +188,7 @@ var Module = typeof Module !== 'undefined' ? Module : {};
     }
   
    }
-   loadPackage({"files": [{"filename": "/block.png", "start": 0, "end": 1852, "audio": 0}, {"filename": "/ground.png", "start": 1852, "end": 794256, "audio": 0}, {"filename": "/blendmap.png", "start": 794256, "end": 851641, "audio": 0}, {"filename": "/HeightMap.png", "start": 851641, "end": 1084474, "audio": 0}], "remote_package_size": 1084474, "package_uuid": "1f79d649-d58b-4bcc-a3bc-9a1989d1565a"});
+   loadPackage({"files": [{"filename": "/block.png", "start": 0, "end": 1852, "audio": 0}, {"filename": "/ground.png", "start": 1852, "end": 794256, "audio": 0}, {"filename": "/blendmap.png", "start": 794256, "end": 851641, "audio": 0}, {"filename": "/HeightMap.png", "start": 851641, "end": 1084474, "audio": 0}], "remote_package_size": 1084474, "package_uuid": "98f32888-b33e-4318-90b4-ee9300c7f81a"});
   
   })();
   
