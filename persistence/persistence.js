@@ -188,7 +188,7 @@ var Module = typeof Module !== 'undefined' ? Module : {};
     }
   
    }
-   loadPackage({"files": [{"filename": "/Button_Normal.png", "start": 0, "end": 1113, "audio": 0}, {"filename": "/Button_Disable.png", "start": 1113, "end": 2224, "audio": 0}], "remote_package_size": 2224, "package_uuid": "803424c3-8aa1-45e2-a86e-3aa6f4dc1598"});
+   loadPackage({"files": [{"filename": "/Button_Normal.png", "start": 0, "end": 1113, "audio": 0}, {"filename": "/Button_Disable.png", "start": 1113, "end": 2224, "audio": 0}], "remote_package_size": 2224, "package_uuid": "72726b62-bb85-4fee-9d94-e1374ef87320"});
   
   })();
   

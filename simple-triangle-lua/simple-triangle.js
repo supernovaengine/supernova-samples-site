@@ -188,7 +188,7 @@ var Module = typeof Module !== 'undefined' ? Module : {};
     }
   
    }
-   loadPackage({"files": [{"filename": "/main.lua", "start": 0, "end": 285, "audio": 0}], "remote_package_size": 285, "package_uuid": "5c6eaa6f-b320-4f30-b9a2-5f053894df31"});
+   loadPackage({"files": [{"filename": "/main.lua", "start": 0, "end": 285, "audio": 0}], "remote_package_size": 285, "package_uuid": "3d76175b-91ae-4d44-ae69-ee16153baf05"});
   
   })();
   
