@@ -18,8 +18,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python3 -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip3 install -r requirements.txt; fi
+          sudo apt-get install python3-setuptools
+          pip3 install --upgrade pip
+          if [ -f requirements.txt ]; then pip3 install -r requirements.txt --upgrade; fi
 
       - name: Build with Emscripten
         run: |

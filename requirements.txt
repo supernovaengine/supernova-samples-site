@@ -2,3 +2,4 @@ gitpython
 pygments
 pyyaml
 jinja2
+click
