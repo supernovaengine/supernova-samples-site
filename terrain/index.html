@@ -103,7 +103,7 @@
 
         <div class="texto">
           <p class="corpo-frase1">Terrain (C++)</p>
-          <a href=""><p class="corpo-frase2"></p></a>
+          <a href="../terrain-lua"><p class="corpo-frase2">Change to Lua sample</p></a>
 				</div>
 
     <figure style="overflow:visible;" id="spinner"><div class="spinner"></div></figure>
@@ -228,183 +228,146 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%"><span></span><span style="color: #557799">#include</span> <span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;<span style="color: #bbbbbb"></span>
 
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Scene.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Terrain.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Input.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Cube.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Text.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Log.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;DirectionalLight.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;System.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Polygon.h&quot;</span><span style="color: #557799"></span>
 
-<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> Supernova;
-Scene cena;
-Scene cena2;
-Camera camera;
-Terrain plano;
-Cube <span style="color: #0066BB; font-weight: bold">cubo</span> (<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">10</span>);
-Cube <span style="color: #0066BB; font-weight: bold">cubo2</span> (<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">10</span>);
-Cube <span style="color: #0066BB; font-weight: bold">cubo3</span> (<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">10</span>);
-Cube <span style="color: #0066BB; font-weight: bold">cubo4</span> (<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">10</span>);
-Text texto;
-Text texto2;
-Text texto3;
-Text texto4;
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Scene.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Terrain.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Camera.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Light.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Text.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Input.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;System.h&quot;</span><span style="color: #557799"></span>
 
-<span style="color: #333399; font-weight: bold">float</span> ultimoX;
-<span style="color: #333399; font-weight: bold">float</span> ultimoY;
-<span style="color: #333399; font-weight: bold">float</span> ultimoPressX;
-<span style="color: #333399; font-weight: bold">float</span> ultimoPressY;
+<span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>lastX;<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>lastY;<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>lastPressX;<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>lastPressY;<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onUpdate</span>();
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y);
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchDrag</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y);
+Scene<span style="color: #bbbbbb"> </span>scene;<span style="color: #bbbbbb"></span>
+Scene<span style="color: #bbbbbb"> </span>uiscene;<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span> key){
-    <span style="color: #008800; font-weight: bold">if</span> (key <span style="color: #333333">==</span> S_KEY_X){
-        camera.setPosition(camera.getPosition().x, camera.getPosition().y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.getPosition().z);
-        camera.setView(camera.getView().x, camera.getView().y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.getView().z);
-    }
+Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">camera</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Terrain<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">terrain</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Light<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sun</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 
-    <span style="color: #008800; font-weight: bold">if</span> (key <span style="color: #333333">==</span> S_KEY_Z){
-        camera.setPosition(camera.getPosition().x, camera.getPosition().y<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.getPosition().z);
-        camera.setView(camera.getView().x, camera.getView().y<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.getView().z);
-    }
-}
+Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>uiscene);<span style="color: #bbbbbb"></span>
+Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text2</span>(<span style="color: #333333">&amp;</span>uiscene);<span style="color: #bbbbbb"></span>
+Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text3</span>(<span style="color: #333333">&amp;</span>uiscene);<span style="color: #bbbbbb"></span>
+Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text4</span>(<span style="color: #333333">&amp;</span>uiscene);<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onKeyUp</span>(<span style="color: #333399; font-weight: bold">int</span> key){
-    <span style="color: #008800; font-weight: bold">if</span> (key <span style="color: #333333">==</span> S_KEY_F){
-        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #333333">!</span>System<span style="color: #333333">::</span>instance().isFullscreen()) {
-            System<span style="color: #333333">::</span>instance().requestFullscreen();
-        }<span style="color: #008800; font-weight: bold">else</span>{
-            System<span style="color: #333333">::</span>instance().exitFullscreen();
-        }
-    }
-}
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onUpdate</span>();<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods);<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyUp</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods);<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchMove</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onMouseMove</span>(<span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y) {
-    <span style="color: #888888">//Log::Debug(&quot;Mouse %f %f&quot;, x, y);</span>
-}
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">15</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">-60</span>);<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">init</span>(){
-    Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">480</span>);
-    Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);
-    <span style="color: #888888">//Engine::setScalingMode(Scaling::STRETCH);</span>
+<span style="color: #bbbbbb">    </span>terrain.setName(<span style="background-color: #fff0f0">&quot;terrain&quot;</span>);<span style="color: #bbbbbb"></span>
 
-    camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">150</span>, <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">600</span>);
+<span style="color: #bbbbbb">    </span>terrain.setHeightMap(<span style="background-color: #fff0f0">&quot;heightmap.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>terrain.setTexture(<span style="background-color: #fff0f0">&quot;ground.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>terrain.setBlendMap(<span style="background-color: #fff0f0">&quot;blendmap.png&quot;</span>);<span style="color: #bbbbbb"></span>
 
-    plano.setTexture(<span style="background-color: #fff0f0">&quot;ground.png&quot;</span>);
-    plano.setHeightMap(<span style="background-color: #fff0f0">&quot;HeightMap.png&quot;</span>);
-    plano.setBlendMap(<span style="background-color: #fff0f0">&quot;blendmap.png&quot;</span>);
-    plano.addTextureDetail(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>, BlendMapColor<span style="color: #333333">::</span>BLUE);
-    <span style="color: #888888">//plano.setPosition(100,0,1200);</span>
-    <span style="color: #888888">//plano.setScale(Vector3(1.5,1,1.5));</span>
+<span style="color: #bbbbbb">    </span>terrain.setTextureDetailRed(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>terrain.setTextureDetailGreen(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>terrain.setTextureDetailBlue(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);<span style="color: #bbbbbb"></span>
 
-    cena.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.2</span>);
+<span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());<span style="color: #bbbbbb"></span>
 
-    DirectionalLight<span style="color: #333333">*</span> sol <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> DirectionalLight();
-    sol<span style="color: #333333">-&gt;</span>setDirection(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.3</span>,<span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.8</span>);
-    sol<span style="color: #333333">-&gt;</span>setShadow(<span style="color: #007020">true</span>);
-    cena.addObject(sol);
+<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.2</span>);<span style="color: #bbbbbb"></span>
 
-    cubo.setCenter(<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">5</span>);
-    cubo.setColor(<span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #6600EE; font-weight: bold">1.0</span>);
-    cubo.setPosition(<span style="color: #0000DD; font-weight: bold">629</span>, <span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">158</span>);
+<span style="color: #bbbbbb">    </span>sun.setType(LightType<span style="color: #333333">::</span>DIRECTIONAL);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sun.setDirection(<span style="color: #6600EE; font-weight: bold">0.0f</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">-0.3</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">-0.8</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sun.setShadows(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
 
-    cubo2.setCenter(<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">5</span>);
-    cubo2.setColor(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #6600EE; font-weight: bold">1.0</span>);
-    cubo2.setPosition(cubo.getPosition().x<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">32</span>, cubo.getPosition().y, cubo.getPosition().z);
-    cubo3.setCenter(<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">5</span>);
-    cubo3.setColor(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #6600EE; font-weight: bold">1.0</span>);
-    cubo3.setPosition(cubo.getPosition().x<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">95</span>, cubo.getPosition().y, cubo.getPosition().z);
-    cubo4.setCenter(<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">5</span>);
-    cubo4.setColor(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #6600EE; font-weight: bold">1.0</span>);
-    cubo4.setPosition(cubo.getPosition().x<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">222</span>, cubo.getPosition().y, cubo.getPosition().z);
+<span style="color: #bbbbbb">    </span>text.setText(<span style="background-color: #fff0f0">&quot;Texto&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text2.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">150</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text3.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text4.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">250</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
 
-    cena.addObject(<span style="color: #333333">&amp;</span>plano);
-    cena.setCamera(<span style="color: #333333">&amp;</span>camera);
-    <span style="color: #888888">//cena.addObject(&amp;cubo);</span>
-    <span style="color: #888888">//cena.addObject(&amp;cubo2);</span>
-    <span style="color: #888888">//cena.addObject(&amp;cubo3);</span>
-    <span style="color: #888888">//cena.addObject(&amp;cubo4);</span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">480</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>addSceneLayer(<span style="color: #333333">&amp;</span>uiscene);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
 
-    texto.setText(<span style="background-color: #fff0f0">&quot;Texto&quot;</span>);
-    texto.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-    texto2.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">150</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-    texto3.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">200</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-    texto4.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">250</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-    <span style="color: #888888">//texto.setWidth(200);</span>
-    cena2.addObject(<span style="color: #333333">&amp;</span>texto);
-    cena2.addObject(<span style="color: #333333">&amp;</span>texto2);
-    cena2.addObject(<span style="color: #333333">&amp;</span>texto3);
-    cena2.addObject(<span style="color: #333333">&amp;</span>texto4);
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onUpdate<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onUpdate;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onKeyDown<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onKeyDown;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onKeyUp<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onKeyUp;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchStart<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchStart;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchMove<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchMove;<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
 
-    cena.addObject(<span style="color: #333333">&amp;</span>cena2);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onUpdate</span>(){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text.setText(std<span style="color: #333333">::</span>string(<span style="background-color: #fff0f0">&quot;FPS: &quot;</span>)<span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>std<span style="color: #333333">::</span>to_string(Engine<span style="color: #333333">::</span>getFramerate()).c_str());<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text2.setText(std<span style="color: #333333">::</span>string(<span style="background-color: #fff0f0">&quot;Camera X: &quot;</span>)<span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>std<span style="color: #333333">::</span>to_string(camera.getWorldPosition().x));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text3.setText(std<span style="color: #333333">::</span>string(<span style="background-color: #fff0f0">&quot;Camera Y: &quot;</span>)<span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>std<span style="color: #333333">::</span>to_string(camera.getWorldPosition().y));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text4.setText(std<span style="color: #333333">::</span>string(<span style="background-color: #fff0f0">&quot;Camera Z: &quot;</span>)<span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>std<span style="color: #333333">::</span>to_string(camera.getWorldPosition().z));<span style="color: #bbbbbb"></span>
 
-    Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>cena);
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_UP)<span style="color: #bbbbbb"> </span>or<span style="color: #bbbbbb"> </span>Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_UP)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.walkForward(<span style="color: #0000DD; font-weight: bold">1</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_DOWN)<span style="color: #bbbbbb"> </span>or<span style="color: #bbbbbb"> </span>Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_S)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.walkForward(<span style="color: #0000DD; font-weight: bold">-1</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_LEFT)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.rotateView(<span style="color: #0000DD; font-weight: bold">1</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_RIGHT)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.rotateView(<span style="color: #0000DD; font-weight: bold">-1</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_A)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.slide(<span style="color: #0000DD; font-weight: bold">-1</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_D)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.slide(<span style="color: #0000DD; font-weight: bold">1</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
 
-    Engine<span style="color: #333333">::</span>onTouchStart <span style="color: #333333">=</span> onTouchStart;
-    Engine<span style="color: #333333">::</span>onTouchDrag <span style="color: #333333">=</span> onTouchDrag;
-    Engine<span style="color: #333333">::</span>onUpdate <span style="color: #333333">=</span> onUpdate;
-    Engine<span style="color: #333333">::</span>onKeyDown <span style="color: #333333">=</span> onKeyDown;
-    Engine<span style="color: #333333">::</span>onKeyUp <span style="color: #333333">=</span> onKeyUp;
-    Engine<span style="color: #333333">::</span>onMouseMove <span style="color: #333333">=</span> onMouseMove;
-}
+}<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y) {
-    ultimoX <span style="color: #333333">=</span> x;
-    ultimoY <span style="color: #333333">=</span> y;
-    ultimoPressX <span style="color: #333333">=</span> x;
-    ultimoPressY <span style="color: #333333">=</span> y;
-}
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(key<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>S_KEY_X){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.setPosition(camera.getPosition().x,<span style="color: #bbbbbb"> </span>camera.getPosition().y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span>camera.getPosition().z);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.setView(camera.getView().x,<span style="color: #bbbbbb"> </span>camera.getView().y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span>camera.getView().z);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchDrag</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y) {
-    <span style="color: #333399; font-weight: bold">float</span> difX <span style="color: #333333">=</span> ultimoX <span style="color: #333333">-</span> x;
-    ultimoX <span style="color: #333333">=</span> x;
-    camera.rotateView(<span style="color: #6600EE; font-weight: bold">0.1</span> <span style="color: #333333">*</span> difX);
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(key<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>S_KEY_Z){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.setPosition(camera.getPosition().x,<span style="color: #bbbbbb"> </span>camera.getPosition().y<span style="color: #0000DD; font-weight: bold">-10</span>,<span style="color: #bbbbbb"> </span>camera.getPosition().z);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.setView(camera.getView().x,<span style="color: #bbbbbb"> </span>camera.getView().y<span style="color: #0000DD; font-weight: bold">-10</span>,<span style="color: #bbbbbb"> </span>camera.getView().z);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
 
-    <span style="color: #333399; font-weight: bold">float</span> difY <span style="color: #333333">=</span> ultimoY <span style="color: #333333">-</span> y;
-    ultimoY <span style="color: #333333">=</span> y;
-    camera.elevateView(<span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.1</span> <span style="color: #333333">*</span> difY);
-}
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyUp</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(key<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>S_KEY_F){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(<span style="color: #333333">!</span>System<span style="color: #333333">::</span>instance().isFullscreen())<span style="color: #bbbbbb"> </span>{<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">            </span>System<span style="color: #333333">::</span>instance().requestFullscreen();<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>}<span style="color: #008800; font-weight: bold">else</span>{<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">            </span>System<span style="color: #333333">::</span>instance().exitFullscreen();<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>}<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onUpdate</span>(){
-    texto.setText(std<span style="color: #333333">::</span>string(<span style="background-color: #fff0f0">&quot;FPS: &quot;</span>) <span style="color: #333333">+</span> std<span style="color: #333333">::</span>to_string(Engine<span style="color: #333333">::</span>getFramerate()).c_str());
-    texto2.setText(std<span style="color: #333333">::</span>string(<span style="background-color: #fff0f0">&quot;Camera X: &quot;</span>) <span style="color: #333333">+</span> std<span style="color: #333333">::</span>to_string(camera.getWorldPosition().x));
-    texto3.setText(std<span style="color: #333333">::</span>string(<span style="background-color: #fff0f0">&quot;Camera Y: &quot;</span>) <span style="color: #333333">+</span> std<span style="color: #333333">::</span>to_string(camera.getWorldPosition().y));
-    texto4.setText(std<span style="color: #333333">::</span>string(<span style="background-color: #fff0f0">&quot;Camera Z: &quot;</span>) <span style="color: #333333">+</span> std<span style="color: #333333">::</span>to_string(camera.getWorldPosition().z));
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y)<span style="color: #bbbbbb"> </span>{<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>lastX<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>x;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>lastY<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>y;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>lastPressX<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>x;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>lastPressY<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>y;<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
 
-    <span style="color: #008800; font-weight: bold">if</span> (Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_UP) or Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_UP)){
-        camera.walkForward(<span style="color: #0000DD; font-weight: bold">10</span>);
-    }
-    <span style="color: #008800; font-weight: bold">if</span> (Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_DOWN) or Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_S)){
-        camera.walkForward(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">10</span>);
-    }
-    <span style="color: #008800; font-weight: bold">if</span> (Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_LEFT)){
-        camera.rotateView(<span style="color: #0000DD; font-weight: bold">1</span>);
-    }
-    <span style="color: #008800; font-weight: bold">if</span> (Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_RIGHT)){
-        camera.rotateView(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>);
-    }
-    <span style="color: #008800; font-weight: bold">if</span> (Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_A)){
-        camera.slide(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>);
-    }
-    <span style="color: #008800; font-weight: bold">if</span> (Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_D)){
-        camera.slide(<span style="color: #0000DD; font-weight: bold">1</span>);
-    }
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchMove</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y)<span style="color: #bbbbbb"> </span>{<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>difX<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>lastX<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>x;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>lastX<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>x;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>camera.rotateView(<span style="color: #6600EE; font-weight: bold">0.1</span><span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>difX);<span style="color: #bbbbbb"></span>
 
-    <span style="color: #888888">//if (Input::isKeyPressed(S_KEY_X)){</span>
-    <span style="color: #888888">//    camera.setPosition(camera.getPosition().x, camera.getPosition().y+1, camera.getPosition().z);</span>
-    <span style="color: #888888">//    camera.setView(camera.getView().x, camera.getView().y+1, camera.getView().z);</span>
-    <span style="color: #888888">//}</span>
-    <span style="color: #888888">//if (Input::isKeyPressed(S_KEY_Z)){</span>
-    <span style="color: #888888">//    camera.setPosition(camera.getPosition().x, camera.getPosition().y-1, camera.getPosition().z);</span>
-    <span style="color: #888888">//    camera.setView(camera.getView().x, camera.getView().y-1, camera.getView().z);</span>
-    <span style="color: #888888">//}</span>
-
-}
+<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>difY<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>lastY<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>y;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>lastY<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>y;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>camera.elevateView(<span style="color: #6600EE; font-weight: bold">-0.1</span><span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>difY);<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
 </pre></div>
 
     </div>

@@ -103,7 +103,7 @@
 
         <div class="texto">
           <p class="corpo-frase1">Morph Targets (C++)</p>
-          <a href=""><p class="corpo-frase2"></p></a>
+          <a href="../morph-targets-lua"><p class="corpo-frase2">Change to Lua sample</p></a>
 				</div>
 
     <figure style="overflow:visible;" id="spinner"><div class="spinner"></div></figure>
@@ -228,88 +228,71 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%"><span></span><span style="color: #557799">#include</span> <span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
 
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Scene.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Camera.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;PlaneTerrain.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Log.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Model.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;math/Angle.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&lt;math.h&gt;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;DirectionalLight.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Text.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Scene.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Camera.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;PlaneTerrain.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Model.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;SkyBox.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Light.h&quot;</span><span style="color: #557799"></span>
 
-<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> Supernova;
+<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onUpdate</span>();
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span> key);
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods);<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);<span style="color: #bbbbbb"></span>
 
-Camera camera;
-Scene cena;
-PlaneTerrain <span style="color: #0066BB; font-weight: bold">plano</span>(<span style="color: #0000DD; font-weight: bold">2000</span>, <span style="color: #0000DD; font-weight: bold">2000</span>);
-Model <span style="color: #0066BB; font-weight: bold">carro</span>(<span style="background-color: #fff0f0">&quot;AnimatedMorphCube.gltf&quot;</span>);
-SkyBox sky;
+Scene<span style="color: #bbbbbb"> </span>scene;<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">float</span> rotacao <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">camera</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+PlaneTerrain<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">terrain</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Model<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">model</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+SkyBox<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sky</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">init</span>(){
-    Engine<span style="color: #333333">::</span>setScalingMode(Scaling<span style="color: #333333">::</span>FITWIDTH);
-    Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>, <span style="color: #0000DD; font-weight: bold">480</span>);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.2</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());<span style="color: #bbbbbb"></span>
 
-    cena.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.5</span>);
+<span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">7</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">-20</span>);<span style="color: #bbbbbb"></span>
 
-    camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">100</span>);
+<span style="color: #bbbbbb">    </span>terrain.create(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>terrain.setTexture(<span style="background-color: #fff0f0">&quot;ground.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>terrain.setPosition(<span style="color: #0000DD; font-weight: bold">-100</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">-100</span>);<span style="color: #bbbbbb"></span>
 
-    plano.setTexture(<span style="background-color: #fff0f0">&quot;ground.png&quot;</span>);
-    plano.setPosition(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1000</span>);
+<span style="color: #bbbbbb">    </span>model.loadModel(<span style="background-color: #fff0f0">&quot;AnimatedMorphCube.gltf&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>model.setScale(<span style="color: #0000DD; font-weight: bold">100</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>model.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>model.setRotation(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">90</span>,<span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>model.getAnimation(<span style="color: #0000DD; font-weight: bold">0</span>).setLoop(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
 
-    carro.setScale(<span style="color: #0000DD; font-weight: bold">400</span>);
-    carro.setRotation(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">90</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>);
-    carro.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">30</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>Light<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>sun<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Light(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sun<span style="color: #333333">-&gt;</span>setType(LightType<span style="color: #333333">::</span>DIRECTIONAL);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sun<span style="color: #333333">-&gt;</span>setDirection(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #6600EE; font-weight: bold">-0.7</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sun<span style="color: #333333">-&gt;</span>setShadows(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
 
-    DirectionalLight<span style="color: #333333">*</span> sol <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> DirectionalLight();
-    sol<span style="color: #333333">-&gt;</span>setDirection(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.7</span>,<span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.8</span>);
-    sol<span style="color: #333333">-&gt;</span>setShadow(<span style="color: #007020">false</span>);
-    cena.addObject(sol);
+<span style="color: #bbbbbb">    </span>sky.setTextureFront(<span style="background-color: #fff0f0">&quot;ely_hills/hills_lf.tga&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sky.setTextureBack(<span style="background-color: #fff0f0">&quot;ely_hills/hills_rt.tga&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sky.setTextureLeft(<span style="background-color: #fff0f0">&quot;ely_hills/hills_bk.tga&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sky.setTextureRight(<span style="background-color: #fff0f0">&quot;ely_hills/hills_ft.tga&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sky.setTextureUp(<span style="background-color: #fff0f0">&quot;ely_hills/hills_up.tga&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sky.setTextureDown(<span style="background-color: #fff0f0">&quot;ely_hills/hills_dn.tga&quot;</span>);<span style="color: #bbbbbb"></span>
 
-    sky.setTextureFront(<span style="background-color: #fff0f0">&quot;ely_hills/hills_lf.tga&quot;</span>);
-    sky.setTextureBack(<span style="background-color: #fff0f0">&quot;ely_hills/hills_rt.tga&quot;</span>);
-    sky.setTextureLeft(<span style="background-color: #fff0f0">&quot;ely_hills/hills_bk.tga&quot;</span>);
-    sky.setTextureRight(<span style="background-color: #fff0f0">&quot;ely_hills/hills_ft.tga&quot;</span>);
-    sky.setTextureUp(<span style="background-color: #fff0f0">&quot;ely_hills/hills_up.tga&quot;</span>);
-    sky.setTextureDown(<span style="background-color: #fff0f0">&quot;ely_hills/hills_dn.tga&quot;</span>);
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScalingMode(Scaling<span style="color: #333333">::</span>FITWIDTH);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">480</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
 
-    cena.addObject(<span style="color: #333333">&amp;</span>plano);
-    cena.addObject(<span style="color: #333333">&amp;</span>carro);
-    cena.addObject(<span style="color: #333333">&amp;</span>sky);
-    cena.setCamera(<span style="color: #333333">&amp;</span>camera);
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onKeyDown<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onKeyDown;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchStart<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchStart;<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
 
-    Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>cena);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>model.getAnimation(<span style="color: #0000DD; font-weight: bold">0</span>).start();<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
 
-    Engine<span style="color: #333333">::</span>onUpdate <span style="color: #333333">=</span> onUpdate;
-    Engine<span style="color: #333333">::</span>onKeyDown <span style="color: #333333">=</span> onKeyDown;
-    Engine<span style="color: #333333">::</span>onTouchStart <span style="color: #333333">=</span> onTouchStart;
-}
-
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onUpdate</span>(){
-    rotacao <span style="color: #333333">=</span> rotacao <span style="color: #333333">+</span> <span style="color: #0000DD; font-weight: bold">1</span>;
-    <span style="color: #008800; font-weight: bold">if</span> (rotacao <span style="color: #333333">&gt;</span> <span style="color: #0000DD; font-weight: bold">360</span>) rotacao <span style="color: #333333">=</span> rotacao <span style="color: #333333">-</span> <span style="color: #0000DD; font-weight: bold">360</span>;
-    <span style="color: #008800; font-weight: bold">if</span> (rotacao <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">0</span>) rotacao <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">360</span> <span style="color: #333333">+</span> rotacao;
-
-    carro.setRotation(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">90</span>, rotacao, <span style="color: #0000DD; font-weight: bold">0</span>);
-
-    camera.setView(carro.getPosition());
-}
-
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span> key){
-    carro.getAnimation(<span style="color: #0000DD; font-weight: bold">0</span>)<span style="color: #333333">-&gt;</span>run();
-}
-
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y){
-    carro.getAnimation(<span style="color: #0000DD; font-weight: bold">0</span>)<span style="color: #333333">-&gt;</span>run();
-}
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>model.getAnimation(<span style="color: #0000DD; font-weight: bold">0</span>).start();<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
 </pre></div>
 
     </div>

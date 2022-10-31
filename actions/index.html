@@ -103,7 +103,7 @@
 
         <div class="texto">
           <p class="corpo-frase1">Actions (C++)</p>
-          <a href=""><p class="corpo-frase2"></p></a>
+          <a href="../actions-lua"><p class="corpo-frase2">Change to Lua sample</p></a>
 				</div>
 
     <figure style="overflow:visible;" id="spinner"><div class="spinner"></div></figure>
@@ -113,6 +113,8 @@
     </div>
 
     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+    
+    <textarea class="emscripten" id="output" rows="8"></textarea>
     
 
     <script type='text/javascript'>
@@ -228,55 +230,98 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%"><span></span><span style="color: #557799">#include</span> <span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;<span style="color: #bbbbbb"></span>
 
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Scene.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Polygon.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Points.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;MoveAction.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Log.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;File.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Polygon.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;MeshPolygon.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Input.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Angle.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;PositionAction.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;RotationAction.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;ScaleAction.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;ColorAction.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;AlphaAction.h&quot;</span><span style="color: #557799"></span>
 
-<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> Supernova;
-Polygon<span style="color: #333333">*</span> triangulo;
-Scene cena;
-MoveAction<span style="color: #333333">*</span> move;
+Scene<span style="color: #bbbbbb"> </span>scene;<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span> key){
-    <span style="color: #888888">//delete triangulo;</span>
-    <span style="color: #888888">//move-&gt;run();</span>
-}
+MeshPolygon<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">polygon</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+MeshPolygon<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">polygon2</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Polygon<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">polygon3</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+PositionAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">positionaction</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+RotationAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">rotationaction</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+ScaleAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">scaleaction</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+ColorAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">coloraction</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+AlphaAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">alphaaction</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> width, <span style="color: #333399; font-weight: bold">float</span> height){
-    <span style="color: #888888">//delete triangulo;</span>
-    move<span style="color: #333333">-&gt;</span>run();
-}
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onActionStart</span>();<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">init</span>(){
-    Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">480</span>);
-    Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){<span style="color: #bbbbbb"></span>
 
-    triangulo <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Polygon();
+<span style="color: #bbbbbb">    </span>polygon.addVertex(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon.addVertex(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon.addVertex(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon.addVertex(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon.setColor(<span style="color: #6600EE; font-weight: bold">1.0</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.3</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon.setPosition(<span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon.setName(<span style="background-color: #fff0f0">&quot;Polygon1&quot;</span>);<span style="color: #bbbbbb"></span>
 
-    triangulo<span style="color: #333333">-&gt;</span>addVertex(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>));
-    triangulo<span style="color: #333333">-&gt;</span>addVertex(Vector3(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">0</span>));
-    triangulo<span style="color: #333333">-&gt;</span>addVertex(Vector3(<span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">0</span>));
+<span style="color: #bbbbbb">    </span>polygon2.addVertex(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon2.addVertex(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon2.addVertex(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon2.addVertex(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon2.setColor(<span style="color: #6600EE; font-weight: bold">1.0</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon2.setPosition(<span style="color: #0000DD; font-weight: bold">350</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon2.setName(<span style="background-color: #fff0f0">&quot;Polygon2&quot;</span>);<span style="color: #bbbbbb"></span>
 
-    triangulo<span style="color: #333333">-&gt;</span>setPosition(Vector3(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>));
-    triangulo<span style="color: #333333">-&gt;</span>setColor(<span style="color: #6600EE; font-weight: bold">0.6</span>, <span style="color: #6600EE; font-weight: bold">0.2</span>, <span style="color: #6600EE; font-weight: bold">0.6</span>, <span style="color: #0000DD; font-weight: bold">1</span>);
+<span style="color: #bbbbbb">    </span>polygon3.addVertex(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon3.addVertex(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon3.addVertex(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon3.addVertex(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon3.setColor(<span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon3.setPosition(<span style="color: #0000DD; font-weight: bold">650</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>polygon3.setName(<span style="background-color: #fff0f0">&quot;Polygon3&quot;</span>);<span style="color: #bbbbbb"></span>
 
-    move <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MoveAction(Vector3(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>), Vector3(<span style="color: #0000DD; font-weight: bold">600</span>,<span style="color: #0000DD; font-weight: bold">600</span>,<span style="color: #0000DD; font-weight: bold">0</span>), <span style="color: #0000DD; font-weight: bold">5</span>);
-    move<span style="color: #333333">-&gt;</span>setFunctionType(S_EASE_ELASTIC_IN_OUT);
-    triangulo<span style="color: #333333">-&gt;</span>addAction(move);
+<span style="color: #bbbbbb">    </span>Quaternion<span style="color: #bbbbbb"> </span>startRot;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Quaternion<span style="color: #bbbbbb"> </span>endRot;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>startRot.fromAngle(Angle<span style="color: #333333">::</span>degToDefault(<span style="color: #0000DD; font-weight: bold">0</span>));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>endRot.fromAngle(Angle<span style="color: #333333">::</span>degToDefault(<span style="color: #0000DD; font-weight: bold">180</span>));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>rotationaction.setAction(startRot,<span style="color: #bbbbbb"> </span>endRot,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">false</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>rotationaction.setTarget(polygon3.getEntity());<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>rotationaction.getComponent<span style="color: #333333">&lt;</span>ActionComponent<span style="color: #333333">&gt;</span>().onStart<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onActionStart;<span style="color: #bbbbbb"></span>
 
-    <span style="color: #888888">//som.play();</span>
+<span style="color: #bbbbbb">    </span>scaleaction.setAction(Vector3(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>),<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">2</span>),<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">false</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>scaleaction.setTarget(polygon2.getEntity());<span style="color: #bbbbbb"></span>
 
-    cena.addObject(triangulo);
+<span style="color: #bbbbbb">    </span>coloraction.setAction(polygon.getColor(),<span style="color: #bbbbbb"> </span>Vector4(<span style="color: #6600EE; font-weight: bold">0.0</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.0</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>),<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">false</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>coloraction.setTarget(polygon.getEntity());<span style="color: #bbbbbb"></span>
 
-    Engine<span style="color: #333333">::</span>onKeyDown <span style="color: #333333">=</span> onKeyDown;
-    Engine<span style="color: #333333">::</span>onTouchStart <span style="color: #333333">=</span> onTouchStart;
-    Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>cena);
-}
+<span style="color: #bbbbbb">    </span>alphaaction.setAction(<span style="color: #6600EE; font-weight: bold">1.0</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.3</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">false</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>alphaaction.setTarget(polygon2.getEntity());<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>positionaction.setAction(Vector3(<span style="color: #0000DD; font-weight: bold">20</span>,<span style="color: #0000DD; font-weight: bold">20</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>positionaction.setTarget(polygon.getEntity());<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>positionaction.setFunctionType(EaseType<span style="color: #333333">::</span>ELASTIC_IN_OUT);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>positionaction.setSpeed(<span style="color: #0000DD; font-weight: bold">1</span>);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchStart<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchStart;<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y)<span style="color: #bbbbbb"> </span>{<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>positionaction.start();<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>rotationaction.start();<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>scaleaction.start();<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>coloraction.start();<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>alphaaction.start();<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onActionStart</span>(){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;Action Start&quot;</span>);<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
 </pre></div>
 
     </div>

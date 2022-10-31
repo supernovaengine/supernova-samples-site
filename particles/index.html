@@ -103,7 +103,7 @@
 
         <div class="texto">
           <p class="corpo-frase1">Particles (C++)</p>
-          <a href=""><p class="corpo-frase2"></p></a>
+          <a href="../particles-lua"><p class="corpo-frase2">Change to Lua sample</p></a>
 				</div>
 
     <figure style="overflow:visible;" id="spinner"><div class="spinner"></div></figure>
@@ -228,101 +228,59 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%"><span></span><span style="color: #557799">#include</span> <span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;<span style="color: #bbbbbb"></span>
 
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Scene.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Polygon.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Camera.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Particles.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticlesAnimation.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticleVelocityInit.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticleLifeInit.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticleSizeInit.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticleColorInit.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticleAccelerationInit.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticlePositionInit.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticleRotationInit.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticleSpriteInit.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticleVelocityMod.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticleRotationMod.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticleSpriteMod.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticleAlphaMod.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;ParticleSizeMod.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Particles.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;ParticlesAnimation.h&quot;</span><span style="color: #557799"></span>
 
+Scene<span style="color: #bbbbbb"> </span>scene;<span style="color: #bbbbbb"></span>
 
-<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> Supernova;
+Particles<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">particles</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+ParticlesAnimation<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">partianim</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 
-Scene scene;
-Particles particles;
-ParticlesAnimation<span style="color: #333333">*</span> particlesanim;
-ParticlePositionInit<span style="color: #333333">*</span> posInit;
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y);
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchDrag</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y);
+<span style="color: #bbbbbb">    </span>particles.setPosition(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>particles.setTexture(<span style="background-color: #fff0f0">&quot;f4.png&quot;</span>);<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">init</span>(){
-    Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1280</span>, <span style="color: #0000DD; font-weight: bold">720</span>);
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.addParticle(Vector3(30, 30, 0), Vector4(1.0, 1.0, 1.0, 1.0), 50, 40);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.addParticle(Vector3(20, 60, 0), Vector4(0.0, 1.0, 0.0, 1.0), 40, 0, Rect(0, 0, 0.5, 0.5));</span>
+<span style="color: #bbbbbb">    </span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.addSpriteFrame(0, &quot;&quot;, Rect(0.5, 0.5, 0.5, 0.5));</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.addSpriteFrame(1, &quot;&quot;, Rect(0.5, 0.0, 0.5, 0.5));</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.addSpriteFrame(2, &quot;&quot;, Rect(0.0, 0.5, 0.5, 0.5));</span>
 
-    Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);
+<span style="color: #bbbbbb">    </span>partianim.setTarget(particles.getEntity());<span style="color: #bbbbbb"></span>
 
-    posInit <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ParticlePositionInit(Vector3(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #0000DD; font-weight: bold">0</span>));
+<span style="color: #bbbbbb">    </span>partianim.setLifeInitializer(<span style="color: #0000DD; font-weight: bold">10</span>);<span style="color: #bbbbbb"></span>
 
-    particlesanim <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ParticlesAnimation();
-    particlesanim<span style="color: #333333">-&gt;</span>addInit(<span style="color: #008800; font-weight: bold">new</span> ParticleVelocityInit(Vector3(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">15</span>,<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">4</span>, <span style="color: #0000DD; font-weight: bold">0</span>),Vector3(<span style="color: #0000DD; font-weight: bold">15</span>,<span style="color: #0000DD; font-weight: bold">24</span>, <span style="color: #0000DD; font-weight: bold">0</span>)));
-    particlesanim<span style="color: #333333">-&gt;</span>addInit(<span style="color: #008800; font-weight: bold">new</span> ParticleLifeInit(<span style="color: #0000DD; font-weight: bold">10</span>));
-    particlesanim<span style="color: #333333">-&gt;</span>addInit(<span style="color: #008800; font-weight: bold">new</span> ParticleSizeInit(<span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">100</span>));
-    <span style="color: #888888">//particlesanim-&gt;addInit(new ParticleRotationInit(0, 180));</span>
-    particlesanim<span style="color: #333333">-&gt;</span>addInit(<span style="color: #008800; font-weight: bold">new</span> ParticleColorInit(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">0</span>));
-    <span style="color: #888888">//particlesanim-&gt;addInit(new ParticleAccelerationInit(Vector3(0.0f,9.81f * 5, 0.0f)));</span>
-    particlesanim<span style="color: #333333">-&gt;</span>addInit(posInit);
+<span style="color: #bbbbbb">    </span>partianim.setPositionInitializer(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//partianim.setPositionModifier(2,4, Vector3(0,0,0), Vector3(0,300,0));</span>
 
-    std<span style="color: #333333">::</span>vector<span style="color: #333333">&lt;</span><span style="color: #333399; font-weight: bold">int</span><span style="color: #333333">&gt;</span> sprites;
-    sprites.push_back(<span style="color: #0000DD; font-weight: bold">1</span>);
-    <span style="color: #888888">//sprites.push_back(0);</span>
-    <span style="color: #888888">//sprites.push_back(2);</span>
-    <span style="color: #888888">//particlesanim-&gt;addInit(new ParticleSpriteInit(sprites));</span>
-    <span style="color: #888888">//particlesanim-&gt;addInit(new ParticleSpriteInit(2));</span>
+<span style="color: #bbbbbb">    </span>partianim.setVelocityInitializer(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #0000DD; font-weight: bold">0</span>));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>partianim.setVelocityModifier(<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">8</span>,<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>EaseType<span style="color: #333333">::</span>CUBIC_IN_OUT);<span style="color: #bbbbbb"></span>
 
-    <span style="color: #888888">//particlesanim-&gt;addMod(new ParticleVelocityMod(7, 2, Vector3(0,500,0), Vector3(0,0,0)));</span>
-    <span style="color: #888888">//particlesanim-&gt;addMod(new ParticleRotationMod(10, 0, 0, 360));</span>
-    <span style="color: #888888">//particlesanim-&gt;addMod(new ParticleAlphaMod(10, 0, 1, 0));</span>
-    <span style="color: #888888">//particlesanim-&gt;addMod(new ParticleSizeMod(10, 0, 100, 200));</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//partianim.setAccelerationInitializer(Vector3(0,100,0), Vector3(0,200,0));</span>
 
-    <span style="color: #888888">//particlesanim-&gt;addMod(new ParticleSpriteMod(10, 9, 0));</span>
-    <span style="color: #888888">//particlesanim-&gt;addMod(new ParticleSpriteMod(10, 0, 0, 3));</span>
-    <span style="color: #888888">//particlesanim-&gt;addMod(new ParticleSpriteMod(1, 0, 1));</span>
+<span style="color: #bbbbbb">    </span>partianim.setColorInitializer(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//partianim.setColorModifier(2, 5, Vector3(1,1,1), Vector3(1,0,0));</span>
 
-    particles.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>);
-    particles.addAction(particlesanim);
-    particles.setRate(<span style="color: #0000DD; font-weight: bold">10</span>);
-    particles.setMaxParticles(<span style="color: #0000DD; font-weight: bold">100</span>);
-    particles.setTexture(<span style="background-color: #fff0f0">&quot;f4.png&quot;</span>);
-    <span style="color: #888888">//particles.addSpriteFrame(&quot;1&quot;, 1, 1, 256, 256);</span>
-    <span style="color: #888888">//particles.addSpriteFrame(&quot;2&quot;, 1, 256, 256, 256);</span>
-    <span style="color: #888888">//particles.addSpriteFrame(&quot;3&quot;, 256, 256, 256, 256);</span>
-    <span style="color: #888888">//particles.addSpriteFrame(&quot;4&quot;, 256, 1, 256, 256);</span>
-    <span style="color: #888888">//particles.useSpriteFrames(true);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//partianim.setAlphaInitializer(0, 1);</span>
+<span style="color: #bbbbbb">    </span>partianim.setAlphaModifier(<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">6</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>);<span style="color: #bbbbbb"></span>
 
-    scene.addObject(<span style="color: #333333">&amp;</span>particles);
+<span style="color: #bbbbbb">    </span>partianim.setSizeInitializer(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>);<span style="color: #bbbbbb"></span>
 
-    particlesanim<span style="color: #333333">-&gt;</span>run();
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//partianim.setSpriteIntializer(0, 2);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//partianim.setSpriteModifier(5, 8, {0,1,2});</span>
 
-    Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);
-    Engine<span style="color: #333333">::</span>onTouchStart <span style="color: #333333">=</span> onTouchStart;
-    Engine<span style="color: #333333">::</span>onTouchDrag <span style="color: #333333">=</span> onTouchDrag;
-}
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//partianim.setRotationInitializer(90);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//partianim.setRotationModifier(1, 5, 0, 360);</span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y){
-    <span style="color: #888888">//if (particlesanim-&gt;isRunning())</span>
-    <span style="color: #888888">//    particlesanim-&gt;pause();</span>
-    <span style="color: #888888">//else</span>
-    <span style="color: #888888">//    particlesanim-&gt;run();</span>
-    posInit<span style="color: #333333">-&gt;</span>setPosition(Vector3(x, y, <span style="color: #0000DD; font-weight: bold">0</span>));
-}
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//Engine::setScene(&amp;scene);</span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchDrag</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y){
-    posInit<span style="color: #333333">-&gt;</span>setPosition(Vector3(x, y, <span style="color: #0000DD; font-weight: bold">0</span>));
-}
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//partianim.start();</span>
+}<span style="color: #bbbbbb"></span>
 </pre></div>
 
     </div>

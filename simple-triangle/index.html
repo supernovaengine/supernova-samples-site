@@ -228,28 +228,25 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%"><span></span><span style="color: #557799">#include</span> <span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;<span style="color: #bbbbbb"></span>
 
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Scene.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Polygon.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Polygon.h&quot;</span><span style="color: #557799"></span>
 
-<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> Supernova;
-Polygon triangulo;
-Scene cena;
+Scene<span style="color: #bbbbbb"> </span>scene;<span style="color: #bbbbbb"></span>
+Polygon<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">triangle</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">init</span>(){
-    Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">480</span>);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>triangle.addVertex(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">-100</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>triangle.addVertex(<span style="color: #0000DD; font-weight: bold">-50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>triangle.addVertex(<span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>);<span style="color: #bbbbbb"></span>
 
-    triangulo.addVertex(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>));
-    triangulo.addVertex(Vector3(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">0</span>));
-    triangulo.addVertex(Vector3(<span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">0</span>));
+<span style="color: #bbbbbb">    </span>triangle.setPosition(Vector3(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>triangle.setColor(<span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>);<span style="color: #bbbbbb"></span>
 
-    triangulo.setPosition(Vector3(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>));
-    triangulo.setColor(<span style="color: #6600EE; font-weight: bold">0.6</span>, <span style="color: #6600EE; font-weight: bold">0.2</span>, <span style="color: #6600EE; font-weight: bold">0.6</span>, <span style="color: #0000DD; font-weight: bold">1</span>);
-    cena.addObject(<span style="color: #333333">&amp;</span>triangulo);
-
-    Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>cena);
-}
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">480</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
 </pre></div>
 
     </div>

@@ -114,6 +114,8 @@
 
     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
     
+    <textarea class="emscripten" id="output" rows="8"></textarea>
+    
 
     <script type='text/javascript'>
       var statusElement = document.getElementById('status');
@@ -228,90 +230,78 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%"><span></span><span style="color: #557799">#include</span> <span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Scene.h&quot;</span><span style="color: #557799"></span>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Scene.h&quot;</span><span style="color: #557799"></span>
 
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Button.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;TextEdit.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Sprite.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Texture.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Lines.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;Log.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;FileData.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&quot;UserSettings.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Button.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;TextEdit.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Image.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Polygon.h&quot;</span><span style="color: #557799"></span>
 
-<span style="color: #557799">#include</span> <span style="color: #888888">&lt;string&gt;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&lt;sstream&gt;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span> <span style="color: #888888">&lt;iostream&gt;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&lt;string&gt;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&lt;sstream&gt;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&lt;iostream&gt;</span><span style="color: #557799"></span>
 
-<span style="color: #008800; font-weight: bold">using</span> <span style="color: #008800; font-weight: bold">namespace</span> Supernova;
+<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;<span style="color: #bbbbbb"></span>
 
-Scene scene;
-Scene scene2;
-Button button;
-TextEdit textedit;
-Lines lines;
-Image imagem;
-Texture textura;
+Scene<span style="color: #bbbbbb"> </span>scene;<span style="color: #bbbbbb"></span>
+Button<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">button</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+TextEdit<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">textedit</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Image<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">image</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onPress</span>();
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y);
+<span style="color: #888888">//Scene scene2;</span>
+<span style="color: #888888">//Button button2(&amp;scene2);</span>
 
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">init</span>(){
-    Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>, <span style="color: #0000DD; font-weight: bold">480</span>);
-    Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress</span>();<span style="color: #bbbbbb"></span>
 
-    button.setTexture(<span style="background-color: #fff0f0">&quot;Button_Normal.png&quot;</span>);
-    button.setTexturePressed(<span style="background-color: #fff0f0">&quot;Button_Disable.png&quot;</span>);
-    button.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">200</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-    button.setSize(<span style="color: #0000DD; font-weight: bold">400</span>, <span style="color: #0000DD; font-weight: bold">400</span>);
-    button.setBorder(<span style="color: #0000DD; font-weight: bold">16</span>);
-    <span style="color: #888888">//button.setLabelFont(&quot;arial.ttf&quot;);</span>
-    button.setLabelText(<span style="background-color: #fff0f0">&quot;Eduardo&quot;</span>);
-    button.setLabelSize(<span style="color: #0000DD; font-weight: bold">80</span>);
-    button.setLabelColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>, <span style="color: #6600EE; font-weight: bold">0.2</span>, <span style="color: #6600EE; font-weight: bold">0.2</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>));
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">480</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
 
-    <span style="color: #888888">//textedit.setTextFont(&quot;arial.ttf&quot;);</span>
-    textedit.setTextColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.4</span>, <span style="color: #6600EE; font-weight: bold">0.4</span>, <span style="color: #6600EE; font-weight: bold">0.4</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>));
-    textedit.setPosition(<span style="color: #0000DD; font-weight: bold">300</span>, <span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-    textedit.setTexture(<span style="background-color: #fff0f0">&quot;textedit.png&quot;</span>);
-    textedit.setBorder(<span style="color: #0000DD; font-weight: bold">8</span>);
-    textedit.setSize(<span style="color: #0000DD; font-weight: bold">200</span>, <span style="color: #0000DD; font-weight: bold">50</span>);
-    textedit.setText(<span style="background-color: #fff0f0">&quot;&quot;</span>);
+<span style="color: #bbbbbb">    </span>button.setTexture(<span style="background-color: #fff0f0">&quot;button_normal.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button.setTexturePressed(<span style="background-color: #fff0f0">&quot;button_disable.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button.setSize(<span style="color: #0000DD; font-weight: bold">400</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">400</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button.setMargin(<span style="color: #0000DD; font-weight: bold">5</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//button.setLabelFont(&quot;arial.ttf&quot;);</span>
+<span style="color: #bbbbbb">    </span>button.setLabel(<span style="background-color: #fff0f0">&quot;Button&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button.setFontSize(<span style="color: #0000DD; font-weight: bold">80</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button.setLabelColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button.getComponent<span style="color: #333333">&lt;</span>ButtonComponent<span style="color: #333333">&gt;</span>().onPress<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onPress;<span style="color: #bbbbbb"></span>
 
-    lines.setPosition(Vector3(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>));
-    lines.setColor(<span style="color: #6600EE; font-weight: bold">0.6</span>, <span style="color: #6600EE; font-weight: bold">0.2</span>, <span style="color: #6600EE; font-weight: bold">0.6</span>, <span style="color: #0000DD; font-weight: bold">1</span>);
-    lines.addLine(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>),Vector3(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>));
+<span style="color: #bbbbbb">    </span>textedit.setPosition(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>textedit.setTexture(<span style="background-color: #fff0f0">&quot;textedit.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>textedit.setMargin(<span style="color: #0000DD; font-weight: bold">5</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>textedit.setSize(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>textedit.setText(<span style="background-color: #fff0f0">&quot;&quot;</span>);<span style="color: #bbbbbb"></span>
 
-    <span style="color: #888888">//scene2.addObject(&amp;textedit);</span>
-    <span style="color: #888888">//scene2.setTextureFrame(&amp;textura);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//image.setTexture(&amp;scene2.getFramebuffer());</span>
+<span style="color: #bbbbbb">    </span>image.setTexture(<span style="background-color: #fff0f0">&quot;tile.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>image.setPosition(<span style="color: #0000DD; font-weight: bold">550</span>,<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>image.setSize(<span style="color: #0000DD; font-weight: bold">400</span>,<span style="color: #0000DD; font-weight: bold">400</span>);<span style="color: #bbbbbb"></span>
 
-    <span style="color: #888888">//scene.addObject(&amp;scene2);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//scene2.setBackgroundColor(0.5, 0.5, 0.5);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//scene2.setRenderToTexture(true);</span>
 
-    <span style="color: #888888">//imagem.setTexture(&amp;textura);</span>
-    <span style="color: #888888">//imagem.setPosition(100,100);</span>
-    <span style="color: #888888">//imagem.setInvertTexture(true);</span>
-    <span style="color: #888888">//scene.addObject(&amp;imagem);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setTexture(&quot;button_normal.png&quot;);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setTexturePressed(&quot;button_disable.png&quot;);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setPosition(100, 200, 0);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setSize(400, 400);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setMargin(5);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setLabel(&quot;Button2&quot;);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setFontSize(80);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setLabelColor(Vector4(0.2, 0.2, 0.2, 1.0));</span>
 
-    scene.addObject(<span style="color: #333333">&amp;</span>textedit);
-    scene.addObject(<span style="color: #333333">&amp;</span>button);
-    <span style="color: #888888">//scene.addObject(&amp;lines);</span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//Engine::addSceneLayer(&amp;scene2);</span>
 
-    Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);
-    button.onUp <span style="color: #333333">=</span> onPress;
+}<span style="color: #bbbbbb"></span>
 
-    Engine<span style="color: #333333">::</span>onTouchStart <span style="color: #333333">=</span> onTouchStart;
-
-}
-
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span> pointer, <span style="color: #333399; font-weight: bold">float</span> x, <span style="color: #333399; font-weight: bold">float</span> y){
-    Log<span style="color: #333333">::</span>Debug(<span style="background-color: #fff0f0">&quot;TouchStart&quot;</span>);
-}
-
-<span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">onPress</span>(){
-    <span style="color: #888888">//text.setText(&quot;Eduardo Dória Lima&quot;);</span>
-    button.setPosition(<span style="color: #0000DD; font-weight: bold">150</span>, <span style="color: #0000DD; font-weight: bold">300</span>);
-}
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress</span>(){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//text.setText(&quot;Eduardo Dória Lima&quot;);</span>
+<span style="color: #bbbbbb">    </span>button.setPosition(<span style="color: #0000DD; font-weight: bold">150</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
 </pre></div>
 
     </div>

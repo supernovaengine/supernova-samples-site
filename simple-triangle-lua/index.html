@@ -228,21 +228,18 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%"><span></span>Engine.setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">480</span>)
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span>scene <span style="color: #333333">=</span> Scene()
+triangle <span style="color: #333333">=</span> Polygon(scene)
 
-cena <span style="color: #333333">=</span> Scene()
-triangulo <span style="color: #333333">=</span> Polygon()
+triangle:addVertex(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">100</span>)
+triangle:addVertex(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">50</span>)
+triangle:addVertex(Vector3(<span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #0000DD; font-weight: bold">0</span>))
 
-triangulo:addVertex(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
-triangulo:addVertex(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
-triangulo:addVertex(<span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
+triangle.position <span style="color: #333333">=</span> Vector3(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>)
+triangle:setColor(<span style="color: #6600EE; font-weight: bold">0.6</span>, <span style="color: #6600EE; font-weight: bold">0.2</span>, <span style="color: #6600EE; font-weight: bold">0.6</span>, <span style="color: #0000DD; font-weight: bold">1</span>)
 
-triangulo:setPosition(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>)
-triangulo:setColor(<span style="color: #6600EE; font-weight: bold">0.6</span>, <span style="color: #6600EE; font-weight: bold">0.2</span>, <span style="color: #6600EE; font-weight: bold">0.6</span>, <span style="color: #0000DD; font-weight: bold">1</span>)
-
-cena:addObject(triangulo)
-
-Engine.setScene(cena)
+Engine.setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">480</span>)
+Engine.setScene(scene)
 </pre></div>
 
     </div>
