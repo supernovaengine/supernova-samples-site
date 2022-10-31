@@ -13,11 +13,11 @@ samples:
       - cpp
       - lua
 
-  - name: "Block Constructor"
-    desc: "Simple block constructor"
-    path: block_constructor
-    langs:
-      - lua
+#  - name: "Block Constructor"
+#    desc: "Simple block constructor"
+#    path: block_constructor
+#    langs:
+#      - lua
 
   - name: "Persistence"
     desc: "Saving and loading persistent data"
@@ -25,51 +25,67 @@ samples:
     output: true
     langs:
       - cpp
+      - lua
 
   - name: "Car"
     desc: "Drive a car in a open world with lights and fog"
     path: car
     langs:
       - cpp
+      - lua
 
   - name: "Particles"
     desc: "Using a mouse to set particles origin"
     path: particles
     langs:
       - cpp
+      - lua
 
-  - name: "Physics 2D"
-    desc: "Simple sample with physics 2D"
-    path: physics_2d
-    langs:
-      - cpp
+#  - name: "Physics 2D"
+#    desc: "Simple sample with physics 2D"
+#    path: physics_2d
+#    langs:
+#      - cpp
 
   - name: "User Interface"
     desc: "User interface sample with button and textedit"
     path: user_interface
+    output: true
     langs:
       - cpp    
       
   - name: "Actions"
     desc: "Using actions to move objects"
     path: actions
+    output: true
     langs:
-      - cpp 
+      - cpp
+      - lua
 
   - name: "Terrain"
     desc: "Navigate through a heightmap terrain"
     path: terrain
     langs:
-     - cpp 
+     - cpp
+     - lua
 
   - name: "Skeletal Animation"
     desc: "Walking model with skeletal animation"
     path: skeletal_animation
     langs:
-      - cpp 
+      - cpp
+      - lua
 
   - name: "Morph Targets"
     desc: "Morphing a cube model with animation"
     path: morph_targets
     langs:
-     - cpp 
+     - cpp
+     - lua
+
+  - name: "Sprites"
+    desc: "Sprites animation"
+    path: sprites
+    langs:
+     - cpp
+     - lua
