@@ -9,6 +9,7 @@ import sys
 import shutil
 import subprocess
 import git
+import datetime
 
 import re
 from pygments import highlight
@@ -235,7 +236,8 @@ def build_all():
 
     t = Template(file_get_contents(index_file_template))
     index_content = t.render(
-        samples_list=samples_list
+        samples_list=samples_list,
+        year=datetime.date.today().year
         )
 
     file_write_contents(index_file, index_content)
