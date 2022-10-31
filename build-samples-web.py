@@ -78,7 +78,7 @@ def build_sample(project_name, project_path, app_name, language, languages, outp
     print("Bulding sample: %s, language: %s" % (project_name, language), flush=True)
 
     supernova_root = os.path.abspath('supernova')
-    build_tool = os.path.join(supernova_root, 'workspaces', 'supernova.py')
+    build_tool = os.path.join(supernova_root, 'tools', 'supernova.py')
 
     #samples_root = os.path.join(supernova_root, 'samples')
     samples_root = os.path.join('samples')
@@ -141,7 +141,7 @@ def build_sample(project_name, project_path, app_name, language, languages, outp
         "--build"
         ]).check_returncode()
 
-    src_dir = os.path.join(supernova_root, 'workspaces', 'project_web')
+    src_dir = os.path.join(supernova_root, 'tools', 'build', 'web')
     if language == 'lua':
         dst_dir = os.path.join('site', app_name+'-lua')
     else:
