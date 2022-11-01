@@ -13,6 +13,12 @@ samples:
       - cpp
       - lua
 
+  - name: "Events"
+    desc: "Showing most engine events"
+    path: events
+    langs:
+     - cpp
+
 #  - name: "Block Constructor"
 #    desc: "Simple block constructor"
 #    path: block_constructor
@@ -84,7 +90,7 @@ samples:
      - lua
 
   - name: "Sprites"
-    desc: "Sprites animation"
+    desc: "Some types of sprite animations"
     path: sprites
     langs:
      - cpp
