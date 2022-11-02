@@ -16,6 +16,7 @@ samples:
   - name: "Events"
     desc: "Showing most engine events"
     path: events
+    output: true
     langs:
      - cpp
 
