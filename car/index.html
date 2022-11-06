@@ -252,7 +252,7 @@ Model<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weig
 Model<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">house</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 SkyBox<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sky</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>uiscene);<span style="color: #bbbbbb"></span>
-Audio<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">engine</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Audio<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">carengine</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 
 <span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>curve<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"></span>
 <span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>speed<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"></span>
@@ -287,15 +287,15 @@ Audio<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weig
 
 <span style="color: #bbbbbb">    </span>car.loadModel(<span style="background-color: #fff0f0">&quot;jeep/Jeep.obj&quot;</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>car.setScale(<span style="color: #6600EE; font-weight: bold">0.5</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>car.addChild(<span style="color: #333333">&amp;</span>engine);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>car.addChild(<span style="color: #333333">&amp;</span>carengine);<span style="color: #bbbbbb"></span>
 
-<span style="color: #bbbbbb">    </span>engine.loadAudio(<span style="background-color: #fff0f0">&quot;engine.wav&quot;</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>engine.set3DSound(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>engine.setLopping(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>engine.setDopplerFactor(<span style="color: #6600EE; font-weight: bold">10.0</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>engine.setMinMaxDistance(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>engine.setAttenuationModel(AudioAttenuation<span style="color: #333333">::</span>LINEAR_DISTANCE);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>engine.play();<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>carengine.loadAudio(<span style="background-color: #fff0f0">&quot;engine.wav&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>carengine.setSound3D(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>carengine.setLopping(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>carengine.setDopplerFactor(<span style="color: #6600EE; font-weight: bold">10.0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>carengine.setMinMaxDistance(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>carengine.setAttenuationModel(AudioAttenuation<span style="color: #333333">::</span>LINEAR_DISTANCE);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>carengine.play();<span style="color: #bbbbbb"></span>
 
 <span style="color: #bbbbbb">    </span>sky.setTextureFront(<span style="background-color: #fff0f0">&quot;ely_hills/hills_lf.tga&quot;</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>sky.setTextureBack(<span style="background-color: #fff0f0">&quot;ely_hills/hills_rt.tga&quot;</span>);<span style="color: #bbbbbb"></span>
@@ -338,8 +338,8 @@ Audio<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weig
 <span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>speed<span style="color: #bbbbbb"> </span><span style="color: #333333">*=</span><span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.95</span>;<span style="color: #bbbbbb"></span>
 
-engine.setVolume(<span style="color: #6600EE; font-weight: bold">1.0</span><span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>(abs(speed)<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>));<span style="color: #bbbbbb"></span>
-engine.setSpeed(<span style="color: #6600EE; font-weight: bold">1.0</span><span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>(abs(speed)<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>carengine.setVolume(<span style="color: #6600EE; font-weight: bold">1.0</span><span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>(abs(speed)<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>carengine.setSpeed(<span style="color: #6600EE; font-weight: bold">1.0</span><span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>(abs(speed)<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>));<span style="color: #bbbbbb"></span>
 
 <span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_LEFT)){<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">        </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(curve<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">3</span>)<span style="color: #bbbbbb"></span>

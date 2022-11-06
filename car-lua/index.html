@@ -236,6 +236,7 @@ car <span style="color: #333333">=</span> Model(scene)
 house <span style="color: #333333">=</span> Model(scene)
 sky <span style="color: #333333">=</span> SkyBox(scene)
 text <span style="color: #333333">=</span> Text(scene)
+carengine <span style="color: #333333">=</span> Audio(scene)
 
 curve <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
 speed <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
@@ -253,6 +254,9 @@ up, down, left, right <span style="color: #333333">=</span> <span style="color: 
         speed <span style="color: #333333">=</span> speed <span style="color: #333333">-</span> <span style="color: #6600EE; font-weight: bold">0.1</span>
     <span style="color: #008800; font-weight: bold">end</span>
     speed <span style="color: #333333">=</span> speed <span style="color: #333333">*</span> <span style="color: #6600EE; font-weight: bold">0.95</span>
+
+    carengine.volume <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">1.0</span> <span style="color: #333333">+</span> (<span style="color: #007020">math.abs</span>(speed) <span style="color: #333333">*</span> <span style="color: #6600EE; font-weight: bold">0.5</span>)
+    carengine.speed <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">1.0</span> <span style="color: #333333">+</span> (<span style="color: #007020">math.abs</span>(speed) <span style="color: #333333">*</span> <span style="color: #6600EE; font-weight: bold">0.5</span>)
 
     <span style="color: #008800; font-weight: bold">if</span> (Input.isKeyPressed(Input.KEY_LEFT)) <span style="color: #008800; font-weight: bold">then</span>
         <span style="color: #008800; font-weight: bold">if</span> (curve <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">3</span>) <span style="color: #008800; font-weight: bold">then</span>
@@ -305,6 +309,15 @@ terrain:setPosition(<span style="color: #333333">-</span><span style="color: #00
 
 car:loadModel(<span style="background-color: #fff0f0">&quot;jeep/Jeep.obj&quot;</span>)
 car:setScale(<span style="color: #6600EE; font-weight: bold">0.5</span>)
+car:addChild(carengine)
+
+carengine:loadAudio(<span style="background-color: #fff0f0">&quot;engine.wav&quot;</span>)
+carengine.sound3D <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>
+carengine.lopping <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>
+carengine.dopplerFactor <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">10.0</span>
+carengine:setMinMaxDistance(<span style="color: #0000DD; font-weight: bold">1</span>, <span style="color: #0000DD; font-weight: bold">100</span>)
+carengine.attenuationModel <span style="color: #333333">=</span> AudioAttenuation.LINEAR_DISTANCE
+carengine:play()
 
 sky:setTextureFront(<span style="background-color: #fff0f0">&quot;ely_hills/hills_lf.tga&quot;</span>)
 sky:setTextureBack(<span style="background-color: #fff0f0">&quot;ely_hills/hills_rt.tga&quot;</span>)
@@ -312,6 +325,7 @@ sky:setTextureLeft(<span style="background-color: #fff0f0">&quot;ely_hills/hills
 sky:setTextureRight(<span style="background-color: #fff0f0">&quot;ely_hills/hills_ft.tga&quot;</span>)
 sky:setTextureUp(<span style="background-color: #fff0f0">&quot;ely_hills/hills_up.tga&quot;</span>)
 sky:setTextureDown(<span style="background-color: #fff0f0">&quot;ely_hills/hills_dn.tga&quot;</span>)
+sky.alpha <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">0.2</span>
 
 carlight <span style="color: #333333">=</span> Light(scene)
 carlight.type <span style="color: #333333">=</span> LightType.SPOT
