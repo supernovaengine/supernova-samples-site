@@ -237,70 +237,114 @@
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;TextEdit.h&quot;</span><span style="color: #557799"></span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Image.h&quot;</span><span style="color: #557799"></span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Polygon.h&quot;</span><span style="color: #557799"></span>
-
-<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&lt;string&gt;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&lt;sstream&gt;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&lt;iostream&gt;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Container.h&quot;</span><span style="color: #557799"></span>
 
 <span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;<span style="color: #bbbbbb"></span>
 
 Scene<span style="color: #bbbbbb"> </span>scene;<span style="color: #bbbbbb"></span>
+Image<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">window</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 Button<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">button</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Button<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">button2</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 TextEdit<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">textedit</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
-Image<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">image</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 
-<span style="color: #888888">//Scene scene2;</span>
-<span style="color: #888888">//Button button2(&amp;scene2);</span>
+Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">vcontainer</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">hcontainer</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress</span>();<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress2</span>();<span style="color: #bbbbbb"></span>
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">480</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScalingMode(Scaling<span style="color: #333333">::</span>NATIVE);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>vcontainer.addChild(<span style="color: #333333">&amp;</span>hcontainer);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>vcontainer.addChild(<span style="color: #333333">&amp;</span>button2);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>vcontainer.addChild(<span style="color: #333333">&amp;</span>text);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>hcontainer.addChild(<span style="color: #333333">&amp;</span>textedit);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>hcontainer.addChild(<span style="color: #333333">&amp;</span>button);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//vcontainer.setSize(0,0);</span>
+<span style="color: #bbbbbb">    </span>vcontainer.setType(ContainerType<span style="color: #333333">::</span>VERTICAL);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>vcontainer.setName(<span style="background-color: #fff0f0">&quot;vcontainer&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>vcontainer.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>FULL_LAYOUT);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//container.setBoxExpand(0, false);</span>
+
+<span style="color: #bbbbbb">    </span>hcontainer.setType(ContainerType<span style="color: #333333">::</span>HORIZONTAL);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>hcontainer.setName(<span style="background-color: #fff0f0">&quot;hcontainer&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>hcontainer.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>FULL_LAYOUT);<span style="color: #bbbbbb"></span>
 
 <span style="color: #bbbbbb">    </span>button.setTexture(<span style="background-color: #fff0f0">&quot;button_normal.png&quot;</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>button.setTexturePressed(<span style="background-color: #fff0f0">&quot;button_disable.png&quot;</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>button.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>button.setSize(<span style="color: #0000DD; font-weight: bold">400</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">400</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button.setSize(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>button.setPatchMargin(<span style="color: #0000DD; font-weight: bold">5</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span><span style="color: #888888">//button.setLabelFont(&quot;arial.ttf&quot;);</span>
-<span style="color: #bbbbbb">    </span>button.setLabel(<span style="background-color: #fff0f0">&quot;Button&quot;</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>button.setFontSize(<span style="color: #0000DD; font-weight: bold">80</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button.setLabel(<span style="background-color: #fff0f0">&quot;Insert&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button.setName(<span style="background-color: #fff0f0">&quot;button1&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button.setFontSize(<span style="color: #0000DD; font-weight: bold">40</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>button.setLabelColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>button.getComponent<span style="color: #333333">&lt;</span>ButtonComponent<span style="color: #333333">&gt;</span>().onPress<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onPress;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER);<span style="color: #bbbbbb"></span>
 
-<span style="color: #bbbbbb">    </span>textedit.setPosition(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button2.setTexture(<span style="background-color: #fff0f0">&quot;button_normal.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button2.setTexturePressed(<span style="background-color: #fff0f0">&quot;button_disable.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button2.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button2.setSize(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button2.setPatchMargin(<span style="color: #0000DD; font-weight: bold">5</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button2.setLabel(<span style="background-color: #fff0f0">&quot;Move position&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button2.setName(<span style="background-color: #fff0f0">&quot;button2&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button2.setFontSize(<span style="color: #0000DD; font-weight: bold">40</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button2.setLabelColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button2.getComponent<span style="color: #333333">&lt;</span>ButtonComponent<span style="color: #333333">&gt;</span>().onPress<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onPress2;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>button2.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>FULL_LAYOUT);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setAnchors(0.5, 0.5, 0.5, 0.5);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setMargins(-200,-200, 200,200);</span>
+
+<span style="color: #bbbbbb">    </span>textedit.setPosition(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>textedit.setTexture(<span style="background-color: #fff0f0">&quot;textedit.png&quot;</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>textedit.setPatchMargin(<span style="color: #0000DD; font-weight: bold">5</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>textedit.setSize(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>textedit.setText(<span style="background-color: #fff0f0">&quot;&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>textedit.setName(<span style="background-color: #fff0f0">&quot;textedit&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>textedit.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//textedit.getComponent&lt;UIComponent&gt;().ignoreScissor = true;</span>
 
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//image.setTexture(&amp;scene2.getFramebuffer());</span>
-<span style="color: #bbbbbb">    </span>image.setTexture(<span style="background-color: #fff0f0">&quot;tile.png&quot;</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>image.setPosition(<span style="color: #0000DD; font-weight: bold">550</span>,<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>image.setSize(<span style="color: #0000DD; font-weight: bold">400</span>,<span style="color: #0000DD; font-weight: bold">400</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text.setText(<span style="background-color: #fff0f0">&quot;Any text&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text.setName(<span style="background-color: #fff0f0">&quot;textobject&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text.setColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_BOTTOM);<span style="color: #bbbbbb"></span>
 
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//scene2.setBackgroundColor(0.5, 0.5, 0.5);</span>
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//scene2.setRenderToTexture(true);</span>
+<span style="color: #bbbbbb">    </span>window.setTexture(<span style="background-color: #fff0f0">&quot;window.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//window.getComponent&lt;UIComponent&gt;().texture.setMinFilter(TextureFilter::NEAREST_MIPMAP_NEAREST);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//window.getComponent&lt;UIComponent&gt;().texture.setWrapU(TextureWrap::CLAMP_TO_EDGE);</span>
+<span style="color: #bbbbbb">    </span>window.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>window.setPatchMargin(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>window.setSize(<span style="color: #0000DD; font-weight: bold">600</span>,<span style="color: #0000DD; font-weight: bold">600</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>window.setName(<span style="background-color: #fff0f0">&quot;window&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>window.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER);<span style="color: #bbbbbb"></span>
 
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setTexture(&quot;button_normal.png&quot;);</span>
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setTexturePressed(&quot;button_disable.png&quot;);</span>
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setPosition(100, 200, 0);</span>
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setSize(400, 400);</span>
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setPatchMargin(5);</span>
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setLabel(&quot;Button2&quot;);</span>
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setFontSize(80);</span>
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setLabelColor(Vector4(0.2, 0.2, 0.2, 1.0));</span>
+<span style="color: #bbbbbb">    </span>window.addChild(<span style="color: #333333">&amp;</span>vcontainer);<span style="color: #bbbbbb"></span>
 
 <span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//Engine::addSceneLayer(&amp;scene2);</span>
-
 }<span style="color: #bbbbbb"></span>
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress</span>(){<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//text.setText(&quot;Eduardo Dória Lima&quot;);</span>
-<span style="color: #bbbbbb">    </span>button.setPosition(<span style="color: #0000DD; font-weight: bold">150</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>text.setText(textedit.getText());<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress2</span>(){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(text.getAnchorPreset()<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>AnchorPreset<span style="color: #333333">::</span>CENTER_BOTTOM){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_RIGHT);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(text.getAnchorPreset()<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>AnchorPreset<span style="color: #333333">::</span>CENTER_RIGHT){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_TOP);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(text.getAnchorPreset()<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>AnchorPreset<span style="color: #333333">::</span>CENTER_TOP){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_LEFT);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(text.getAnchorPreset()<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>AnchorPreset<span style="color: #333333">::</span>CENTER_LEFT){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_BOTTOM);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
 }<span style="color: #bbbbbb"></span>
 </pre></div>
 
