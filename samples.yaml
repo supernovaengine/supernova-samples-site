@@ -57,7 +57,6 @@ samples:
   - name: "User Interface"
     desc: "User interface sample with button and textedit"
     path: user_interface
-    output: true
     langs:
       - cpp    
       
