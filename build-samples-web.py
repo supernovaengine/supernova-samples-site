@@ -126,7 +126,8 @@ def build_sample(project_name, project_path, app_name, language, languages, outp
         sample_change=lang_change,
         sample_change_url=lang_change_url,
         sample_github_url=github_url,
-        sample_output=output
+        sample_output=output,
+        year=datetime.date.today().year
         )
 
     file_write_contents(shell_file, shell_content)
