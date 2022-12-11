@@ -95,3 +95,9 @@ samples:
     langs:
      - cpp
      - lua
+
+  - name: "Offscreen"
+    desc: "Draw a entire scene in a texture instead of default viewport"
+    path: offscreen
+    langs:
+     - cpp
