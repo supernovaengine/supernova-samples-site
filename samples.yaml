@@ -101,3 +101,9 @@ samples:
     path: offscreen
     langs:
      - cpp
+
+  - name: "Billboard"
+    desc: "Walk in a scene with text and trees billboards"
+    path: billboard
+    langs:
+     - cpp
