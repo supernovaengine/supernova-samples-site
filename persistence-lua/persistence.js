@@ -195,7 +195,7 @@ var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
     }
 
     }
-    loadPackage({"files": [{"filename": "/Button_Disable.png", "start": 0, "end": 1111}, {"filename": "/Button_Normal.png", "start": 1111, "end": 2224}, {"filename": "/Button_Press.png", "start": 2224, "end": 3377}, {"filename": "/main.lua", "start": 3377, "end": 7016}], "remote_package_size": 7016});
+    loadPackage({"files": [{"filename": "/Button_Disable.png", "start": 0, "end": 1111}, {"filename": "/Button_Normal.png", "start": 1111, "end": 2224}, {"filename": "/Button_Press.png", "start": 2224, "end": 3377}, {"filename": "/main.lua", "start": 3377, "end": 7006}], "remote_package_size": 7006});
 
   })();
 
