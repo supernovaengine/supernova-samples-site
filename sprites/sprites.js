@@ -195,7 +195,7 @@ var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
     }
 
     }
-    loadPackage({"files": [{"filename": "/dino.png", "start": 0, "end": 118251}, {"filename": "/main.lua", "start": 118251, "end": 119170}], "remote_package_size": 119170});
+    loadPackage({"files": [{"filename": "/dino.png", "start": 0, "end": 118251}, {"filename": "/main.lua", "start": 118251, "end": 119266}], "remote_package_size": 119266});
 
   })();
 

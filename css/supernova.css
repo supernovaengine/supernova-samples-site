@@ -40,7 +40,8 @@ a:hover { text-decoration: underline }
 .lista-2-colunas { margin: 40px 0; overflow: hidden }
 .lista-2-colunas > ul { list-style: none; padding: 0; margin: -20px 0 0 -20px; overflow: hidden }
 .lista-2-colunas > ul:after { clear: both; content: ''; display: block }
-.lista-2-colunas > ul > li { float: left; padding: 20px; box-sizing: border-box; width: 50%; height: 160px; }
+.lista-2-colunas > ul > li { float: left; padding: 20px; box-sizing: border-box; width: 50% }
+.lista-2-colunas > ul > li:after { content: ''; clear: both; display: block }
 .lista-2-colunas h3 { color: #283593; font-size: 1.0em; margin: 0px }
 .lista-2-colunas h3:before { font-size: 1.8em; display: inline; vertical-align: middle; margin-right: 0px } 
 .lista-2-colunas p { margin: 0px }
