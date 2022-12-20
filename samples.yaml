@@ -107,3 +107,9 @@ samples:
     path: billboard
     langs:
      - cpp
+
+  - name: "Mirror"
+    desc: "Using a mirror to reflect objects in scene"
+    path: mirror
+    langs:
+     - cpp
