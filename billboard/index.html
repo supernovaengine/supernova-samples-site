@@ -313,10 +313,16 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 }<span style="color: #bbbbbb"></span>
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onUpdate</span>(){<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_UP)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_UP)<span style="color: #bbbbbb"> </span><span style="color: #333333">||</span><span style="color: #bbbbbb"> </span>Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_W)){<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">        </span>camera.walkForward(<span style="color: #0000DD; font-weight: bold">1</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_DOWN)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_DOWN)<span style="color: #bbbbbb"> </span><span style="color: #333333">||</span><span style="color: #bbbbbb"> </span>Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_S)){<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">        </span>camera.walkForward(<span style="color: #0000DD; font-weight: bold">-1</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_A)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.slide(<span style="color: #0000DD; font-weight: bold">-1</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_D)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.slide(<span style="color: #0000DD; font-weight: bold">1</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
 
 <span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_LEFT)){<span style="color: #bbbbbb"></span>

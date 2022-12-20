@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Sample - Mirror</title>
+
+    <link href="../css/supernova.css" rel="stylesheet"/>
+    <link href="../css/fontello.css" rel="stylesheet"/>
+
+    <link rel="shortcut icon" href="../img/favicon.png"/>
+    
+    <style>
+      .emscripten { padding-right: 0; margin-left: auto; margin-right: auto; display: block; }
+      /*textarea.emscripten { font-family: monospace; width: 80%; }*/
+      div.emscripten { text-align: center; }
+      div.emscripten_border { border: 1px solid black; }
+      /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
+      /*canvas.emscripten { border: 0px none; background-color: black; }*/
+
+      #output {
+        width: 80%;
+        height: 100px;
+        margin: 0 auto;
+        margin-top: 30px;
+        border-left: 0px;
+        border-right: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        display: block;
+        background-color: black;
+        color: white;
+        font-family: 'Lucida Console', Monaco, monospace;
+        outline: none;
+      }
+
+      .spinner {
+        height: 50px;
+        width: 50px;
+        margin: 0px auto;
+        -webkit-animation: rotation .8s linear infinite;
+        -moz-animation: rotation .8s linear infinite;
+        -o-animation: rotation .8s linear infinite;
+        animation: rotation 0.8s linear infinite;
+        border-left: 10px solid rgb(0,150,240);
+        border-right: 10px solid rgb(0,150,240);
+        border-bottom: 10px solid rgb(0,150,240);
+        border-top: 10px solid rgb(100,0,200);
+        border-radius: 100%;
+        background-color: rgb(200,100,250);
+      }
+      @-webkit-keyframes rotation {
+        from {-webkit-transform: rotate(0deg);}
+        to {-webkit-transform: rotate(360deg);}
+      }
+      @-moz-keyframes rotation {
+        from {-moz-transform: rotate(0deg);}
+        to {-moz-transform: rotate(360deg);}
+      }
+      @-o-keyframes rotation {
+        from {-o-transform: rotate(0deg);}
+        to {-o-transform: rotate(360deg);}
+      }
+      @keyframes rotation {
+        from {transform: rotate(0deg);}
+        to {transform: rotate(360deg);}
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="cabecalho">
+			<div class="wrapper">
+				<a href="http://supernovaengine.org"><img class="cabecalho-logo" src="../img/logo.png"/></a>
+				<div class="cabecalho-links">
+					<ul>
+						<li>
+							<a href="http://docs.supernovaengine.org">
+								<span class="cabecalho-link-imagem icon-book"></span>
+								<span class="cabecalho-link-texto">Documentation</span>
+							</a>
+            </li>
+            <li>
+							<a href="http://samples.supernovaengine.org">
+								<span class="cabecalho-link-imagem icon-doc-text"></span>
+								<span class="cabecalho-link-texto">Samples</span>
+							</a>
+						</li>
+						<li>
+							<a href="https://github.com/supernovaengine/supernova">
+								<span class="cabecalho-link-imagem icon-github"></span>
+								<span class="cabecalho-link-texto">Source</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+    </div>
+    
+    <div class="corpo">
+      <div class="wrapper" id="wrapper-corpo">
+
+        <div class="texto">
+          <p class="corpo-frase1">Mirror (C++)</p>
+          <a href=""><p class="corpo-frase2"></p></a>
+				</div>
+
+    <figure style="overflow:visible;" id="spinner"><div class="spinner"></div></figure>
+    <div class="emscripten" id="status">Downloading...</div>
+    <div class="emscripten">
+      <progress value="0" max="100" id="progress" hidden=1></progress>  
+    </div>
+
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+    
+
+    <script type='text/javascript'>
+      var statusElement = document.getElementById('status');
+      var progressElement = document.getElementById('progress');
+      var spinnerElement = document.getElementById('spinner');
+
+      window.addEventListener('resize', resizeCanvas, false);
+      var wrapper = document.getElementById('wrapper-corpo');
+
+      function resizeCanvas() {
+        changeCanvasSize = Module.cwrap('changeCanvasSize',null,['number','number']);
+        changeCanvasSize(wrapper.offsetWidth, wrapper.offsetWidth * 9.0 / 16.0)
+      }
+
+      var Module = {
+        preRun: [],
+        postRun: function() {
+          resizeCanvas()
+        },
+        print: (function() {
+          var element = document.getElementById('output');
+          if (element) element.value = ''; // clear browser cache
+          return function(text) {
+            if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+            // These replacements are necessary if you render to raw HTML
+            //text = text.replace(/&/g, "&amp;");
+            //text = text.replace(/</g, "&lt;");
+            //text = text.replace(/>/g, "&gt;");
+            //text = text.replace('\n', '<br>', 'g');
+            console.log(text);
+            if (element) {
+              element.value += text + "\n";
+              element.scrollTop = element.scrollHeight; // focus on bottom
+            }
+          };
+        })(),
+        printErr: function(text) {
+          if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+          console.error(text);
+        },
+        canvas: (function() {
+          var canvas = document.getElementById('canvas');
+
+          // As a default initial behavior, pop up an alert when webgl context is lost. To make your
+          // application robust, you may want to override this behavior before shipping!
+          // See http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15.2
+          canvas.addEventListener("webglcontextlost", function(e) { alert('WebGL context lost. You will need to reload the page.'); e.preventDefault(); }, false);
+
+          return canvas;
+        })(),
+        setStatus: function(text) {
+          if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
+          if (text === Module.setStatus.last.text) return;
+          var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+          var now = Date.now();
+          if (m && now - Module.setStatus.last.time < 30) return; // if this is a progress update, skip it if too soon
+          Module.setStatus.last.time = now;
+          Module.setStatus.last.text = text;
+          if (m) {
+            text = m[1];
+            progressElement.value = parseInt(m[2])*100;
+            progressElement.max = parseInt(m[4])*100;
+            progressElement.hidden = false;
+            spinnerElement.hidden = false;
+          } else {
+            progressElement.value = null;
+            progressElement.max = null;
+            progressElement.hidden = true;
+            if (!text) spinnerElement.hidden = true;
+          }
+          statusElement.innerHTML = text;
+        },
+        totalDependencies: 0,
+        monitorRunDependencies: function(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+          Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
+        }
+      };
+      Module.setStatus('Downloading...');
+      window.onerror = function() {
+        Module.setStatus('Exception thrown, see JavaScript console');
+        spinnerElement.style.display = 'none';
+        Module.setStatus = function(text) {
+          if (text) Module.printErr('[post-exception status] ' + text);
+        };
+      };
+
+      function showCode() {
+        var snippet = document.getElementById("code-snippet");
+        var label = document.getElementById("show-code-text");
+        if (snippet.style.display === "none") {
+          snippet.style.display = "block";
+          label.innerHTML = "Hide source code"
+        } else {
+          snippet.style.display = "none";
+          label.innerHTML = "Show source code"
+        }
+      }
+    </script>
+
+    <script async type="text/javascript" src="mirror.js"></script>
+
+    <div class="menu-sample">
+      <ul>
+        <li>
+          <a onclick="showCode()" href="javascript:void(0);"><h3 class="icon-doc-text" id="show-code-text">Show source code</h3></a>
+        </li>
+        <li>
+          <a href="https://github.com/supernovaengine/supernova-samples/blob/master/mirror/main.cpp"><h3 class="icon-github">View on Github</h3></a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="code-snippet" style="display: none;">
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
+
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Scene.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Camera.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;PlaneTerrain.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Model.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;SkyBox.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Light.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Sprite.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Input.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Text.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Image.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;RenderSystem.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Light.h&quot;</span><span style="color: #557799"></span>
+
+<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;<span style="color: #bbbbbb"></span>
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onUpdate</span>();<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods);<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchMove</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);<span style="color: #bbbbbb"></span>
+
+Vector2<span style="color: #bbbbbb"> </span>lastTouchPos;<span style="color: #bbbbbb"></span>
+
+Scene<span style="color: #bbbbbb"> </span>scene;<span style="color: #bbbbbb"></span>
+
+Model<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">model</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">camera</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+PlaneTerrain<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">terrain</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+SkyBox<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sky</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Light<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sun</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+
+Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">cameramirror</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Sprite<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">mirror</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.7</span>);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">7</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">40</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>camera.setName(<span style="background-color: #fff0f0">&quot;camera&quot;</span>);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>sun.setType(LightType<span style="color: #333333">::</span>DIRECTIONAL);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sun.setDirection(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">-0.4</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">-0.6</span>);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>terrain.create(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>terrain.setTexture(<span style="background-color: #fff0f0">&quot;ground.png&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>terrain.setPosition(<span style="color: #0000DD; font-weight: bold">-100</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">-100</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>terrain.setName(<span style="background-color: #fff0f0">&quot;terrain&quot;</span>);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>cameramirror.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>cameramirror.setView(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">40</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>cameramirror.setRenderToTexture(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>cameramirror.setName(<span style="background-color: #fff0f0">&quot;cameramirror&quot;</span>);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>mirror.setTexture(cameramirror.getFramebuffer());<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>mirror.setSize(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">10</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>mirror.setPivot(PivotPreset<span style="color: #333333">::</span>CENTER);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>mirror.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>mirror.setName(<span style="background-color: #fff0f0">&quot;mirror&quot;</span>);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>model.loadModel(<span style="background-color: #fff0f0">&quot;WaterBottle.glb&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>model.setScale(<span style="color: #0000DD; font-weight: bold">20</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>model.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">20</span>);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>sky.setTextureFront(<span style="background-color: #fff0f0">&quot;ely_hills/hills_lf.tga&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sky.setTextureBack(<span style="background-color: #fff0f0">&quot;ely_hills/hills_rt.tga&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sky.setTextureLeft(<span style="background-color: #fff0f0">&quot;ely_hills/hills_bk.tga&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sky.setTextureRight(<span style="background-color: #fff0f0">&quot;ely_hills/hills_ft.tga&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sky.setTextureUp(<span style="background-color: #fff0f0">&quot;ely_hills/hills_up.tga&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sky.setTextureDown(<span style="background-color: #fff0f0">&quot;ely_hills/hills_dn.tga&quot;</span>);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onUpdate<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onUpdate;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onKeyDown<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onKeyDown;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchStart<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchStart;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchMove<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchMove;<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onUpdate</span>(){<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_UP)<span style="color: #bbbbbb"> </span><span style="color: #333333">||</span><span style="color: #bbbbbb"> </span>Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_W)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.walkForward(<span style="color: #0000DD; font-weight: bold">1</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_DOWN)<span style="color: #bbbbbb"> </span><span style="color: #333333">||</span><span style="color: #bbbbbb"> </span>Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_S)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.walkForward(<span style="color: #0000DD; font-weight: bold">-1</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_A)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.slide(<span style="color: #0000DD; font-weight: bold">-1</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_D)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.slide(<span style="color: #0000DD; font-weight: bold">1</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_LEFT)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.rotateView(<span style="color: #0000DD; font-weight: bold">2</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_RIGHT)){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>camera.rotateView(<span style="color: #0000DD; font-weight: bold">-2</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>}<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span><span style="color: #888888">// necessary if use camera.getWorldPosition() to update world positions</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">// scene.getSystem&lt;RenderSystem&gt;()-&gt;updateTransform(camera.getComponent&lt;Transform&gt;());</span>
+
+<span style="color: #bbbbbb">    </span>Vector3<span style="color: #bbbbbb"> </span>camVec<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>mirror.getPosition()<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>camera.getPosition();<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Vector3<span style="color: #bbbbbb"> </span>reflVec<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>camVec.reflect(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">1</span>));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>cameramirror.setView(cameramirror.getPosition()<span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>reflVec);<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods){<span style="color: #bbbbbb"></span>
+
+}<span style="color: #bbbbbb"></span>
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchMove</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>difX<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>lastTouchPos.x<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>x;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>difY<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>lastTouchPos.y<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>y;<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>lastTouchPos<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>Vector2(x,<span style="color: #bbbbbb"> </span>y);<span style="color: #bbbbbb"></span>
+
+<span style="color: #bbbbbb">    </span>camera.rotateView(<span style="color: #6600EE; font-weight: bold">0.1</span><span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>difX);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>camera.elevateView(<span style="color: #6600EE; font-weight: bold">0.1</span><span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>difY);<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y){<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>lastTouchPos<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>Vector2(x,<span style="color: #bbbbbb"> </span>y);<span style="color: #bbbbbb"></span>
+}<span style="color: #bbbbbb"></span>
+</pre></div>
+
+    </div>
+  </div>
+</div>
+
+<div class="rodape">
+  <p>Copyright © 2022, Supernova Engine</p>
+  <p>
+  This is an open source project<br/>
+  Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>
+  Images, logos, text and website are licensed by <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a><br/>
+  </p>
+</div>
+  </body>
+</html>
+
