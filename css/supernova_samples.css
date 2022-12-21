@@ -72,7 +72,9 @@ a:hover { text-decoration: underline }
 }
 
 @media only screen and (max-width: 420px) {
-.cabecalho .wrapper { padding-bottom: 60px; }
-  .cabecalho-links { bottom: 80px; }
-.cabecalho-logo { margin-left: auto; margin-right: auto; }
+	.cabecalho-logo { display: block; margin-left: auto; margin-right: auto; }
+	.cabecalho .wrapper { padding-bottom: 70px; }
+	.cabecalho-links {position: absolute; top: inherit; transform: inherit; bottom:0; left: 0; right: 0; width: 100%; display: table; table-layout: fixed; }
+	.cabecalho-links > ul { display: table-row; }
+	.cabecalho-links > ul > li { display: table-cell; float: inherit; }
 }
