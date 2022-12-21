@@ -23,9 +23,10 @@ from jinja2 import Template
 import yaml
 
 def copyResourcesDir(src, dst):
-    if os.path.exists(dst) and os.path.isdir(dst):
-        shutil.rmtree(dst)
-    shutil.copytree(src, dst, False, None)
+    if os.path.exists(src):
+        if os.path.exists(dst) and os.path.isdir(dst):
+            shutil.rmtree(dst)
+        shutil.copytree(src, dst, False, None)
 
 def moveSource(src, dst, exts):
     if os.path.exists(dst) and os.path.isdir(dst):
