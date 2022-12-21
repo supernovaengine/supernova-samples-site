@@ -24,7 +24,7 @@ a:hover { text-decoration: underline }
 
 .cabecalho { background: #283593; border-bottom: 10px solid #3f51b5 }
 
-.cabecalho-logo { box-sizing: border-box; display: block; padding: 0 20px; margin: 5px; }
+.cabecalho-logo { box-sizing: border-box; padding: 0 20px; margin: 5px; }
 
 .cabecalho-links { color: #FFF; position: absolute; right: 0; top: 50%; transform: translate(0, -50%) }
 .cabecalho-links > ul { list-style: none; padding: 0; margin: 0 }
@@ -58,16 +58,6 @@ a:hover { text-decoration: underline }
   display: inline-block;
   margin-right: 50px;
 }
-/*
-.menu-sample { margin: 40px 0; overflow: hidden }
-.menu-sample > ul { list-style: none; padding: 0; margin: -20px 0 0 -20px; overflow: hidden }
-.menu-sample > ul:after { clear: both; content: ''; display: block }
-.menu-sample > ul > li { display: inline; vertical-align: middle; }
-
-.menu-sample h3 { color: #283593; font-size: 1.0em; margin: 0px }
-.menu-sample h3:before { font-size: 1.8em; display: inline; vertical-align: middle; margin-right: 0px } 
-.menu-sample p { margin: 0px }
-*/
 
 .samples-imagem { width: 200px; padding: 0 20px; float: left; }
 .samples-imagem img { display: block; width: 100% }
@@ -78,9 +68,11 @@ a:hover { text-decoration: underline }
 .rodape a { color: rgb(185, 181, 181)}
 
 @media only screen and (max-width: 800px) {
-	.cabecalho .wrapper { padding-bottom: 60px }
-    .cabecalho-links { left: 50%; right: inherit; top: inherit; bottom: 5px; transform: translate(-50%, 0) }
-    .cabecalho-links > ul { white-space: nowrap }
-    .cabecalho-links > ul > li { display: inline-block; margin: 0; padding: 0 20px }
-    .lista-2-colunas > ul > li { width: 100% }
+  .lista-2-colunas > ul > li { width: 100% }
+}
+
+@media only screen and (max-width: 420px) {
+.cabecalho .wrapper { padding-bottom: 60px; }
+  .cabecalho-links { bottom: 80px; }
+.cabecalho-logo { margin-left: auto; margin-right: auto; }
 }
