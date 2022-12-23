@@ -232,7 +232,6 @@
 
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Scene.h&quot;</span><span style="color: #557799"></span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Camera.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;PlaneTerrain.h&quot;</span><span style="color: #557799"></span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Model.h&quot;</span><span style="color: #557799"></span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;SkyBox.h&quot;</span><span style="color: #557799"></span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Light.h&quot;</span><span style="color: #557799"></span>
@@ -245,7 +244,7 @@
 Scene<span style="color: #bbbbbb"> </span>scene;<span style="color: #bbbbbb"></span>
 
 Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">camera</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
-PlaneTerrain<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">terrain</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">terrain</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 Model<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">model</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 SkyBox<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sky</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 
@@ -255,7 +254,7 @@ SkyBox<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-wei
 
 <span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">7</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">-20</span>);<span style="color: #bbbbbb"></span>
 
-<span style="color: #bbbbbb">    </span>terrain.create(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>terrain.createPlane(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>terrain.setTexture(<span style="background-color: #fff0f0">&quot;ground.png&quot;</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>terrain.setPosition(<span style="color: #0000DD; font-weight: bold">-100</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">-100</span>);<span style="color: #bbbbbb"></span>
 
