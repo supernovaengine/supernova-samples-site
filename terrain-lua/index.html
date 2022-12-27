@@ -240,6 +240,7 @@ camera <span style="color: #333333">=</span> Camera(scene)
 terrain <span style="color: #333333">=</span> Terrain(scene)
 sun <span style="color: #333333">=</span> Light(scene)
 
+textcontainer <span style="color: #333333">=</span> Container(uiscene)
 text <span style="color: #333333">=</span> Text(uiscene)
 text2 <span style="color: #333333">=</span> Text(uiscene)
 text3 <span style="color: #333333">=</span> Text(uiscene)
@@ -330,11 +331,11 @@ sun:setType(LightType.DIRECTIONAL)
 sun:setDirection(<span style="color: #6600EE; font-weight: bold">0.0</span>, <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.3</span>, <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.8</span>)
 sun:setShadows(<span style="color: #008800; font-weight: bold">true</span>)
 
-text.text <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Texto&quot;</span>;
-text:setPosition(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-text2:setPosition(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">150</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-text3:setPosition(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">200</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-text4:setPosition(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">250</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
+textcontainer.anchorPreset <span style="color: #333333">=</span> AnchorPreset.TOP_LEFT
+textcontainer:addChild(text)
+textcontainer:addChild(text2)
+textcontainer:addChild(text3)
+textcontainer:addChild(text4)
 
 Engine.setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">480</span>)
 Engine.setScene(scene)

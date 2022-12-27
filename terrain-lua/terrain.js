@@ -195,7 +195,7 @@ var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
     }
 
     }
-    loadPackage({"files": [{"filename": "/blendmap.png", "start": 0, "end": 57385}, {"filename": "/block.png", "start": 57385, "end": 59237}, {"filename": "/ground.png", "start": 59237, "end": 851641}, {"filename": "/heightmap.png", "start": 851641, "end": 1084474}, {"filename": "/main.lua", "start": 1084474, "end": 1087383}], "remote_package_size": 1087383});
+    loadPackage({"files": [{"filename": "/blendmap.png", "start": 0, "end": 57385}, {"filename": "/block.png", "start": 57385, "end": 59237}, {"filename": "/ground.png", "start": 59237, "end": 851641}, {"filename": "/heightmap.png", "start": 851641, "end": 1084474}, {"filename": "/main.lua", "start": 1084474, "end": 1087440}], "remote_package_size": 1087440});
 
   })();
 

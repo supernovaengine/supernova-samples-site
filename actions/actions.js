@@ -195,7 +195,7 @@ var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
     }
 
     }
-    loadPackage({"files": [{"filename": "/main.lua", "start": 0, "end": 2681}], "remote_package_size": 2681});
+    loadPackage({"files": [{"filename": "/main.lua", "start": 0, "end": 2677}], "remote_package_size": 2677});
 
   })();
 

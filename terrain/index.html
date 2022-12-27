@@ -238,6 +238,7 @@
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Camera.h&quot;</span><span style="color: #557799"></span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Light.h&quot;</span><span style="color: #557799"></span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Text.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Container.h&quot;</span><span style="color: #557799"></span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Input.h&quot;</span><span style="color: #557799"></span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;System.h&quot;</span><span style="color: #557799"></span>
 
@@ -253,6 +254,7 @@ Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-wei
 Terrain<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">terrain</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 Light<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sun</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
 
+Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">textcontainer</span>(<span style="color: #333333">&amp;</span>uiscene);<span style="color: #bbbbbb"></span>
 Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>uiscene);<span style="color: #bbbbbb"></span>
 Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text2</span>(<span style="color: #333333">&amp;</span>uiscene);<span style="color: #bbbbbb"></span>
 Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text3</span>(<span style="color: #333333">&amp;</span>uiscene);<span style="color: #bbbbbb"></span>
@@ -285,11 +287,11 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>sun.setDirection(<span style="color: #6600EE; font-weight: bold">0.0f</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">-0.3</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">-0.8</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>sun.setShadows(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
 
-<span style="color: #bbbbbb">    </span>text.setText(<span style="background-color: #fff0f0">&quot;Texto&quot;</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>text.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>text2.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">150</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>text3.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>text4.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">250</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>textcontainer.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>TOP_LEFT);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>textcontainer.addChild(<span style="color: #333333">&amp;</span>text);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>textcontainer.addChild(<span style="color: #333333">&amp;</span>text2);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>textcontainer.addChild(<span style="color: #333333">&amp;</span>text3);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>textcontainer.addChild(<span style="color: #333333">&amp;</span>text4);<span style="color: #bbbbbb"></span>
 
 <span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">480</span>);<span style="color: #bbbbbb"></span>
 <span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>

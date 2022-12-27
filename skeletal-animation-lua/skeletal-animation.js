@@ -196,7 +196,7 @@ Module['FS_createPath']("/", "ely_hills", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/CesiumMan.glb", "start": 0, "end": 490956}, {"filename": "/ely_hills/ely_hills.shader", "start": 490956, "end": 491295}, {"filename": "/ely_hills/hills_bk.tga", "start": 491295, "end": 1278266}, {"filename": "/ely_hills/hills_dn.tga", "start": 1278266, "end": 1289045}, {"filename": "/ely_hills/hills_ft.tga", "start": 1289045, "end": 2076016}, {"filename": "/ely_hills/hills_lf.tga", "start": 2076016, "end": 2862987}, {"filename": "/ely_hills/hills_rt.tga", "start": 2862987, "end": 3649958}, {"filename": "/ely_hills/hills_up.tga", "start": 3649958, "end": 4436929}, {"filename": "/ely_hills/readme", "start": 4436929, "end": 4437651}, {"filename": "/ground.png", "start": 4437651, "end": 5230055}, {"filename": "/main.lua", "start": 5230055, "end": 5231149}], "remote_package_size": 5231149});
+    loadPackage({"files": [{"filename": "/CesiumMan.glb", "start": 0, "end": 490956}, {"filename": "/ely_hills/ely_hills.shader", "start": 490956, "end": 491295}, {"filename": "/ely_hills/hills_bk.tga", "start": 491295, "end": 1278266}, {"filename": "/ely_hills/hills_dn.tga", "start": 1278266, "end": 1289045}, {"filename": "/ely_hills/hills_ft.tga", "start": 1289045, "end": 2076016}, {"filename": "/ely_hills/hills_lf.tga", "start": 2076016, "end": 2862987}, {"filename": "/ely_hills/hills_rt.tga", "start": 2862987, "end": 3649958}, {"filename": "/ely_hills/hills_up.tga", "start": 3649958, "end": 4436929}, {"filename": "/ely_hills/readme", "start": 4436929, "end": 4437651}, {"filename": "/ground.png", "start": 4437651, "end": 5230055}, {"filename": "/main.lua", "start": 5230055, "end": 5231620}], "remote_package_size": 5231620});
 
   })();
 
