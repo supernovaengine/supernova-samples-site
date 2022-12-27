@@ -113,3 +113,9 @@ samples:
     path: mirror
     langs:
      - cpp
+
+  - name: "Shapes"
+    desc: "Drawing shapes of box, cylinder, sphere, plane and torus"
+    path: shapes
+    langs:
+     - cpp
