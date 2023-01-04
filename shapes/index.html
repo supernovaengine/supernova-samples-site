@@ -228,97 +228,97 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span><span style="color: #557799"></span>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span>
 
-<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Scene.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Camera.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Mesh.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;TimedAction.h&quot;</span><span style="color: #557799"></span>
-<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Angle.h&quot;</span><span style="color: #557799"></span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Scene.h&quot;</span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Camera.h&quot;</span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Mesh.h&quot;</span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;TimedAction.h&quot;</span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Angle.h&quot;</span>
 
-<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;<span style="color: #bbbbbb"></span>
+<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onActionStep</span>();<span style="color: #bbbbbb"></span>
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods);<span style="color: #bbbbbb"></span>
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);<span style="color: #bbbbbb"></span>
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchMove</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onActionStep</span>();
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchMove</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);
 
-Vector2<span style="color: #bbbbbb"> </span>lastTouchPos;<span style="color: #bbbbbb"></span>
+Vector2<span style="color: #bbbbbb"> </span>lastTouchPos;
 
-Scene<span style="color: #bbbbbb"> </span>scene;<span style="color: #bbbbbb"></span>
+Scene<span style="color: #bbbbbb"> </span>scene;
 
-Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">camera</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
-Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">torus</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
-Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">cylinder</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
-Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">cube</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
-Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sphere</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
-Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">plane</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">camera</span>(<span style="color: #333333">&amp;</span>scene);
+Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">torus</span>(<span style="color: #333333">&amp;</span>scene);
+Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">cylinder</span>(<span style="color: #333333">&amp;</span>scene);
+Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">cube</span>(<span style="color: #333333">&amp;</span>scene);
+Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sphere</span>(<span style="color: #333333">&amp;</span>scene);
+Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">plane</span>(<span style="color: #333333">&amp;</span>scene);
 
-TimedAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">timedaction</span>(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
+TimedAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">timedaction</span>(<span style="color: #333333">&amp;</span>scene);
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){
+<span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());
 
-<span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">30</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">30</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>camera.setName(<span style="background-color: #fff0f0">&quot;camera&quot;</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">30</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">30</span>);
+<span style="color: #bbbbbb">    </span>camera.setName(<span style="background-color: #fff0f0">&quot;camera&quot;</span>);
 
-<span style="color: #bbbbbb">    </span>torus.createTorus(<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>torus.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>torus.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">-10</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>torus.createTorus(<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>);
+<span style="color: #bbbbbb">    </span>torus.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>torus.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">-10</span>);
 
-<span style="color: #bbbbbb">    </span>cylinder.createCylinder(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">3</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>cylinder.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>cylinder.setPosition(<span style="color: #0000DD; font-weight: bold">-10</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>cylinder.createCylinder(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">3</span>);
+<span style="color: #bbbbbb">    </span>cylinder.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>cylinder.setPosition(<span style="color: #0000DD; font-weight: bold">-10</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>);
 
-<span style="color: #bbbbbb">    </span>cube.createBox(<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">4</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>cube.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>cube.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>cube.createBox(<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">4</span>);
+<span style="color: #bbbbbb">    </span>cube.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>cube.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>);
 
-<span style="color: #bbbbbb">    </span>sphere.createSphere(<span style="color: #0000DD; font-weight: bold">3</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>sphere.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>sphere.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">10</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>sphere.createSphere(<span style="color: #0000DD; font-weight: bold">3</span>);
+<span style="color: #bbbbbb">    </span>sphere.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>sphere.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">10</span>);
 
-<span style="color: #bbbbbb">    </span>plane.createPlane(<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>plane.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>plane.setPosition(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>plane.createPlane(<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>);
+<span style="color: #bbbbbb">    </span>plane.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>plane.setPosition(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>);
 
-<span style="color: #bbbbbb">    </span>timedaction.setDuration(<span style="color: #0000DD; font-weight: bold">5</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>timedaction.setLoop(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>timedaction.getComponent<span style="color: #333333">&lt;</span>ActionComponent<span style="color: #333333">&gt;</span>().onStep<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onActionStep;<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>timedaction.start();<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>timedaction.setDuration(<span style="color: #0000DD; font-weight: bold">5</span>);
+<span style="color: #bbbbbb">    </span>timedaction.setLoop(<span style="color: #007020">true</span>);
+<span style="color: #bbbbbb">    </span>timedaction.getComponent<span style="color: #333333">&lt;</span>ActionComponent<span style="color: #333333">&gt;</span>().onStep<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onActionStep;
+<span style="color: #bbbbbb">    </span>timedaction.start();
 <span style="color: #bbbbbb">    </span>
-<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);
 
-<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchStart<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchStart;<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchMove<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchMove;<span style="color: #bbbbbb"></span>
-}<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchStart<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchStart;
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchMove<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchMove;
+}
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onActionStep</span>(){<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>angle<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>timedaction.getValue()<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">360</span>;<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onActionStep</span>(){
+<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>angle<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>timedaction.getValue()<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">360</span>;
 
-<span style="color: #bbbbbb">    </span>Quaternion<span style="color: #bbbbbb"> </span>rot;<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>rot.fromAngle(Angle<span style="color: #333333">::</span>degToDefault(angle));<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>Quaternion<span style="color: #bbbbbb"> </span>rot;
+<span style="color: #bbbbbb">    </span>rot.fromAngle(Angle<span style="color: #333333">::</span>degToDefault(angle));
 
-<span style="color: #bbbbbb">    </span>torus.setRotation(rot);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>cylinder.setRotation(rot);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>cube.setRotation(rot);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>sphere.setRotation(rot);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>plane.setRotation(rot);<span style="color: #bbbbbb"></span>
-}<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>torus.setRotation(rot);
+<span style="color: #bbbbbb">    </span>cylinder.setRotation(rot);
+<span style="color: #bbbbbb">    </span>cube.setRotation(rot);
+<span style="color: #bbbbbb">    </span>sphere.setRotation(rot);
+<span style="color: #bbbbbb">    </span>plane.setRotation(rot);
+}
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchMove</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y){<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>difX<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>lastTouchPos.x<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>x;<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>difY<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>lastTouchPos.y<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>y;<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>lastTouchPos<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>Vector2(x,<span style="color: #bbbbbb"> </span>y);<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchMove</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y){
+<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>difX<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>lastTouchPos.x<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>x;
+<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>difY<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>lastTouchPos.y<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>y;
+<span style="color: #bbbbbb">    </span>lastTouchPos<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>Vector2(x,<span style="color: #bbbbbb"> </span>y);
 
-<span style="color: #bbbbbb">    </span>camera.rotateView(<span style="color: #6600EE; font-weight: bold">0.1</span><span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>difX);<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>camera.elevateView(<span style="color: #6600EE; font-weight: bold">0.1</span><span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>difY);<span style="color: #bbbbbb"></span>
-}<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">    </span>camera.rotateView(<span style="color: #6600EE; font-weight: bold">0.1</span><span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>difX);
+<span style="color: #bbbbbb">    </span>camera.elevateView(<span style="color: #6600EE; font-weight: bold">0.1</span><span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>difY);
+}
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y){<span style="color: #bbbbbb"></span>
-<span style="color: #bbbbbb">    </span>lastTouchPos<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>Vector2(x,<span style="color: #bbbbbb"> </span>y);<span style="color: #bbbbbb"></span>
-}<span style="color: #bbbbbb"></span>
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y){
+<span style="color: #bbbbbb">    </span>lastTouchPos<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>Vector2(x,<span style="color: #bbbbbb"> </span>y);
+}
 </pre></div>
 
     </div>
@@ -326,7 +326,7 @@ TimedAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; fon
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2022, Supernova Engine</p>
+  <p>Copyright © 2023, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>
