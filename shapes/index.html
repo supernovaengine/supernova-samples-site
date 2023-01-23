@@ -232,9 +232,9 @@
 
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Scene.h&quot;</span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Camera.h&quot;</span>
-<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Mesh.h&quot;</span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;TimedAction.h&quot;</span>
 <span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Angle.h&quot;</span>
+<span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Shape.h&quot;</span>
 
 <span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;
 
@@ -248,11 +248,11 @@ Vector2<span style="color: #bbbbbb"> </span>lastTouchPos;
 Scene<span style="color: #bbbbbb"> </span>scene;
 
 Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">camera</span>(<span style="color: #333333">&amp;</span>scene);
-Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">torus</span>(<span style="color: #333333">&amp;</span>scene);
-Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">cylinder</span>(<span style="color: #333333">&amp;</span>scene);
-Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">cube</span>(<span style="color: #333333">&amp;</span>scene);
-Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sphere</span>(<span style="color: #333333">&amp;</span>scene);
-Mesh<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">plane</span>(<span style="color: #333333">&amp;</span>scene);
+Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">torus</span>(<span style="color: #333333">&amp;</span>scene);
+Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">cylinder</span>(<span style="color: #333333">&amp;</span>scene);
+Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">cube</span>(<span style="color: #333333">&amp;</span>scene);
+Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sphere</span>(<span style="color: #333333">&amp;</span>scene);
+Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">plane</span>(<span style="color: #333333">&amp;</span>scene);
 
 TimedAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">timedaction</span>(<span style="color: #333333">&amp;</span>scene);
 
