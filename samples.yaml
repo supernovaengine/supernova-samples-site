@@ -68,6 +68,19 @@ samples:
       - cpp
       - lua
 
+  - name: "Sprites"
+    desc: "Some types of sprite animations"
+    path: sprites
+    langs:
+     - cpp
+     - lua
+
+  - name: "Tilemap"
+    desc: "Walk across a platformer map"
+    path: tilemap
+    langs:
+     - cpp
+
   - name: "Terrain"
     desc: "Navigate through a heightmap terrain"
     path: terrain
@@ -85,13 +98,6 @@ samples:
   - name: "Morph Targets"
     desc: "Morphing a cube model with animation"
     path: morph_targets
-    langs:
-     - cpp
-     - lua
-
-  - name: "Sprites"
-    desc: "Some types of sprite animations"
-    path: sprites
     langs:
      - cpp
      - lua
