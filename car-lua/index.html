@@ -229,15 +229,17 @@
 
     <div id="code-snippet" style="display: none;">
     <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span>scene <span style="color: #333333">=</span> Scene()
+uiscene <span style="color: #333333">=</span> Scene()
 
 camera <span style="color: #333333">=</span> Camera(scene)
 terrain <span style="color: #333333">=</span> Shape(scene)
 car <span style="color: #333333">=</span> Model(scene)
 house <span style="color: #333333">=</span> Model(scene)
 sky <span style="color: #333333">=</span> SkyBox(scene)
-text <span style="color: #333333">=</span> Text(scene)
 carengine <span style="color: #333333">=</span> Audio(scene)
 fog <span style="color: #333333">=</span> Fog(scene)
+
+text <span style="color: #333333">=</span> Text(uiscene)
 
 curve <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
 speed <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
@@ -340,9 +342,10 @@ sun.type <span style="color: #333333">=</span> LightType.DIRECTIONAL
 sun:setDirection(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.4</span>, <span style="color: #6600EE; font-weight: bold">0.6</span>)
 sun.shadows <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>
 
-text:setPosition(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
+text:setPosition(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
 
 Engine.setScene(scene)
+Engine.addSceneLayer(uiscene)
 
 Engine.onUpdate <span style="color: #333333">=</span> onUpdate
 </pre></div>
