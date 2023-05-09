@@ -270,9 +270,13 @@ Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-
 <span style="color: #bbbbbb">    </span>vcontainer.addChild(<span style="color: #333333">&amp;</span>hcontainer);
 <span style="color: #bbbbbb">    </span>vcontainer.addChild(<span style="color: #333333">&amp;</span>button2);
 <span style="color: #bbbbbb">    </span>vcontainer.addChild(<span style="color: #333333">&amp;</span>text);
+<span style="color: #bbbbbb">    </span>vcontainer.setBoxExpand(<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">true</span>);
+<span style="color: #bbbbbb">    </span>vcontainer.setBoxExpand(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">false</span>);
+<span style="color: #bbbbbb">    </span>vcontainer.setBoxExpand(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">true</span>);
 
 <span style="color: #bbbbbb">    </span>hcontainer.addChild(<span style="color: #333333">&amp;</span>textedit);
 <span style="color: #bbbbbb">    </span>hcontainer.addChild(<span style="color: #333333">&amp;</span>button);
+<span style="color: #bbbbbb">    </span>hcontainer.setBoxExpand(<span style="color: #007020">true</span>);
 
 <span style="color: #bbbbbb">    </span><span style="color: #888888">//vcontainer.setSize(0,0);</span>
 <span style="color: #bbbbbb">    </span>vcontainer.setType(ContainerType<span style="color: #333333">::</span>VERTICAL);
@@ -282,7 +286,7 @@ Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-
 
 <span style="color: #bbbbbb">    </span>hcontainer.setType(ContainerType<span style="color: #333333">::</span>HORIZONTAL);
 <span style="color: #bbbbbb">    </span>hcontainer.setName(<span style="background-color: #fff0f0">&quot;hcontainer&quot;</span>);
-<span style="color: #bbbbbb">    </span>hcontainer.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>FULL_LAYOUT);
+<span style="color: #bbbbbb">    </span>hcontainer.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>HORIZONTAL_CENTER_WIDE);
 
 <span style="color: #bbbbbb">    </span>button.setTexture(<span style="background-color: #fff0f0">&quot;button_normal.png&quot;</span>);
 <span style="color: #bbbbbb">    </span>button.setTexturePressed(<span style="background-color: #fff0f0">&quot;button_disable.png&quot;</span>);
@@ -307,7 +311,7 @@ Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-
 <span style="color: #bbbbbb">    </span>button2.setFontSize(<span style="color: #0000DD; font-weight: bold">40</span>);
 <span style="color: #bbbbbb">    </span>button2.setLabelColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));
 <span style="color: #bbbbbb">    </span>button2.getComponent<span style="color: #333333">&lt;</span>ButtonComponent<span style="color: #333333">&gt;</span>().onPress<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onPress2;
-<span style="color: #bbbbbb">    </span>button2.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>FULL_LAYOUT);
+<span style="color: #bbbbbb">    </span>button2.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>HORIZONTAL_CENTER_WIDE);
 <span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setAnchors(0.5, 0.5, 0.5, 0.5);</span>
 <span style="color: #bbbbbb">    </span><span style="color: #888888">//button2.setMargins(-200,-200, 200,200);</span>
 
