@@ -281,6 +281,7 @@ Tilemap<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-we
 <span style="color: #bbbbbb">    </span>map.setScale(<span style="color: #6600EE; font-weight: bold">0.6</span>);
 <span style="color: #bbbbbb">    </span>map.addChild(<span style="color: #333333">&amp;</span>tilemap);
 
+<span style="color: #bbbbbb">    </span>objects.clear();
 <span style="color: #bbbbbb">    </span>objects.reserve(numObjects);
 <span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span>numObjects;<span style="color: #bbbbbb"> </span>i<span style="color: #333333">++</span>){
 <span style="color: #bbbbbb">        </span>objects.emplace_back(<span style="color: #333333">&amp;</span>scene);
@@ -371,4 +372,3 @@ Tilemap<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-we
 </div>
   </body>
 </html>
-

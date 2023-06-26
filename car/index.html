@@ -259,11 +259,16 @@ Scene<span style="color: #bbbbbb"> </span>uiscene;
 
 Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">camera</span>(<span style="color: #333333">&amp;</span>scene);
 Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">terrain</span>(<span style="color: #333333">&amp;</span>scene);
+
 Model<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">car</span>(<span style="color: #333333">&amp;</span>scene);
+
 Model<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">house</span>(<span style="color: #333333">&amp;</span>scene);
 SkyBox<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sky</span>(<span style="color: #333333">&amp;</span>scene);
 Audio<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">carengine</span>(<span style="color: #333333">&amp;</span>scene);
 Fog<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">fog</span>(<span style="color: #333333">&amp;</span>scene);
+
+Light<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>carlight<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #007020">NULL</span>;
+Light<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>sun<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #007020">NULL</span>;
 
 Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>uiscene);
 
@@ -316,7 +321,8 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>sky.setTextureDown(<span style="background-color: #fff0f0">&quot;ely_hills/hills_dn.tga&quot;</span>);
 <span style="color: #bbbbbb">    </span>sky.setAlpha(<span style="color: #6600EE; font-weight: bold">0.2</span>);
 
-<span style="color: #bbbbbb">    </span>Light<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>carlight<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Light(<span style="color: #333333">&amp;</span>scene);
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(<span style="color: #333333">!</span>carlight)
+<span style="color: #bbbbbb">        </span>carlight<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Light(<span style="color: #333333">&amp;</span>scene);
 <span style="color: #bbbbbb">    </span>carlight<span style="color: #333333">-&gt;</span>setType(LightType<span style="color: #333333">::</span>SPOT);
 <span style="color: #bbbbbb">    </span>carlight<span style="color: #333333">-&gt;</span>setConeAngle(<span style="color: #0000DD; font-weight: bold">80</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
 <span style="color: #bbbbbb">    </span>carlight<span style="color: #333333">-&gt;</span>setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">8</span>);
@@ -325,13 +331,14 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>carlight<span style="color: #333333">-&gt;</span>setShadows(<span style="color: #007020">true</span>);
 <span style="color: #bbbbbb">    </span>car.addChild(carlight);
 
-<span style="color: #bbbbbb">    </span>Light<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>sun<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Light(<span style="color: #333333">&amp;</span>scene);
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(<span style="color: #333333">!</span>sun)
+<span style="color: #bbbbbb">        </span>sun<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Light(<span style="color: #333333">&amp;</span>scene);
 <span style="color: #bbbbbb">    </span>sun<span style="color: #333333">-&gt;</span>setType(LightType<span style="color: #333333">::</span>DIRECTIONAL);
 <span style="color: #bbbbbb">    </span>sun<span style="color: #333333">-&gt;</span>setDirection(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">-0.4</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.6</span>);
 <span style="color: #bbbbbb">    </span>sun<span style="color: #333333">-&gt;</span>setShadows(<span style="color: #007020">true</span>);
 
 <span style="color: #bbbbbb">    </span>text.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
-<span style="color: #bbbbbb">    </span>
+
 <span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);
 <span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>addSceneLayer(<span style="color: #333333">&amp;</span>uiscene);
 
@@ -391,4 +398,3 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 </div>
   </body>
 </html>
-

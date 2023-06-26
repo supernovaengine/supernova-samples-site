@@ -262,6 +262,7 @@ Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-wei
 Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">terrain</span>(<span style="color: #333333">&amp;</span>scene);
 Model<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">model</span>(<span style="color: #333333">&amp;</span>scene);
 SkyBox<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sky</span>(<span style="color: #333333">&amp;</span>scene);
+Light<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>sun<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #007020">NULL</span>;
 
 Scene<span style="color: #bbbbbb"> </span>uiscene;
 Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>uiscene);
@@ -285,7 +286,8 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>model.setRotation(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">90</span>,<span style="color: #0000DD; font-weight: bold">0</span>);
 <span style="color: #bbbbbb">    </span>model.getAnimation(<span style="color: #0000DD; font-weight: bold">0</span>).setLoop(<span style="color: #007020">true</span>);
 
-<span style="color: #bbbbbb">    </span>Light<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>sun<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Light(<span style="color: #333333">&amp;</span>scene);
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(<span style="color: #333333">!</span>sun)
+<span style="color: #bbbbbb">        </span>sun<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Light(<span style="color: #333333">&amp;</span>scene);
 <span style="color: #bbbbbb">    </span>sun<span style="color: #333333">-&gt;</span>setType(LightType<span style="color: #333333">::</span>DIRECTIONAL);
 <span style="color: #bbbbbb">    </span>sun<span style="color: #333333">-&gt;</span>setDirection(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #6600EE; font-weight: bold">-0.7</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>);
 <span style="color: #bbbbbb">    </span>sun<span style="color: #333333">-&gt;</span>setIntensity(<span style="color: #0000DD; font-weight: bold">10</span>);
@@ -341,4 +343,3 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 </div>
   </body>
 </html>
-
