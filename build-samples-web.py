@@ -102,7 +102,7 @@ def build_sample(project_name, project_path, app_name, language, languages, outp
 
     lang_change = ''
     lang_change_url = ''
-    github_main_project = 'https://github.com/supernovaengine/supernova-samples' + '/blob/master/' + project_path
+    github_main_project = 'https://github.com/supernovaengine/supernova-samples' + '/blob/main/' + project_path
     if language == 'cpp':
         lang_label = 'C++'
         github_url = github_main_project + '/main.cpp'
