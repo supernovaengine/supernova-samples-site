@@ -125,3 +125,9 @@ samples:
     path: shapes
     langs:
      - cpp
+
+  - name: "Physics 2D"
+    desc: "Simple objects demonstrating 2D physics"
+    path: physics2d
+    langs:
+     - cpp
