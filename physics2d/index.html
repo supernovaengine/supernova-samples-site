@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-D2G3S99SDC"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-D2G3S99SDC');
+	</script>
+	  
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Sample - Physics 2D</title>
+
+    <link href="../css/supernova_samples.css" rel="stylesheet"/>
+    <link href="../css/fontello.css" rel="stylesheet"/>
+
+    <link rel="shortcut icon" href="../img/favicon.png"/>
+    
+    <style>
+      .emscripten { padding-right: 0; margin-left: auto; margin-right: auto; display: block; }
+      /*textarea.emscripten { font-family: monospace; width: 80%; }*/
+      div.emscripten { text-align: center; }
+      div.emscripten_border { border: 1px solid black; }
+      /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
+      /*canvas.emscripten { border: 0px none; background-color: black; }*/
+
+      #output {
+        width: 80%;
+        height: 100px;
+        margin: 0 auto;
+        margin-top: 30px;
+        border-left: 0px;
+        border-right: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        display: block;
+        background-color: black;
+        color: white;
+        font-family: 'Lucida Console', Monaco, monospace;
+        outline: none;
+      }
+
+      .spinner {
+        height: 50px;
+        width: 50px;
+        margin: 0px auto;
+        -webkit-animation: rotation .8s linear infinite;
+        -moz-animation: rotation .8s linear infinite;
+        -o-animation: rotation .8s linear infinite;
+        animation: rotation 0.8s linear infinite;
+        border-left: 10px solid rgb(0,150,240);
+        border-right: 10px solid rgb(0,150,240);
+        border-bottom: 10px solid rgb(0,150,240);
+        border-top: 10px solid rgb(100,0,200);
+        border-radius: 100%;
+        background-color: rgb(200,100,250);
+      }
+      @-webkit-keyframes rotation {
+        from {-webkit-transform: rotate(0deg);}
+        to {-webkit-transform: rotate(360deg);}
+      }
+      @-moz-keyframes rotation {
+        from {-moz-transform: rotate(0deg);}
+        to {-moz-transform: rotate(360deg);}
+      }
+      @-o-keyframes rotation {
+        from {-o-transform: rotate(0deg);}
+        to {-o-transform: rotate(360deg);}
+      }
+      @keyframes rotation {
+        from {transform: rotate(0deg);}
+        to {transform: rotate(360deg);}
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="cabecalho">
+			<div class="wrapper">
+				<a href="http://supernovaengine.org"><img class="cabecalho-logo" src="../img/logo.png"/></a>
+				<div class="cabecalho-links">
+					<ul>
+						<li>
+							<a href="http://docs.supernovaengine.org">
+								<span class="cabecalho-link-imagem icon-book"></span>
+								<span class="cabecalho-link-texto">Documentation</span>
+							</a>
+            </li>
+            <li>
+							<a href="http://samples.supernovaengine.org">
+								<span class="cabecalho-link-imagem icon-doc-text"></span>
+								<span class="cabecalho-link-texto">Samples</span>
+							</a>
+						</li>
+						<li>
+							<a href="https://github.com/supernovaengine/supernova">
+								<span class="cabecalho-link-imagem icon-github"></span>
+								<span class="cabecalho-link-texto">Source</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+    </div>
+    
+    <div class="corpo">
+      <div class="wrapper" id="wrapper-corpo">
+
+        <div class="texto">
+          <p class="corpo-frase1">Physics 2D (C++)</p>
+          <a href=""><p class="corpo-frase2"></p></a>
+				</div>
+
+    <figure style="overflow:visible;" id="spinner"><div class="spinner"></div></figure>
+    <div class="emscripten" id="status">Downloading...</div>
+    <div class="emscripten">
+      <progress value="0" max="100" id="progress" hidden=1></progress>  
+    </div>
+
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+    
+
+    <script type='text/javascript'>
+      var statusElement = document.getElementById('status');
+      var progressElement = document.getElementById('progress');
+      var spinnerElement = document.getElementById('spinner');
+
+      window.addEventListener('resize', resizeCanvas, false);
+      var wrapper = document.getElementById('wrapper-corpo');
+
+      function resizeCanvas() {
+        changeCanvasSize = Module.cwrap('changeCanvasSize',null,['number','number']);
+        changeCanvasSize(wrapper.offsetWidth, wrapper.offsetWidth * 9.0 / 16.0)
+      }
+
+      var Module = {
+        preRun: [],
+        postRun: function() {
+          resizeCanvas()
+        },
+        print: (function() {
+          var element = document.getElementById('output');
+          if (element) element.value = ''; // clear browser cache
+          return function(text) {
+            if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+            // These replacements are necessary if you render to raw HTML
+            //text = text.replace(/&/g, "&amp;");
+            //text = text.replace(/</g, "&lt;");
+            //text = text.replace(/>/g, "&gt;");
+            //text = text.replace('\n', '<br>', 'g');
+            console.log(text);
+            if (element) {
+              element.value += text + "\n";
+              element.scrollTop = element.scrollHeight; // focus on bottom
+            }
+          };
+        })(),
+        printErr: function(text) {
+          if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+          console.error(text);
+        },
+        canvas: (function() {
+          var canvas = document.getElementById('canvas');
+
+          // As a default initial behavior, pop up an alert when webgl context is lost. To make your
+          // application robust, you may want to override this behavior before shipping!
+          // See http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15.2
+          canvas.addEventListener("webglcontextlost", function(e) { alert('WebGL context lost. You will need to reload the page.'); e.preventDefault(); }, false);
+
+          return canvas;
+        })(),
+        setStatus: function(text) {
+          if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
+          if (text === Module.setStatus.last.text) return;
+          var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+          var now = Date.now();
+          if (m && now - Module.setStatus.last.time < 30) return; // if this is a progress update, skip it if too soon
+          Module.setStatus.last.time = now;
+          Module.setStatus.last.text = text;
+          if (m) {
+            text = m[1];
+            progressElement.value = parseInt(m[2])*100;
+            progressElement.max = parseInt(m[4])*100;
+            progressElement.hidden = false;
+            spinnerElement.hidden = false;
+          } else {
+            progressElement.value = null;
+            progressElement.max = null;
+            progressElement.hidden = true;
+            if (!text) spinnerElement.hidden = true;
+          }
+          statusElement.innerHTML = text;
+        },
+        totalDependencies: 0,
+        monitorRunDependencies: function(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+          Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
+        }
+      };
+      Module.setStatus('Downloading...');
+      window.onerror = function() {
+        Module.setStatus('Exception thrown, see JavaScript console');
+        spinnerElement.style.display = 'none';
+        Module.setStatus = function(text) {
+          if (text) Module.printErr('[post-exception status] ' + text);
+        };
+      };
+
+      function showCode() {
+        var snippet = document.getElementById("code-snippet");
+        var label = document.getElementById("show-code-text");
+        if (snippet.style.display === "none") {
+          snippet.style.display = "block";
+          label.innerHTML = "Hide source code"
+        } else {
+          snippet.style.display = "none";
+          label.innerHTML = "Show source code"
+        }
+      }
+    </script>
+
+    <script async type="text/javascript" src="physics2d.js"></script>
+
+    <div class="menu-sample">
+      <ul>
+        <li>
+          <a onclick="showCode()" href="javascript:void(0);"><h3 class="icon-doc-text" id="show-code-text">Show source code</h3></a>
+        </li>
+        <li>
+          <a href="https://github.com/supernovaengine/supernova-samples/blob/main/physics2d/main.cpp"><h3 class="icon-github">View on Github</h3></a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="code-snippet" style="display: none;">
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span>
+<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;
+
+<span style="color: #557799">#define MAXCRATES 4</span>
+
+Scene<span style="color: #bbbbbb"> </span>scene;
+Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">camera</span>(<span style="color: #333333">&amp;</span>scene);
+Image<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>crates[MAXCRATES];
+Image<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>ball;
+Joint2D<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">joint</span>(<span style="color: #333333">&amp;</span>scene);
+
+Scene<span style="color: #bbbbbb"> </span>uiscene;
+Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>uiscene);
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">startPositions</span>();
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods);
+
+<span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">shouldCollide</span>(Body2D<span style="color: #bbbbbb"> </span>bA,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">size_t</span><span style="color: #bbbbbb"> </span>sA,<span style="color: #bbbbbb"> </span>Body2D<span style="color: #bbbbbb"> </span>bB,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">size_t</span><span style="color: #bbbbbb"> </span>sB){
+<span style="color: #bbbbbb">    </span>printf(<span style="background-color: #fff0f0">&quot;Should collide %s %s</span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>,<span style="color: #bbbbbb"> </span>bA.getAttachedObject().getName().c_str(),<span style="color: #bbbbbb"> </span>bB.getAttachedObject().getName().c_str());
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">return</span><span style="color: #bbbbbb"> </span><span style="color: #007020">true</span>;
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">beginContact2D</span>(Contact2D<span style="color: #bbbbbb"> </span>contact){
+<span style="color: #bbbbbb">    </span>printf(<span style="background-color: #fff0f0">&quot;beginContact2D %s %s</span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>,<span style="color: #bbbbbb"> </span>contact.getBodyA().getAttachedObject().getName().c_str(),<span style="color: #bbbbbb"> </span>contact.getBodyB().getAttachedObject().getName().c_str());
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">endContact2D</span>(Contact2D<span style="color: #bbbbbb"> </span>contact){
+<span style="color: #bbbbbb">    </span>printf(<span style="background-color: #fff0f0">&quot;endContact2D %s %s</span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>,<span style="color: #bbbbbb"> </span>contact.getBodyA().getAttachedObject().getName().c_str(),<span style="color: #bbbbbb"> </span>contact.getBodyB().getAttachedObject().getName().c_str());
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">preSolve2D</span>(Contact2D<span style="color: #bbbbbb"> </span>contact,<span style="color: #bbbbbb"> </span>Manifold2D<span style="color: #bbbbbb"> </span>manifold){
+<span style="color: #bbbbbb">    </span>printf(<span style="background-color: #fff0f0">&quot;preSolve2D %s %s</span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>,<span style="color: #bbbbbb"> </span>contact.getBodyA().getAttachedObject().getName().c_str(),<span style="color: #bbbbbb"> </span>contact.getBodyB().getAttachedObject().getName().c_str());
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">postSolve2D</span>(Contact2D<span style="color: #bbbbbb"> </span>contact,<span style="color: #bbbbbb"> </span>ContactImpulse2D<span style="color: #bbbbbb"> </span>contactImpulse){
+<span style="color: #bbbbbb">    </span>printf(<span style="background-color: #fff0f0">&quot;postSolve2D %s %s</span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>,<span style="color: #bbbbbb"> </span>contact.getBodyA().getAttachedObject().getName().c_str(),<span style="color: #bbbbbb"> </span>contact.getBodyB().getAttachedObject().getName().c_str());
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){
+
+<span style="color: #bbbbbb">    </span>text.setText(<span style="background-color: #fff0f0">&quot;Press any key to reset&quot;</span>);
+<span style="color: #bbbbbb">    </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_TOP);
+
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span>MAXCRATES;<span style="color: #bbbbbb"> </span>i<span style="color: #333333">++</span>){
+<span style="color: #bbbbbb">        </span>crates[i]<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Image(<span style="color: #333333">&amp;</span>scene);
+<span style="color: #bbbbbb">    </span>}
+<span style="color: #bbbbbb">    </span>ball<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Image(<span style="color: #333333">&amp;</span>scene);
+
+<span style="color: #bbbbbb">    </span>startPositions();
+
+<span style="color: #bbbbbb">    </span>camera.setType(CameraType<span style="color: #333333">::</span>CAMERA_ORTHO);
+<span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());
+<span style="color: #bbbbbb">    </span>scene.setBackgroundColor(<span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.6</span>);
+
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;crate.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;crate0&quot;</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>setSize(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
+
+<span style="color: #bbbbbb">    </span>Body2D<span style="color: #bbbbbb"> </span>body<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb">  </span>crates[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody2D();
+<span style="color: #bbbbbb">    </span>body.createRectShape(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
+<span style="color: #bbbbbb">    </span>body.setShapeDensity(<span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>body.setType(BodyType<span style="color: #333333">::</span>DYNAMIC);
+
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;crate.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;crate1&quot;</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>setSize(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
+
+<span style="color: #bbbbbb">    </span>Body2D<span style="color: #bbbbbb"> </span>body1<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>crates[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>getBody2D();
+<span style="color: #bbbbbb">    </span>body1.createRectShape(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
+<span style="color: #bbbbbb">    </span>body1.setShapeDensity(<span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//body1.setType(Body2DType::DYNAMIC);</span>
+
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">2</span>]<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;crate.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">2</span>]<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;crate2&quot;</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">2</span>]<span style="color: #333333">-&gt;</span>setSize(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
+
+<span style="color: #bbbbbb">    </span>Body2D<span style="color: #bbbbbb"> </span>body2<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>crates[<span style="color: #0000DD; font-weight: bold">2</span>]<span style="color: #333333">-&gt;</span>getBody2D();
+<span style="color: #bbbbbb">    </span>body2.createRectShape(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
+<span style="color: #bbbbbb">    </span>body2.setShapeDensity(<span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>body2.setType(BodyType<span style="color: #333333">::</span>DYNAMIC);
+
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">3</span>]<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;crate.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">3</span>]<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;crate3&quot;</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">3</span>]<span style="color: #333333">-&gt;</span>setSize(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
+
+<span style="color: #bbbbbb">    </span>Body2D<span style="color: #bbbbbb"> </span>body3<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>crates[<span style="color: #0000DD; font-weight: bold">3</span>]<span style="color: #333333">-&gt;</span>getBody2D();
+<span style="color: #bbbbbb">    </span>body3.createRectShape(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
+<span style="color: #bbbbbb">    </span>body3.setShapeDensity(<span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//body3.setType(BodyType::DYNAMIC);</span>
+
+<span style="color: #bbbbbb">    </span>ball<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;SoccerBall.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>ball<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;soccerball&quot;</span>);
+<span style="color: #bbbbbb">    </span>ball<span style="color: #333333">-&gt;</span>setSize(<span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>);
+
+<span style="color: #bbbbbb">    </span>Body2D<span style="color: #bbbbbb"> </span>bodyball<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>ball<span style="color: #333333">-&gt;</span>getBody2D();
+<span style="color: #bbbbbb">    </span>bodyball.createCircleShape(Vector2(<span style="color: #0000DD; font-weight: bold">25</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">25</span>),<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">25</span>);
+<span style="color: #bbbbbb">    </span>bodyball.setShapeDensity(<span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>bodyball.setType(BodyType<span style="color: #333333">::</span>DYNAMIC);
+
+<span style="color: #bbbbbb">    </span>scene.getSystem<span style="color: #333333">&lt;</span>PhysicsSystem<span style="color: #333333">&gt;</span>()<span style="color: #333333">-&gt;</span>shouldCollide2D<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>shouldCollide;
+<span style="color: #bbbbbb">    </span>scene.getSystem<span style="color: #333333">&lt;</span>PhysicsSystem<span style="color: #333333">&gt;</span>()<span style="color: #333333">-&gt;</span>beginContact2D<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>beginContact2D;
+<span style="color: #bbbbbb">    </span>scene.getSystem<span style="color: #333333">&lt;</span>PhysicsSystem<span style="color: #333333">&gt;</span>()<span style="color: #333333">-&gt;</span>endContact2D<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>endContact2D;
+<span style="color: #bbbbbb">    </span>scene.getSystem<span style="color: #333333">&lt;</span>PhysicsSystem<span style="color: #333333">&gt;</span>()<span style="color: #333333">-&gt;</span>preSolve2D<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>preSolve2D;
+<span style="color: #bbbbbb">    </span>scene.getSystem<span style="color: #333333">&lt;</span>PhysicsSystem<span style="color: #333333">&gt;</span>()<span style="color: #333333">-&gt;</span>postSolve2D<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>postSolve2D;
+
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//scene.getSystem&lt;PhysicsSystem&gt;()-&gt;setGravity(0,10);</span>
+
+<span style="color: #bbbbbb">    </span>joint.setDistanceJoint(body2.getEntity(),<span style="color: #bbbbbb"> </span>body3.getEntity(),<span style="color: #bbbbbb"> </span>Vector2(<span style="color: #0000DD; font-weight: bold">500</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">300</span>),<span style="color: #bbbbbb"> </span>Vector2(<span style="color: #0000DD; font-weight: bold">700</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">300</span>));
+
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScalingMode(Scaling<span style="color: #333333">::</span>FITWIDTH);
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">480</span>);
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>addSceneLayer(<span style="color: #333333">&amp;</span>uiscene);
+
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onKeyDown<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onKeyDown;
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">startPositions</span>(){
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>setPosition(<span style="color: #0000DD; font-weight: bold">140</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">600</span>);
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//crates[0]-&gt;setRotation(0, 0, 0);</span>
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody2D().setLinearVelocity(Vector2(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>));
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody2D().setAngularVelocity(<span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody2D().setLinearDamping(<span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody2D().setAngularDamping(<span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody2D().resetMassData();
+
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>setPosition(<span style="color: #0000DD; font-weight: bold">80</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>getBody2D().setLinearVelocity(Vector2(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>));
+
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">2</span>]<span style="color: #333333">-&gt;</span>setPosition(<span style="color: #0000DD; font-weight: bold">500</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">300</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">2</span>]<span style="color: #333333">-&gt;</span>getBody2D().setLinearVelocity(Vector2(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>));
+
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">3</span>]<span style="color: #333333">-&gt;</span>setPosition(<span style="color: #0000DD; font-weight: bold">700</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">300</span>);
+<span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">3</span>]<span style="color: #333333">-&gt;</span>getBody2D().setLinearVelocity(Vector2(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>));
+
+<span style="color: #bbbbbb">    </span>ball<span style="color: #333333">-&gt;</span>setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">450</span>);
+<span style="color: #bbbbbb">    </span>ball<span style="color: #333333">-&gt;</span>getBody2D().setLinearVelocity(Vector2(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>));<span style="color: #bbbbbb"> </span>
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods){
+<span style="color: #bbbbbb">    </span>startPositions();
+}
+</pre></div>
+
+    </div>
+  </div>
+</div>
+
+<div class="rodape">
+  <p>Copyright © 2023, Supernova Engine</p>
+  <p>
+  This is an open source project<br/>
+  Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>
+  Images, logos, text and website are licensed by <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a><br/>
+  </p>
+</div>
+  </body>
+</html>
