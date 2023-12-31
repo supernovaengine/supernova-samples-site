@@ -131,3 +131,9 @@ samples:
     path: physics2d
     langs:
      - cpp
+
+  - name: "Physics 3D"
+    desc: "Simple objects demonstrating 3D physics on a plane terrain"
+    path: physics3d
+    langs:
+     - cpp
