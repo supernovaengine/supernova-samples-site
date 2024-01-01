@@ -137,3 +137,9 @@ samples:
     path: physics3d
     langs:
      - cpp
+
+  - name: "Physics terrain"
+    desc: "Simple objects demonstrating 3D physics on a heightmap terrain"
+    path: physics3d_terrain
+    langs:
+     - cpp
