@@ -256,6 +256,10 @@ SkyBox<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-wei
 Shape<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>cubes[<span style="color: #0000DD; font-weight: bold">4</span>];
 Shape<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>spheres[<span style="color: #0000DD; font-weight: bold">4</span>];
 
+Shape<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">2</span>];
+
+Joint3D<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">joint</span>(<span style="color: #333333">&amp;</span>scene);
+
 Scene<span style="color: #bbbbbb"> </span>uiscene;
 Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>uiscene);
 
@@ -269,7 +273,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 }
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onContactPersisted3D</span>(Body3D<span style="color: #bbbbbb"> </span>bA,<span style="color: #bbbbbb"> </span>Body3D<span style="color: #bbbbbb"> </span>bB,<span style="color: #bbbbbb"> </span>Contact3D<span style="color: #bbbbbb"> </span>inContact){
-<span style="color: #bbbbbb">    </span>printf(<span style="background-color: #fff0f0">&quot;onContactPersisted3D %s %s</span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>,<span style="color: #bbbbbb"> </span>bA.getAttachedObject().getName().c_str(),<span style="color: #bbbbbb"> </span>bB.getAttachedObject().getName().c_str());
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//printf(&quot;onContactPersisted3D %s %s\n&quot;, bA.getAttachedObject().getName().c_str(), bB.getAttachedObject().getName().c_str());</span>
 }
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onContactRemoved3D</span>(<span style="color: #333399; font-weight: bold">unsigned</span><span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>bodyIDA,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">unsigned</span><span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>bodyIDB,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>subShape1,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>subShape2){
@@ -277,7 +281,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 }
 
 <span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">shouldCollide3D</span>(Body3D<span style="color: #bbbbbb"> </span>bA,<span style="color: #bbbbbb"> </span>Body3D<span style="color: #bbbbbb"> </span>bB,<span style="color: #bbbbbb"> </span>Vector3<span style="color: #bbbbbb"> </span>inBaseOffset,<span style="color: #bbbbbb"> </span>CollideShapeResult3D<span style="color: #bbbbbb"> </span>inCollisionResult){
-<span style="color: #bbbbbb">    </span>printf(<span style="background-color: #fff0f0">&quot;shouldCollide3D %s %s</span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>,<span style="color: #bbbbbb"> </span>bA.getAttachedObject().getName().c_str(),<span style="color: #bbbbbb"> </span>bB.getAttachedObject().getName().c_str());
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//printf(&quot;shouldCollide3D %s %s\n&quot;, bA.getAttachedObject().getName().c_str(), bB.getAttachedObject().getName().c_str());</span>
 
 <span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">return</span><span style="color: #bbbbbb"> </span><span style="color: #007020">true</span>;
 }
@@ -291,6 +295,8 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 }
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">startPositions</span>(){
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>setPosition(<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">9</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">2</span>);
+
 <span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">4</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #333333">++</span>){
 <span style="color: #bbbbbb">        </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(i<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">2</span>){
 <span style="color: #bbbbbb">            </span>cubes[i]<span style="color: #333333">-&gt;</span>setPosition((<span style="color: #0000DD; font-weight: bold">4</span><span style="color: #333333">*</span>i)<span style="color: #0000DD; font-weight: bold">-6</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">11</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">-0.5</span>);
@@ -312,6 +318,20 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>scene.getSystem<span style="color: #333333">&lt;</span>PhysicsSystem<span style="color: #333333">&gt;</span>()<span style="color: #333333">-&gt;</span>onBodyActivated3D<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onBodyActivated3D;
 <span style="color: #bbbbbb">    </span>scene.getSystem<span style="color: #333333">&lt;</span>PhysicsSystem<span style="color: #333333">&gt;</span>()<span style="color: #333333">-&gt;</span>onBodyDeactivated3D<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onBodyDeactivated3D;
 
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Shape(<span style="color: #333333">&amp;</span>scene);
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>createBox(cubeSize,<span style="color: #bbbbbb"> </span>cubeSize,<span style="color: #bbbbbb"> </span>cubeSize);
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;cubejoint0&quot;</span>);
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody3D().setType(BodyType<span style="color: #333333">::</span>STATIC);
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody3D().createBoxShape(cubeSize,<span style="color: #bbbbbb"> </span>cubeSize,<span style="color: #bbbbbb"> </span>cubeSize);
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">9</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">2</span>);
+
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Shape(<span style="color: #333333">&amp;</span>scene);
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>createBox(cubeSize,<span style="color: #bbbbbb"> </span>cubeSize,<span style="color: #bbbbbb"> </span>cubeSize);
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;cubejoint0&quot;</span>);
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>getBody3D().createBoxShape(cubeSize,<span style="color: #bbbbbb"> </span>cubeSize,<span style="color: #bbbbbb"> </span>cubeSize);
+
 <span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">4</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #333333">++</span>){
 <span style="color: #bbbbbb">        </span>cubes[i]<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Shape(<span style="color: #333333">&amp;</span>scene);
 <span style="color: #bbbbbb">        </span>cubes[i]<span style="color: #333333">-&gt;</span>createBox(cubeSize,<span style="color: #bbbbbb"> </span>cubeSize,<span style="color: #bbbbbb"> </span>cubeSize);
@@ -326,6 +346,8 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">        </span>spheres[i]<span style="color: #333333">-&gt;</span>getBody3D().createSphereShape(sphereSize);
 <span style="color: #bbbbbb">    </span>}
 <span style="color: #bbbbbb">    </span>startPositions();
+
+<span style="color: #bbbbbb">    </span>joint.setDistanceJoint(cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody3D().getEntity(),<span style="color: #bbbbbb"> </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>getBody3D().getEntity(),<span style="color: #bbbbbb"> </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getPosition(),<span style="color: #bbbbbb"> </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>getPosition());
 
 <span style="color: #bbbbbb">    </span>lastTouchPos<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>Vector2(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
 
