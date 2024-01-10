@@ -1,8 +1,8 @@
 repo: https://github.com/supernovaengine/supernova.git
-repoRef: main
+repoRef: v0.3
 
 samplesRepo: https://github.com/supernovaengine/supernova-samples.git
-samplesRepoRef: v0.3
+samplesRepoRef: main
 
 samples:
 
