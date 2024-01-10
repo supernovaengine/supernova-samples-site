@@ -2,7 +2,7 @@ repo: https://github.com/supernovaengine/supernova.git
 repoRef: main
 
 samplesRepo: https://github.com/supernovaengine/supernova-samples.git
-samplesRepoRef: main
+samplesRepoRef: v0.3
 
 samples:
 
