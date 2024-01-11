@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # /*
-# (c) 2020 Eduardo Doria.
+# (c) 2024 Eduardo Doria.
 # */
 
 import os
@@ -48,8 +48,9 @@ def cloneRepo(repo, dst, tag):
         print("Checking out %s repository to: %s" % (dst, tag), flush=True)
         repo = git.Repo(dst)
 
+    repo.git.fetch()
     repo.git.checkout(tag)
-    repo.remotes['origin'].pull()
+    repo.remotes['origin'].pull(tag)
     repo.submodule_update(recursive=False)
 
 def codeSnippet(code, lexer, style, linenos, divstyles):
