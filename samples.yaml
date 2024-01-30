@@ -1,5 +1,5 @@
 repo: https://github.com/supernovaengine/supernova.git
-repoRef: v0.3.1
+repoRef: main
 
 samplesRepo: https://github.com/supernovaengine/supernova-samples.git
 samplesRepoRef: main
@@ -47,12 +47,6 @@ samples:
     langs:
       - cpp
       - lua
-
-#  - name: "Physics 2D"
-#    desc: "Simple sample with physics 2D"
-#    path: physics_2d
-#    langs:
-#      - cpp
 
   - name: "User Interface"
     desc: "User interface sample with button and textedit"
@@ -141,5 +135,11 @@ samples:
   - name: "Physics terrain"
     desc: "Simple objects demonstrating 3D physics on a heightmap terrain"
     path: physics3d_terrain
+    langs:
+     - cpp
+
+  - name: "Lines"
+    desc: "Using lines to draw a grid"
+    path: lines
     langs:
      - cpp
