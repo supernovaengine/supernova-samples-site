@@ -76,7 +76,7 @@ def file_write_contents(filename, content):
     with open(filename, "w") as f:
         f.write(content)
 
-def build_sample(project_name, project_path, app_name, language, languages, output):
+def build_sample(project_name, project_path, app_name, language, samples_ref, languages, output):
 
     print("Bulding sample: %s, language: %s" % (project_name, language), flush=True)
 
@@ -103,7 +103,7 @@ def build_sample(project_name, project_path, app_name, language, languages, outp
 
     lang_change = ''
     lang_change_url = ''
-    github_main_project = 'https://github.com/supernovaengine/supernova-samples' + '/blob/main/' + project_path
+    github_main_project = 'https://github.com/supernovaengine/supernova-samples' + '/blob/' + samples_ref + '/' + project_path
     if language == 'cpp':
         lang_label = 'C++'
         github_url = github_main_project + '/main.cpp'
@@ -231,7 +231,7 @@ def build_all():
                 sample_output = False
 
             if (lang in sl['langs']): 
-                build_sample(sample_name, sample_path, sample_app, lang, sample_langs, sample_output)
+                build_sample(sample_name, sample_path, sample_app, lang, samplesRef, sample_langs, sample_output)
 
 
     index_file_template = os.path.join('..', 'template', 'index.html')
