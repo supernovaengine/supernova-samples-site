@@ -324,6 +324,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;cubejoint0&quot;</span>);
 <span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody3D().setType(BodyType<span style="color: #333333">::</span>STATIC);
 <span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody3D().createBoxShape(cubeSize,<span style="color: #bbbbbb"> </span>cubeSize,<span style="color: #bbbbbb"> </span>cubeSize);
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody3D().load();
 <span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">9</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">2</span>);
 
 <span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Shape(<span style="color: #333333">&amp;</span>scene);
@@ -331,6 +332,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
 <span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;cubejoint0&quot;</span>);
 <span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>getBody3D().createBoxShape(cubeSize,<span style="color: #bbbbbb"> </span>cubeSize,<span style="color: #bbbbbb"> </span>cubeSize);
+<span style="color: #bbbbbb">    </span>cubesjoint[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>getBody3D().load();
 
 <span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">4</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #333333">++</span>){
 <span style="color: #bbbbbb">        </span>cubes[i]<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Shape(<span style="color: #333333">&amp;</span>scene);
@@ -338,12 +340,14 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">        </span>cubes[i]<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
 <span style="color: #bbbbbb">        </span>cubes[i]<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;cube&quot;</span><span style="color: #333333">+</span>std<span style="color: #333333">::</span>to_string(i));
 <span style="color: #bbbbbb">        </span>cubes[i]<span style="color: #333333">-&gt;</span>getBody3D().createBoxShape(cubeSize,<span style="color: #bbbbbb"> </span>cubeSize,<span style="color: #bbbbbb"> </span>cubeSize);
+<span style="color: #bbbbbb">        </span>cubes[i]<span style="color: #333333">-&gt;</span>getBody3D().load();
 
 <span style="color: #bbbbbb">        </span>spheres[i]<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Shape(<span style="color: #333333">&amp;</span>scene);
 <span style="color: #bbbbbb">        </span>spheres[i]<span style="color: #333333">-&gt;</span>createSphere(sphereSize);
 <span style="color: #bbbbbb">        </span>spheres[i]<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
 <span style="color: #bbbbbb">        </span>spheres[i]<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;sphere&quot;</span><span style="color: #333333">+</span>std<span style="color: #333333">::</span>to_string(i));
 <span style="color: #bbbbbb">        </span>spheres[i]<span style="color: #333333">-&gt;</span>getBody3D().createSphereShape(sphereSize);
+<span style="color: #bbbbbb">        </span>spheres[i]<span style="color: #333333">-&gt;</span>getBody3D().load();
 <span style="color: #bbbbbb">    </span>}
 <span style="color: #bbbbbb">    </span>startPositions();
 
@@ -367,6 +371,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>Body3D<span style="color: #bbbbbb"> </span>bodyterrain<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>terrain.getBody3D();
 <span style="color: #bbbbbb">    </span>bodyterrain.setType(BodyType<span style="color: #333333">::</span>STATIC);
 <span style="color: #bbbbbb">    </span>bodyterrain.createMeshShape();
+<span style="color: #bbbbbb">    </span>bodyterrain.load();
 
 <span style="color: #bbbbbb">    </span>Light<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>sun<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Light(<span style="color: #333333">&amp;</span>scene);
 <span style="color: #bbbbbb">    </span>sun<span style="color: #333333">-&gt;</span>setType(LightType<span style="color: #333333">::</span>DIRECTIONAL);
