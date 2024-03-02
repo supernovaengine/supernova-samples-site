@@ -256,6 +256,7 @@ Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weig
 Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">cube</span>(<span style="color: #333333">&amp;</span>scene);
 Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sphere</span>(<span style="color: #333333">&amp;</span>scene);
 Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">plane</span>(<span style="color: #333333">&amp;</span>scene);
+Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">capsule</span>(<span style="color: #333333">&amp;</span>scene);
 
 TimedAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">timedaction</span>(<span style="color: #333333">&amp;</span>scene);
 
@@ -263,11 +264,12 @@ TimedAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; fon
 <span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());
 
 <span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">30</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">30</span>);
+<span style="color: #bbbbbb">    </span>camera.setView(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>);
 <span style="color: #bbbbbb">    </span>camera.setName(<span style="background-color: #fff0f0">&quot;camera&quot;</span>);
 
 <span style="color: #bbbbbb">    </span>torus.createTorus(<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>);
 <span style="color: #bbbbbb">    </span>torus.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
-<span style="color: #bbbbbb">    </span>torus.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">-10</span>);
+<span style="color: #bbbbbb">    </span>torus.setPosition(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">10</span>);
 
 <span style="color: #bbbbbb">    </span>cylinder.createCylinder(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">3</span>);
 <span style="color: #bbbbbb">    </span>cylinder.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
@@ -284,6 +286,10 @@ TimedAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; fon
 <span style="color: #bbbbbb">    </span>plane.createPlane(<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>);
 <span style="color: #bbbbbb">    </span>plane.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
 <span style="color: #bbbbbb">    </span>plane.setPosition(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>);
+
+<span style="color: #bbbbbb">    </span>capsule.createCapsule(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">3</span>);
+<span style="color: #bbbbbb">    </span>capsule.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>capsule.setPosition(<span style="color: #0000DD; font-weight: bold">-10</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">10</span>);
 
 <span style="color: #bbbbbb">    </span>timedaction.setDuration(<span style="color: #0000DD; font-weight: bold">5</span>);
 <span style="color: #bbbbbb">    </span>timedaction.setLoop(<span style="color: #007020">true</span>);
@@ -308,6 +314,7 @@ TimedAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; fon
 <span style="color: #bbbbbb">    </span>cube.setRotation(rot);
 <span style="color: #bbbbbb">    </span>sphere.setRotation(rot);
 <span style="color: #bbbbbb">    </span>plane.setRotation(rot);
+<span style="color: #bbbbbb">    </span>capsule.setRotation(rot);
 }
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchMove</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y){
