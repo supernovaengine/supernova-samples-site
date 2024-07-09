@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-D2G3S99SDC"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-D2G3S99SDC');
+	</script>
+	  
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Sample - 3D User Interface</title>
+
+    <link href="../css/supernova_samples.css" rel="stylesheet"/>
+    <link href="../css/fontello.css" rel="stylesheet"/>
+
+    <link rel="shortcut icon" href="../img/favicon.png"/>
+    
+    <style>
+      .emscripten { padding-right: 0; margin-left: auto; margin-right: auto; display: block; }
+      /*textarea.emscripten { font-family: monospace; width: 80%; }*/
+      div.emscripten { text-align: center; }
+      div.emscripten_border { border: 1px solid black; }
+      /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
+      /*canvas.emscripten { border: 0px none; background-color: black; }*/
+
+      #output {
+        width: 80%;
+        height: 100px;
+        margin: 0 auto;
+        margin-top: 30px;
+        border-left: 0px;
+        border-right: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        display: block;
+        background-color: black;
+        color: white;
+        font-family: 'Lucida Console', Monaco, monospace;
+        outline: none;
+      }
+
+      .spinner {
+        height: 50px;
+        width: 50px;
+        margin: 0px auto;
+        -webkit-animation: rotation .8s linear infinite;
+        -moz-animation: rotation .8s linear infinite;
+        -o-animation: rotation .8s linear infinite;
+        animation: rotation 0.8s linear infinite;
+        border-left: 10px solid rgb(0,150,240);
+        border-right: 10px solid rgb(0,150,240);
+        border-bottom: 10px solid rgb(0,150,240);
+        border-top: 10px solid rgb(100,0,200);
+        border-radius: 100%;
+        background-color: rgb(200,100,250);
+      }
+      @-webkit-keyframes rotation {
+        from {-webkit-transform: rotate(0deg);}
+        to {-webkit-transform: rotate(360deg);}
+      }
+      @-moz-keyframes rotation {
+        from {-moz-transform: rotate(0deg);}
+        to {-moz-transform: rotate(360deg);}
+      }
+      @-o-keyframes rotation {
+        from {-o-transform: rotate(0deg);}
+        to {-o-transform: rotate(360deg);}
+      }
+      @keyframes rotation {
+        from {transform: rotate(0deg);}
+        to {transform: rotate(360deg);}
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="cabecalho">
+			<div class="wrapper">
+				<a href="http://supernovaengine.org"><img class="cabecalho-logo" src="../img/logo.png"/></a>
+				<div class="cabecalho-links">
+					<ul>
+						<li>
+							<a href="http://docs.supernovaengine.org">
+								<span class="cabecalho-link-imagem icon-book"></span>
+								<span class="cabecalho-link-texto">Documentation</span>
+							</a>
+            </li>
+            <li>
+							<a href="http://samples.supernovaengine.org">
+								<span class="cabecalho-link-imagem icon-doc-text"></span>
+								<span class="cabecalho-link-texto">Samples</span>
+							</a>
+						</li>
+						<li>
+							<a href="https://github.com/supernovaengine/supernova">
+								<span class="cabecalho-link-imagem icon-github"></span>
+								<span class="cabecalho-link-texto">Source</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+    </div>
+    
+    <div class="corpo">
+      <div class="wrapper" id="wrapper-corpo">
+
+        <div class="texto">
+          <p class="corpo-frase1">3D User Interface (C++)</p>
+          <a href=""><p class="corpo-frase2"></p></a>
+				</div>
+
+    <figure style="overflow:visible;" id="spinner"><div class="spinner"></div></figure>
+    <div class="emscripten" id="status">Downloading...</div>
+    <div class="emscripten">
+      <progress value="0" max="100" id="progress" hidden=1></progress>  
+    </div>
+
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+    
+
+    <script type='text/javascript'>
+      var statusElement = document.getElementById('status');
+      var progressElement = document.getElementById('progress');
+      var spinnerElement = document.getElementById('spinner');
+
+      window.addEventListener('resize', resizeCanvas, false);
+      var wrapper = document.getElementById('wrapper-corpo');
+
+      function resizeCanvas() {
+        changeCanvasSize = Module.cwrap('changeCanvasSize',null,['number','number']);
+        changeCanvasSize(wrapper.offsetWidth, wrapper.offsetWidth * 9.0 / 16.0)
+      }
+
+      var Module = {
+        preRun: [],
+        postRun: function() {
+          resizeCanvas()
+        },
+        print: (function() {
+          var element = document.getElementById('output');
+          if (element) element.value = ''; // clear browser cache
+          return function(text) {
+            if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+            // These replacements are necessary if you render to raw HTML
+            //text = text.replace(/&/g, "&amp;");
+            //text = text.replace(/</g, "&lt;");
+            //text = text.replace(/>/g, "&gt;");
+            //text = text.replace('\n', '<br>', 'g');
+            console.log(text);
+            if (element) {
+              element.value += text + "\n";
+              element.scrollTop = element.scrollHeight; // focus on bottom
+            }
+          };
+        })(),
+        printErr: function(text) {
+          if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+          console.error(text);
+        },
+        canvas: (function() {
+          var canvas = document.getElementById('canvas');
+
+          // As a default initial behavior, pop up an alert when webgl context is lost. To make your
+          // application robust, you may want to override this behavior before shipping!
+          // See http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15.2
+          canvas.addEventListener("webglcontextlost", function(e) { alert('WebGL context lost. You will need to reload the page.'); e.preventDefault(); }, false);
+
+          return canvas;
+        })(),
+        setStatus: function(text) {
+          if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
+          if (text === Module.setStatus.last.text) return;
+          var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+          var now = Date.now();
+          if (m && now - Module.setStatus.last.time < 30) return; // if this is a progress update, skip it if too soon
+          Module.setStatus.last.time = now;
+          Module.setStatus.last.text = text;
+          if (m) {
+            text = m[1];
+            progressElement.value = parseInt(m[2])*100;
+            progressElement.max = parseInt(m[4])*100;
+            progressElement.hidden = false;
+            spinnerElement.hidden = false;
+          } else {
+            progressElement.value = null;
+            progressElement.max = null;
+            progressElement.hidden = true;
+            if (!text) spinnerElement.hidden = true;
+          }
+          statusElement.innerHTML = text;
+        },
+        totalDependencies: 0,
+        monitorRunDependencies: function(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+          Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
+        }
+      };
+      Module.setStatus('Downloading...');
+      window.onerror = function() {
+        Module.setStatus('Exception thrown, see JavaScript console');
+        spinnerElement.style.display = 'none';
+        Module.setStatus = function(text) {
+          if (text) Module.printErr('[post-exception status] ' + text);
+        };
+      };
+
+      function showCode() {
+        var snippet = document.getElementById("code-snippet");
+        var label = document.getElementById("show-code-text");
+        if (snippet.style.display === "none") {
+          snippet.style.display = "block";
+          label.innerHTML = "Hide source code"
+        } else {
+          snippet.style.display = "none";
+          label.innerHTML = "Show source code"
+        }
+      }
+    </script>
+
+    <script async type="text/javascript" src="user-interface-3d.js"></script>
+
+    <div class="menu-sample">
+      <ul>
+        <li>
+          <a onclick="showCode()" href="javascript:void(0);"><h3 class="icon-doc-text" id="show-code-text">Show source code</h3></a>
+        </li>
+        <li>
+          <a href="https://github.com/supernovaengine/supernova-samples/blob/main/user_interface_3d/main.cpp"><h3 class="icon-github">View on Github</h3></a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="code-snippet" style="display: none;">
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span>
+
+<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onUpdate</span>();
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onCharInput</span>(<span style="color: #333399; font-weight: bold">wchar_t</span><span style="color: #bbbbbb"> </span>codepoint);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchMove</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchEnd</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y);
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onWindowResize</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>width,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>height);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onChangeScroll</span>(<span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>step);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress</span>();
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress2</span>();
+
+Vector2<span style="color: #bbbbbb"> </span>lastTouchPos;
+
+Scene<span style="color: #bbbbbb"> </span>scene;
+
+Camera<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">camera</span>(<span style="color: #333333">&amp;</span>scene);
+Shape<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">terrain</span>(<span style="color: #333333">&amp;</span>scene);
+SkyBox<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sky</span>(<span style="color: #333333">&amp;</span>scene);
+Light<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sun</span>(<span style="color: #333333">&amp;</span>scene);
+
+Sprite<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">wall</span>(<span style="color: #333333">&amp;</span>scene);
+
+Scene<span style="color: #bbbbbb"> </span>uiscene;
+
+Panel<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">window</span>(<span style="color: #333333">&amp;</span>uiscene);
+Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">windowcontainer</span>(<span style="color: #333333">&amp;</span>uiscene);
+Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">iconlist</span>(<span style="color: #333333">&amp;</span>uiscene);
+Scrollbar<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">scroll</span>(<span style="color: #333333">&amp;</span>uiscene);
+
+Panel<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">window2</span>(<span style="color: #333333">&amp;</span>uiscene);
+Button<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">button</span>(<span style="color: #333333">&amp;</span>uiscene);
+Button<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">button2</span>(<span style="color: #333333">&amp;</span>uiscene);
+TextEdit<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">textedit</span>(<span style="color: #333333">&amp;</span>uiscene);
+Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>uiscene);
+Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">vcontainer</span>(<span style="color: #333333">&amp;</span>uiscene);
+Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">hcontainer</span>(<span style="color: #333333">&amp;</span>uiscene);
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){
+<span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());
+<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.7</span>);
+
+<span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">7</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">40</span>);
+<span style="color: #bbbbbb">    </span>camera.setView(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">15</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>camera.setName(<span style="background-color: #fff0f0">&quot;camera&quot;</span>);
+
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//sun.setType(LightType::DIRECTIONAL);</span>
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//sun.setDirection(0, -0.4, -0.6);</span>
+
+<span style="color: #bbbbbb">    </span>terrain.createPlane(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);
+<span style="color: #bbbbbb">    </span>terrain.setTexture(<span style="background-color: #fff0f0">&quot;ground.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>terrain.setName(<span style="background-color: #fff0f0">&quot;terrain&quot;</span>);
+
+<span style="color: #bbbbbb">    </span>Camera<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>camera2<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Camera(<span style="color: #333333">&amp;</span>uiscene);
+
+<span style="color: #bbbbbb">    </span>camera2<span style="color: #333333">-&gt;</span>setType(CameraType<span style="color: #333333">::</span>CAMERA_2D);
+<span style="color: #bbbbbb">    </span>camera2<span style="color: #333333">-&gt;</span>setFramebufferSize(<span style="color: #0000DD; font-weight: bold">1024</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1024</span>);
+<span style="color: #bbbbbb">    </span>camera2<span style="color: #333333">-&gt;</span>setRenderToTexture(<span style="color: #007020">true</span>);
+<span style="color: #bbbbbb">    </span>uiscene.setEnableUIEvents(<span style="color: #007020">false</span>);
+<span style="color: #bbbbbb">    </span>uiscene.setBackgroundColor(<span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>);
+
+<span style="color: #bbbbbb">    </span>uiscene.setCamera(camera2<span style="color: #333333">-&gt;</span>getEntity());
+
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//=========================================</span>
+
+<span style="color: #bbbbbb">    </span>wall.setTexture(camera2<span style="color: #333333">-&gt;</span>getFramebuffer());
+<span style="color: #bbbbbb">    </span>wall.setSize(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">10</span>);
+<span style="color: #bbbbbb">    </span>wall.setRotation(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">45</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>wall.setPosition(<span style="color: #0000DD; font-weight: bold">-5</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">30</span>);
+<span style="color: #bbbbbb">    </span>wall.setName(<span style="background-color: #fff0f0">&quot;wall&quot;</span>);
+
+<span style="color: #bbbbbb">    </span>window.addChild(<span style="color: #333333">&amp;</span>windowcontainer);
+<span style="color: #bbbbbb">    </span>window.setSize(<span style="color: #0000DD; font-weight: bold">430</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">400</span>);
+<span style="color: #bbbbbb">    </span>window.setTitle(<span style="background-color: #fff0f0">&quot;Window&quot;</span>);
+<span style="color: #bbbbbb">    </span>window.setPatchMargin(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>);
+<span style="color: #bbbbbb">    </span>window.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);<span style="color: #bbbbbb"> </span>
+<span style="color: #bbbbbb">    </span>window.setHeaderColor(<span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>window.getComponent<span style="color: #333333">&lt;</span>PanelComponent<span style="color: #333333">&gt;</span>().onResize<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onWindowResize;
+
+<span style="color: #bbbbbb">    </span>windowcontainer.setType(ContainerType<span style="color: #333333">::</span>HORIZONTAL);
+<span style="color: #bbbbbb">    </span>windowcontainer.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>FULL_LAYOUT);
+<span style="color: #bbbbbb">    </span>windowcontainer.addChild(<span style="color: #333333">&amp;</span>iconlist);
+<span style="color: #bbbbbb">    </span>windowcontainer.addChild(<span style="color: #333333">&amp;</span>scroll);
+<span style="color: #bbbbbb">    </span>windowcontainer.setName(<span style="background-color: #fff0f0">&quot;windowcontainer&quot;</span>);
+<span style="color: #bbbbbb">    </span>windowcontainer.setBoxExpand(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">false</span>);
+
+<span style="color: #bbbbbb">    </span>iconlist.setType(ContainerType<span style="color: #333333">::</span>HORIZONTAL_WRAP);
+<span style="color: #bbbbbb">    </span>iconlist.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>TOP_WIDE);
+<span style="color: #bbbbbb">    </span>iconlist.setName(<span style="background-color: #fff0f0">&quot;iconlist&quot;</span>);
+
+<span style="color: #bbbbbb">    </span>scroll.setSize(<span style="color: #0000DD; font-weight: bold">20</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">20</span>);
+<span style="color: #bbbbbb">    </span>scroll.setColor(<span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>);
+<span style="color: #bbbbbb">    </span>scroll.setBarSize(<span style="color: #6600EE; font-weight: bold">0.6</span>);
+<span style="color: #bbbbbb">    </span>scroll.setBarColor(<span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>scroll.setStep(<span style="color: #6600EE; font-weight: bold">0.0</span>);
+<span style="color: #bbbbbb">    </span>scroll.setType(ScrollbarType<span style="color: #333333">::</span>VERTICAL);
+<span style="color: #bbbbbb">    </span>scroll.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>VERTICAL_CENTER_WIDE);
+<span style="color: #bbbbbb">    </span>scroll.getComponent<span style="color: #333333">&lt;</span>ScrollbarComponent<span style="color: #333333">&gt;</span>().onChange<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onChangeScroll;
+<span style="color: #bbbbbb">    </span>scroll.setBarPatchMargin(<span style="color: #0000DD; font-weight: bold">5</span>);
+
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">22</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #333333">++</span>){
+<span style="color: #bbbbbb">        </span>Container<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>iconset<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Container(window.getScene());
+<span style="color: #bbbbbb">        </span>Image<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>iconimage<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Image(window.getScene());
+<span style="color: #bbbbbb">        </span>Text<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>icontext<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Text(window.getScene());
+
+<span style="color: #bbbbbb">        </span>iconlist.addChild(iconset);
+
+<span style="color: #bbbbbb">        </span>iconset<span style="color: #333333">-&gt;</span>addChild(iconimage);
+<span style="color: #bbbbbb">        </span>iconset<span style="color: #333333">-&gt;</span>addChild(icontext);
+<span style="color: #bbbbbb">        </span>iconset<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;iconset&quot;</span>);
+<span style="color: #bbbbbb">        </span>iconset<span style="color: #333333">-&gt;</span>setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER);
+
+<span style="color: #bbbbbb">        </span>iconimage<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;paper_icon.png&quot;</span>);
+<span style="color: #bbbbbb">        </span>iconimage<span style="color: #333333">-&gt;</span>setSize(<span style="color: #0000DD; font-weight: bold">30</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">40</span>);
+<span style="color: #bbbbbb">        </span>iconimage<span style="color: #333333">-&gt;</span>setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER);
+<span style="color: #bbbbbb">        </span>iconimage<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;iconimage&quot;</span>);
+<span style="color: #bbbbbb">        </span>icontext<span style="color: #333333">-&gt;</span>setText(<span style="background-color: #fff0f0">&quot;terrain_&quot;</span><span style="color: #333333">+</span>std<span style="color: #333333">::</span>to_string(i)<span style="color: #333333">+</span><span style="background-color: #fff0f0">&quot;.obj&quot;</span>);
+<span style="color: #bbbbbb">        </span>icontext<span style="color: #333333">-&gt;</span>setColor(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>);
+<span style="color: #bbbbbb">        </span>icontext<span style="color: #333333">-&gt;</span>setFontSize(<span style="color: #0000DD; font-weight: bold">20</span>);
+<span style="color: #bbbbbb">        </span>icontext<span style="color: #333333">-&gt;</span>setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER);
+<span style="color: #bbbbbb">    </span>}
+
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//=========================================</span>
+
+<span style="color: #bbbbbb">    </span>window2.setSize(<span style="color: #0000DD; font-weight: bold">430</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">400</span>);
+<span style="color: #bbbbbb">    </span>window2.setTitle(<span style="background-color: #fff0f0">&quot;Files&quot;</span>);
+<span style="color: #bbbbbb">    </span>window2.setPatchMargin(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>);
+<span style="color: #bbbbbb">    </span>window2.setPosition(<span style="color: #0000DD; font-weight: bold">400</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">400</span>);<span style="color: #bbbbbb"> </span>
+<span style="color: #bbbbbb">    </span>window2.setHeaderColor(<span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>window2.addChild(<span style="color: #333333">&amp;</span>vcontainer);
+
+<span style="color: #bbbbbb">    </span>vcontainer.addChild(<span style="color: #333333">&amp;</span>hcontainer);
+<span style="color: #bbbbbb">    </span>vcontainer.addChild(<span style="color: #333333">&amp;</span>button2);
+<span style="color: #bbbbbb">    </span>vcontainer.addChild(<span style="color: #333333">&amp;</span>text);
+<span style="color: #bbbbbb">    </span>vcontainer.setBoxExpand(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">true</span>);
+<span style="color: #bbbbbb">    </span>vcontainer.setBoxExpand(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">false</span>);
+<span style="color: #bbbbbb">    </span>vcontainer.setBoxExpand(<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">true</span>);
+
+<span style="color: #bbbbbb">    </span>hcontainer.addChild(<span style="color: #333333">&amp;</span>textedit);
+<span style="color: #bbbbbb">    </span>hcontainer.addChild(<span style="color: #333333">&amp;</span>button);
+<span style="color: #bbbbbb">    </span>hcontainer.setBoxExpand(<span style="color: #007020">true</span>);
+
+<span style="color: #bbbbbb">    </span>vcontainer.setType(ContainerType<span style="color: #333333">::</span>VERTICAL);
+<span style="color: #bbbbbb">    </span>vcontainer.setName(<span style="background-color: #fff0f0">&quot;vcontainer&quot;</span>);
+<span style="color: #bbbbbb">    </span>vcontainer.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>FULL_LAYOUT);
+
+<span style="color: #bbbbbb">    </span>hcontainer.setType(ContainerType<span style="color: #333333">::</span>HORIZONTAL);
+<span style="color: #bbbbbb">    </span>hcontainer.setName(<span style="background-color: #fff0f0">&quot;hcontainer&quot;</span>);
+<span style="color: #bbbbbb">    </span>hcontainer.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>HORIZONTAL_CENTER_WIDE);
+
+<span style="color: #bbbbbb">    </span>button.setColor(<span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>button.setColorPressed(<span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>button.setColorDisabled(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>button.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>button.setSize(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
+<span style="color: #bbbbbb">    </span>button.setPatchMargin(<span style="color: #0000DD; font-weight: bold">5</span>);
+<span style="color: #bbbbbb">    </span>button.setLabel(<span style="background-color: #fff0f0">&quot;Insert&quot;</span>);
+<span style="color: #bbbbbb">    </span>button.setName(<span style="background-color: #fff0f0">&quot;button1&quot;</span>);
+<span style="color: #bbbbbb">    </span>button.setLabelFontSize(<span style="color: #0000DD; font-weight: bold">40</span>);
+<span style="color: #bbbbbb">    </span>button.setLabelColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));
+<span style="color: #bbbbbb">    </span>button.getComponent<span style="color: #333333">&lt;</span>ButtonComponent<span style="color: #333333">&gt;</span>().onPress<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onPress;
+<span style="color: #bbbbbb">    </span>button.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER);
+
+<span style="color: #bbbbbb">    </span>button2.setColor(<span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>button2.setColorPressed(<span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>button2.setColorDisabled(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.6</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>button2.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>button2.setSize(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
+<span style="color: #bbbbbb">    </span>button2.setPatchMargin(<span style="color: #0000DD; font-weight: bold">5</span>);
+<span style="color: #bbbbbb">    </span>button2.setLabel(<span style="background-color: #fff0f0">&quot;Move position&quot;</span>);
+<span style="color: #bbbbbb">    </span>button2.setName(<span style="background-color: #fff0f0">&quot;button2&quot;</span>);
+<span style="color: #bbbbbb">    </span>button2.setLabelFontSize(<span style="color: #0000DD; font-weight: bold">40</span>);
+<span style="color: #bbbbbb">    </span>button2.setLabelColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));
+<span style="color: #bbbbbb">    </span>button2.getComponent<span style="color: #333333">&lt;</span>ButtonComponent<span style="color: #333333">&gt;</span>().onPress<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onPress2;
+<span style="color: #bbbbbb">    </span>button2.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>HORIZONTAL_CENTER_WIDE);
+
+<span style="color: #bbbbbb">    </span>textedit.setPosition(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>textedit.setTexture(<span style="background-color: #fff0f0">&quot;textedit.png&quot;</span>);
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//textedit.setColor(0.3, 0.3, 0.3, 1.0);</span>
+<span style="color: #bbbbbb">    </span>textedit.setPatchMargin(<span style="color: #0000DD; font-weight: bold">5</span>);
+<span style="color: #bbbbbb">    </span>textedit.setSize(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>);
+<span style="color: #bbbbbb">    </span>textedit.setText(<span style="background-color: #fff0f0">&quot;&quot;</span>);
+<span style="color: #bbbbbb">    </span>textedit.setName(<span style="background-color: #fff0f0">&quot;textedit&quot;</span>);
+<span style="color: #bbbbbb">    </span>textedit.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER);
+
+<span style="color: #bbbbbb">    </span>text.setText(<span style="background-color: #fff0f0">&quot;Any text&quot;</span>);
+<span style="color: #bbbbbb">    </span>text.setName(<span style="background-color: #fff0f0">&quot;textobject&quot;</span>);
+<span style="color: #bbbbbb">    </span>text.setColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));
+<span style="color: #bbbbbb">    </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_BOTTOM);
+
+<span style="color: #bbbbbb">    </span>sky.setTextureFront(<span style="background-color: #fff0f0">&quot;ely_hills/hills_lf.tga&quot;</span>);
+<span style="color: #bbbbbb">    </span>sky.setTextureBack(<span style="background-color: #fff0f0">&quot;ely_hills/hills_rt.tga&quot;</span>);
+<span style="color: #bbbbbb">    </span>sky.setTextureLeft(<span style="background-color: #fff0f0">&quot;ely_hills/hills_bk.tga&quot;</span>);
+<span style="color: #bbbbbb">    </span>sky.setTextureRight(<span style="background-color: #fff0f0">&quot;ely_hills/hills_ft.tga&quot;</span>);
+<span style="color: #bbbbbb">    </span>sky.setTextureUp(<span style="background-color: #fff0f0">&quot;ely_hills/hills_up.tga&quot;</span>);
+<span style="color: #bbbbbb">    </span>sky.setTextureDown(<span style="background-color: #fff0f0">&quot;ely_hills/hills_dn.tga&quot;</span>);
+
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>addSceneLayer(<span style="color: #333333">&amp;</span>uiscene);
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);
+
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onUpdate<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onUpdate;
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onCharInput<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onCharInput;
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onKeyDown<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onKeyDown;
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchStart<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchStart;
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchMove<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchMove;
+<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onTouchEnd<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onTouchEnd;
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onUpdate</span>(){
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(<span style="color: #333333">!</span>uiscene.getSystem<span style="color: #333333">&lt;</span>UISystem<span style="color: #333333">&gt;</span>()<span style="color: #333333">-&gt;</span>isTextEditFocused()){
+<span style="color: #bbbbbb">        </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_UP)<span style="color: #bbbbbb"> </span><span style="color: #333333">||</span><span style="color: #bbbbbb"> </span>Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_W)){
+<span style="color: #bbbbbb">            </span>camera.walkForward(<span style="color: #0000DD; font-weight: bold">1</span>);
+<span style="color: #bbbbbb">        </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_DOWN)<span style="color: #bbbbbb"> </span><span style="color: #333333">||</span><span style="color: #bbbbbb"> </span>Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_S)){
+<span style="color: #bbbbbb">            </span>camera.walkForward(<span style="color: #0000DD; font-weight: bold">-1</span>);
+<span style="color: #bbbbbb">        </span>}
+<span style="color: #bbbbbb">        </span>
+<span style="color: #bbbbbb">        </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_A)){
+<span style="color: #bbbbbb">            </span>camera.slide(<span style="color: #0000DD; font-weight: bold">-1</span>);
+<span style="color: #bbbbbb">        </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_D)){
+<span style="color: #bbbbbb">            </span>camera.slide(<span style="color: #0000DD; font-weight: bold">1</span>);
+<span style="color: #bbbbbb">        </span>}
+
+<span style="color: #bbbbbb">        </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_LEFT)){
+<span style="color: #bbbbbb">            </span>camera.rotateView(<span style="color: #0000DD; font-weight: bold">2</span>);
+<span style="color: #bbbbbb">        </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(Input<span style="color: #333333">::</span>isKeyPressed(S_KEY_RIGHT)){
+<span style="color: #bbbbbb">            </span>camera.rotateView(<span style="color: #0000DD; font-weight: bold">-2</span>);
+<span style="color: #bbbbbb">        </span>}
+<span style="color: #bbbbbb">    </span>}
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onCharInput</span>(<span style="color: #333399; font-weight: bold">wchar_t</span><span style="color: #bbbbbb"> </span>codepoint){
+<span style="color: #bbbbbb">    </span>uiscene.getSystem<span style="color: #333333">&lt;</span>UISystem<span style="color: #333333">&gt;</span>()<span style="color: #333333">-&gt;</span>eventOnCharInput(codepoint);
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods){
+
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchMove</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y){
+<span style="color: #bbbbbb">    </span>Vector3<span style="color: #bbbbbb"> </span>normal<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>((wall.getModelMatrix()<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>))<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>wall.getWorldPosition()).normalize();
+<span style="color: #bbbbbb">    </span>Plane<span style="color: #bbbbbb"> </span>plane(normal,<span style="color: #bbbbbb"> </span>wall.getWorldPosition());
+<span style="color: #bbbbbb">    </span>RayReturn<span style="color: #bbbbbb"> </span>rretrun<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>camera.screenToRay(x,<span style="color: #bbbbbb"> </span>y).intersects(plane);
+<span style="color: #bbbbbb">    </span>Vector3<span style="color: #bbbbbb"> </span>point<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>wall.getModelMatrix().inverse()<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>rretrun.point;
+
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(<span style="color: #333333">!</span>uiscene.getSystem<span style="color: #333333">&lt;</span>UISystem<span style="color: #333333">&gt;</span>()<span style="color: #333333">-&gt;</span>eventOnPointerMove(point.x<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1024</span><span style="color: #bbbbbb"> </span><span style="color: #333333">/</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span>(wall.getHeight()<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>point.y)<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1024</span><span style="color: #bbbbbb"> </span><span style="color: #333333">/</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>)){
+<span style="color: #bbbbbb">        </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>difX<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>lastTouchPos.x<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>x;
+<span style="color: #bbbbbb">        </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>difY<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>lastTouchPos.y<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>y;
+<span style="color: #bbbbbb">        </span>lastTouchPos<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>Vector2(x,<span style="color: #bbbbbb"> </span>y);
+
+<span style="color: #bbbbbb">        </span>camera.rotateView(<span style="color: #6600EE; font-weight: bold">0.1</span><span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>difX);
+<span style="color: #bbbbbb">        </span>camera.elevateView(<span style="color: #6600EE; font-weight: bold">0.1</span><span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>difY);
+<span style="color: #bbbbbb">    </span>}
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchStart</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y){
+<span style="color: #bbbbbb">    </span>Vector3<span style="color: #bbbbbb"> </span>normal<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>((wall.getModelMatrix()<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>))<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>wall.getWorldPosition()).normalize();
+<span style="color: #bbbbbb">    </span>Plane<span style="color: #bbbbbb"> </span>plane(normal,<span style="color: #bbbbbb"> </span>wall.getWorldPosition());
+<span style="color: #bbbbbb">    </span>RayReturn<span style="color: #bbbbbb"> </span>rretrun<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>camera.screenToRay(x,<span style="color: #bbbbbb"> </span>y).intersects(plane);
+<span style="color: #bbbbbb">    </span>Vector3<span style="color: #bbbbbb"> </span>point<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>wall.getModelMatrix().inverse()<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>rretrun.point;
+
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(<span style="color: #333333">!</span>uiscene.getSystem<span style="color: #333333">&lt;</span>UISystem<span style="color: #333333">&gt;</span>()<span style="color: #333333">-&gt;</span>eventOnPointerDown(point.x<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1024</span><span style="color: #bbbbbb"> </span><span style="color: #333333">/</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span>(wall.getHeight()<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>point.y)<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1024</span><span style="color: #bbbbbb"> </span><span style="color: #333333">/</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>)){
+<span style="color: #bbbbbb">        </span>lastTouchPos<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>Vector2(x,<span style="color: #bbbbbb"> </span>y);
+<span style="color: #bbbbbb">    </span>}
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onTouchEnd</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>pointer,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>x,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>y){
+<span style="color: #bbbbbb">    </span>Vector3<span style="color: #bbbbbb"> </span>normal<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>((wall.getModelMatrix()<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>))<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>wall.getWorldPosition()).normalize();
+<span style="color: #bbbbbb">    </span>Plane<span style="color: #bbbbbb"> </span>plane(normal,<span style="color: #bbbbbb"> </span>wall.getWorldPosition());
+<span style="color: #bbbbbb">    </span>RayReturn<span style="color: #bbbbbb"> </span>rretrun<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>camera.screenToRay(x,<span style="color: #bbbbbb"> </span>y).intersects(plane);
+<span style="color: #bbbbbb">    </span>Vector3<span style="color: #bbbbbb"> </span>point<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>wall.getModelMatrix().inverse()<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>rretrun.point;
+
+<span style="color: #bbbbbb">    </span>uiscene.getSystem<span style="color: #333333">&lt;</span>UISystem<span style="color: #333333">&gt;</span>()<span style="color: #333333">-&gt;</span>eventOnPointerUp(point.x<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1024</span><span style="color: #bbbbbb"> </span><span style="color: #333333">/</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span>(wall.getHeight()<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>point.y)<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1024</span><span style="color: #bbbbbb"> </span><span style="color: #333333">/</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>);
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onWindowResize</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>width,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>height){
+<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>bar<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">float</span>)windowcontainer.getHeight()<span style="color: #bbbbbb"> </span><span style="color: #333333">/</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">float</span>)iconlist.getHeight();
+
+<span style="color: #bbbbbb">    </span>scroll.setBarSize(bar);
+
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(bar<span style="color: #bbbbbb"> </span><span style="color: #333333">&gt;=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>){
+<span style="color: #bbbbbb">        </span>scroll.setVisible(<span style="color: #007020">false</span>);
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span>{
+<span style="color: #bbbbbb">        </span>scroll.setVisible(<span style="color: #007020">true</span>);
+<span style="color: #bbbbbb">    </span>}
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onChangeScroll</span>(<span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>step){
+<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>diff<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>iconlist.getHeight()<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>windowcontainer.getHeight();
+
+<span style="color: #bbbbbb">    </span>iconlist.setPositionOffset(Vector2(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span>step<span style="color: #333333">*</span>diff));
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress</span>(){
+<span style="color: #bbbbbb">    </span>text.setText(textedit.getText());
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress2</span>(){
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(text.getAnchorPreset()<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>AnchorPreset<span style="color: #333333">::</span>CENTER_BOTTOM){
+<span style="color: #bbbbbb">        </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_RIGHT);
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(text.getAnchorPreset()<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>AnchorPreset<span style="color: #333333">::</span>CENTER_RIGHT){
+<span style="color: #bbbbbb">        </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_TOP);
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(text.getAnchorPreset()<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>AnchorPreset<span style="color: #333333">::</span>CENTER_TOP){
+<span style="color: #bbbbbb">        </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_LEFT);
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(text.getAnchorPreset()<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>AnchorPreset<span style="color: #333333">::</span>CENTER_LEFT){
+<span style="color: #bbbbbb">        </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_BOTTOM);
+<span style="color: #bbbbbb">    </span>}
+}
+</pre></div>
+
+    </div>
+  </div>
+</div>
+
+<div class="rodape">
+  <p>Copyright © 2024, Supernova Engine</p>
+  <p>
+  This is an open source project<br/>
+  Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>
+  Images, logos, text and website are licensed by <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a><br/>
+  </p>
+</div>
+  </body>
+</html>

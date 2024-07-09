@@ -242,15 +242,22 @@
 <span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;
 
 Scene<span style="color: #bbbbbb"> </span>scene;
-Image<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">window</span>(<span style="color: #333333">&amp;</span>scene);
+
+Panel<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">window</span>(<span style="color: #333333">&amp;</span>scene);
+Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">windowcontainer</span>(<span style="color: #333333">&amp;</span>scene);
+Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">iconlist</span>(<span style="color: #333333">&amp;</span>scene);
+Scrollbar<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">scroll</span>(<span style="color: #333333">&amp;</span>scene);
+
+Panel<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">window2</span>(<span style="color: #333333">&amp;</span>scene);
 Button<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">button</span>(<span style="color: #333333">&amp;</span>scene);
 Button<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">button2</span>(<span style="color: #333333">&amp;</span>scene);
 TextEdit<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">textedit</span>(<span style="color: #333333">&amp;</span>scene);
 Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>scene);
-
 Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">vcontainer</span>(<span style="color: #333333">&amp;</span>scene);
 Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">hcontainer</span>(<span style="color: #333333">&amp;</span>scene);
 
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onWindowResize</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>width,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>height);
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onChangeScroll</span>(<span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>step);
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress</span>();
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress2</span>();
 
@@ -258,6 +265,61 @@ Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-
 <span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">480</span>);
 <span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCallTouchInMouseEvent(<span style="color: #007020">true</span>);
 <span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScalingMode(Scaling<span style="color: #333333">::</span>NATIVE);
+
+<span style="color: #bbbbbb">    </span>window.setSize(<span style="color: #0000DD; font-weight: bold">430</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">400</span>);
+<span style="color: #bbbbbb">    </span>window.setTitle(<span style="background-color: #fff0f0">&quot;Files&quot;</span>);
+<span style="color: #bbbbbb">    </span>window.setTexture(<span style="background-color: #fff0f0">&quot;window.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>window.setPatchMargin(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>);
+<span style="color: #bbbbbb">    </span>window.setPosition(<span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>);
+<span style="color: #bbbbbb">    </span>window.addChild(<span style="color: #333333">&amp;</span>windowcontainer);
+<span style="color: #bbbbbb">    </span>window.setName(<span style="background-color: #fff0f0">&quot;window&quot;</span>);
+<span style="color: #bbbbbb">    </span>window.getComponent<span style="color: #333333">&lt;</span>PanelComponent<span style="color: #333333">&gt;</span>().onResize<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onWindowResize;
+
+<span style="color: #bbbbbb">    </span>windowcontainer.setType(ContainerType<span style="color: #333333">::</span>HORIZONTAL);
+<span style="color: #bbbbbb">    </span>windowcontainer.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>FULL_LAYOUT);
+<span style="color: #bbbbbb">    </span>windowcontainer.addChild(<span style="color: #333333">&amp;</span>iconlist);
+<span style="color: #bbbbbb">    </span>windowcontainer.addChild(<span style="color: #333333">&amp;</span>scroll);
+<span style="color: #bbbbbb">    </span>windowcontainer.setName(<span style="background-color: #fff0f0">&quot;windowcontainer&quot;</span>);
+<span style="color: #bbbbbb">    </span>windowcontainer.setBoxExpand(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">false</span>);
+
+<span style="color: #bbbbbb">    </span>iconlist.setType(ContainerType<span style="color: #333333">::</span>HORIZONTAL_WRAP);
+<span style="color: #bbbbbb">    </span>iconlist.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>TOP_WIDE);
+<span style="color: #bbbbbb">    </span>iconlist.setName(<span style="background-color: #fff0f0">&quot;iconlist&quot;</span>);
+
+<span style="color: #bbbbbb">    </span>scroll.setSize(<span style="color: #0000DD; font-weight: bold">20</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">20</span>);
+<span style="color: #bbbbbb">    </span>scroll.setColor(<span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.5</span>);
+<span style="color: #bbbbbb">    </span>scroll.setBarSize(<span style="color: #6600EE; font-weight: bold">0.6</span>);
+<span style="color: #bbbbbb">    </span>scroll.setBarColor(<span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>scroll.setStep(<span style="color: #6600EE; font-weight: bold">0.0</span>);
+<span style="color: #bbbbbb">    </span>scroll.setType(ScrollbarType<span style="color: #333333">::</span>VERTICAL);
+<span style="color: #bbbbbb">    </span>scroll.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>VERTICAL_CENTER_WIDE);
+<span style="color: #bbbbbb">    </span>scroll.getComponent<span style="color: #333333">&lt;</span>ScrollbarComponent<span style="color: #333333">&gt;</span>().onChange<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onChangeScroll;
+<span style="color: #bbbbbb">    </span>scroll.setBarTexture(<span style="background-color: #fff0f0">&quot;button_normal.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>scroll.setBarPatchMargin(<span style="color: #0000DD; font-weight: bold">5</span>);
+
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">22</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #333333">++</span>){
+<span style="color: #bbbbbb">        </span>Container<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>iconset<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Container(window.getScene());
+<span style="color: #bbbbbb">        </span>Image<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>iconimage<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Image(window.getScene());
+<span style="color: #bbbbbb">        </span>Text<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>icontext<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>Text(window.getScene());
+
+<span style="color: #bbbbbb">        </span>iconlist.addChild(iconset);
+
+<span style="color: #bbbbbb">        </span>iconset<span style="color: #333333">-&gt;</span>addChild(iconimage);
+<span style="color: #bbbbbb">        </span>iconset<span style="color: #333333">-&gt;</span>addChild(icontext);
+<span style="color: #bbbbbb">        </span>iconset<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;iconset&quot;</span>);
+<span style="color: #bbbbbb">        </span>iconset<span style="color: #333333">-&gt;</span>setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER);
+
+<span style="color: #bbbbbb">        </span>iconimage<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;paper_icon.png&quot;</span>);
+<span style="color: #bbbbbb">        </span>iconimage<span style="color: #333333">-&gt;</span>setSize(<span style="color: #0000DD; font-weight: bold">30</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">40</span>);
+<span style="color: #bbbbbb">        </span>iconimage<span style="color: #333333">-&gt;</span>setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER);
+<span style="color: #bbbbbb">        </span>iconimage<span style="color: #333333">-&gt;</span>setName(<span style="background-color: #fff0f0">&quot;iconimage&quot;</span>);
+<span style="color: #bbbbbb">        </span>icontext<span style="color: #333333">-&gt;</span>setText(<span style="background-color: #fff0f0">&quot;terrain_&quot;</span><span style="color: #333333">+</span>std<span style="color: #333333">::</span>to_string(i)<span style="color: #333333">+</span><span style="background-color: #fff0f0">&quot;.obj&quot;</span>);
+<span style="color: #bbbbbb">        </span>icontext<span style="color: #333333">-&gt;</span>setColor(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>);
+<span style="color: #bbbbbb">        </span>icontext<span style="color: #333333">-&gt;</span>setFontSize(<span style="color: #0000DD; font-weight: bold">20</span>);
+<span style="color: #bbbbbb">        </span>icontext<span style="color: #333333">-&gt;</span>setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER);
+<span style="color: #bbbbbb">    </span>}
+
+<span style="color: #bbbbbb"> </span><span style="color: #888888">// ==============================================</span>
 
 <span style="color: #bbbbbb">    </span>vcontainer.addChild(<span style="color: #333333">&amp;</span>hcontainer);
 <span style="color: #bbbbbb">    </span>vcontainer.addChild(<span style="color: #333333">&amp;</span>button2);
@@ -321,18 +383,36 @@ Container<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-
 <span style="color: #bbbbbb">    </span>text.setColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));
 <span style="color: #bbbbbb">    </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_BOTTOM);
 
-<span style="color: #bbbbbb">    </span>window.setTexture(<span style="background-color: #fff0f0">&quot;window.png&quot;</span>);
+<span style="color: #bbbbbb">    </span>window2.setTexture(<span style="background-color: #fff0f0">&quot;window.png&quot;</span>);
 <span style="color: #bbbbbb">    </span><span style="color: #888888">//window.getComponent&lt;UIComponent&gt;().texture.setMinFilter(TextureFilter::NEAREST_MIPMAP_NEAREST);</span>
 <span style="color: #bbbbbb">    </span><span style="color: #888888">//window.getComponent&lt;UIComponent&gt;().texture.setWrapU(TextureWrap::CLAMP_TO_EDGE);</span>
-<span style="color: #bbbbbb">    </span>window.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>);
-<span style="color: #bbbbbb">    </span>window.setPatchMargin(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>);
-<span style="color: #bbbbbb">    </span>window.setSize(<span style="color: #0000DD; font-weight: bold">600</span>,<span style="color: #0000DD; font-weight: bold">400</span>);
-<span style="color: #bbbbbb">    </span>window.setName(<span style="background-color: #fff0f0">&quot;window&quot;</span>);
-<span style="color: #bbbbbb">    </span>window.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER);
-
-<span style="color: #bbbbbb">    </span>window.addChild(<span style="color: #333333">&amp;</span>vcontainer);
+<span style="color: #bbbbbb">    </span>window2.setPosition(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">20</span>,<span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>window2.setPatchMargin(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>);
+<span style="color: #bbbbbb">    </span>window2.setSize(<span style="color: #0000DD; font-weight: bold">600</span>,<span style="color: #0000DD; font-weight: bold">400</span>);
+<span style="color: #bbbbbb">    </span>window2.setName(<span style="background-color: #fff0f0">&quot;window&quot;</span>);
+<span style="color: #bbbbbb">    </span>window2.setTitle(<span style="background-color: #fff0f0">&quot;Window&quot;</span>);
+<span style="color: #bbbbbb">    </span><span style="color: #888888">//window.setAnchorPreset(AnchorPreset::CENTER);</span>
+<span style="color: #bbbbbb">    </span>window2.addChild(<span style="color: #333333">&amp;</span>vcontainer);
 
 <span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onWindowResize</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>width,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>height){
+<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>bar<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">float</span>)windowcontainer.getHeight()<span style="color: #bbbbbb"> </span><span style="color: #333333">/</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">float</span>)iconlist.getHeight();
+
+<span style="color: #bbbbbb">    </span>scroll.setBarSize(bar);
+
+<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(bar<span style="color: #bbbbbb"> </span><span style="color: #333333">&gt;=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>){
+<span style="color: #bbbbbb">        </span>scroll.setVisible(<span style="color: #007020">false</span>);
+<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span>{
+<span style="color: #bbbbbb">        </span>scroll.setVisible(<span style="color: #007020">true</span>);
+<span style="color: #bbbbbb">    </span>}
+}
+
+<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onChangeScroll</span>(<span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>step){
+<span style="color: #bbbbbb">    </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>diff<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>iconlist.getHeight()<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>windowcontainer.getHeight();
+
+<span style="color: #bbbbbb">    </span>iconlist.setPositionOffset(Vector2(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span>step<span style="color: #333333">*</span>diff));
 }
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onPress</span>(){
