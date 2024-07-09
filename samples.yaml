@@ -49,10 +49,16 @@ samples:
       - lua
 
   - name: "User Interface"
-    desc: "User interface sample with button and textedit"
+    desc: "User interface sample with windows and other components"
     path: user_interface
     langs:
-      - cpp    
+      - cpp
+
+  - name: "3D User Interface"
+    desc: "Same user interface sample but in a 3D environment"
+    path: user_interface_3d
+    langs:
+      - cpp
       
   - name: "Actions"
     desc: "Using actions to move objects"
