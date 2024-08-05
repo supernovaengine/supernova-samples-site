@@ -240,41 +240,93 @@
     <div id="code-snippet" style="display: none;">
     <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span>scene <span style="color: #333333">=</span> Scene()
 
+ParticlesType <span style="color: #333333">=</span> {
+    POINTS <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>,
+    SPRITES <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">1</span>
+}
+
+parttext <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot; particles (press any key to change)&quot;</span>
+
+text <span style="color: #333333">=</span> Text(scene)
+
+points <span style="color: #333333">=</span> Points(scene)
+sprite <span style="color: #333333">=</span> Sprite(scene)
 particles <span style="color: #333333">=</span> Particles(scene)
-partianim <span style="color: #333333">=</span> ParticlesAnimation(scene)
 
-particles:setPosition(<span style="color: #0000DD; font-weight: bold">300</span>, <span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-particles:setTexture(<span style="background-color: #fff0f0">&quot;f4.png&quot;</span>);
+<span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onKeyDown</span>(key, rep, mods)
+    <span style="color: #008800; font-weight: bold">if</span> <span style="color: #007020">type</span> <span style="color: #333333">==</span> ParticlesType.SPRITES <span style="color: #008800; font-weight: bold">then</span>
+        text.text <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Points&quot;</span><span style="color: #333333">..</span>parttext
+        <span style="color: #007020">type</span> <span style="color: #333333">=</span> ParticlesType.POINTS
+        particles.target <span style="color: #333333">=</span> points.entity
 
-partianim.target <span style="color: #333333">=</span> particles.entity
+        sprite:clearInstances()
+        sprite.visible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span>
+        points.visible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>
+    <span style="color: #008800; font-weight: bold">else</span>
+        text.text <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Sprite&quot;</span><span style="color: #333333">..</span>parttext
+        <span style="color: #007020">type</span> <span style="color: #333333">=</span> ParticlesType.SPRITES
+        particles.target <span style="color: #333333">=</span> sprite.entity
 
-partianim:setLifeInitializer(<span style="color: #0000DD; font-weight: bold">10</span>)
+        points:clearPoints()
+        points.visible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span>
+        sprite.visible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>
+    <span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #008800; font-weight: bold">end</span>
 
-partianim:setPositionInitializer(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>), Vector3(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>))
-<span style="color: #888888">--partianim:setPositionModifier(2,4, Vector3(0,0,0), Vector3(0,300,0))</span>
+text.anchorPreset <span style="color: #333333">=</span> AnchorPreset.CENTER_TOP
 
-partianim:setVelocityInitializer(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>), Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #0000DD; font-weight: bold">0</span>))
-partianim:setVelocityModifier(<span style="color: #0000DD; font-weight: bold">5</span>, <span style="color: #0000DD; font-weight: bold">8</span>, Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>), Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>), EaseType.CUBIC_IN_OUT)
+text.text <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Sprite&quot;</span><span style="color: #333333">..</span>parttext
+<span style="color: #007020">type</span> <span style="color: #333333">=</span> ParticlesType.SPRITES
 
-<span style="color: #888888">--partianim:setAccelerationInitializer(Vector3(0,100,0), Vector3(0,200,0))</span>
+sprite:setPosition(<span style="color: #0000DD; font-weight: bold">300</span>, <span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
+sprite.pivotPreset <span style="color: #333333">=</span> PivotPreset.CENTER;
+sprite:setTexture(<span style="background-color: #fff0f0">&quot;explosion.png&quot;</span>);
+sprite:setSize(<span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">50</span>);
+<span style="color: #008800; font-weight: bold">for</span> i <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">1</span> <span style="color: #008800; font-weight: bold">do</span>
+    <span style="color: #008800; font-weight: bold">for</span> j <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">1</span> <span style="color: #008800; font-weight: bold">do</span>
+        sprite:addFrame((i<span style="color: #333333">+</span>(j<span style="color: #333333">*</span><span style="color: #0000DD; font-weight: bold">3</span>)), <span style="background-color: #fff0f0">&quot;&quot;</span>, Rect(i <span style="color: #333333">*</span> ((<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>)), j <span style="color: #333333">*</span> ((<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>)), (<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>), (<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>)));
+    <span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #008800; font-weight: bold">end</span>
 
-partianim:setColorInitializer(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>), Vector3(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>))
-<span style="color: #888888">--partianim:setColorModifier(2, 5, Vector3(1,1,1), Vector3(1,0,0))</span>
+points:setPosition(<span style="color: #0000DD; font-weight: bold">300</span>, <span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
+points:setTexture(<span style="background-color: #fff0f0">&quot;explosion.png&quot;</span>)
+<span style="color: #008800; font-weight: bold">for</span> i <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">1</span> <span style="color: #008800; font-weight: bold">do</span>
+    <span style="color: #008800; font-weight: bold">for</span> j <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">1</span> <span style="color: #008800; font-weight: bold">do</span>
+        points:addSpriteFrame((i<span style="color: #333333">+</span>(j<span style="color: #333333">*</span><span style="color: #0000DD; font-weight: bold">3</span>)), <span style="background-color: #fff0f0">&quot;&quot;</span>, Rect(i <span style="color: #333333">*</span> ((<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>)), j <span style="color: #333333">*</span> ((<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>)), (<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>), (<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>)));
+    <span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #008800; font-weight: bold">end</span>
 
-<span style="color: #888888">--partianim:setAlphaInitializer(0, 1)</span>
-partianim:setAlphaModifier(<span style="color: #0000DD; font-weight: bold">4</span>, <span style="color: #0000DD; font-weight: bold">6</span>, <span style="color: #0000DD; font-weight: bold">1</span>, <span style="color: #6600EE; font-weight: bold">0.2</span>)
+particles.target <span style="color: #333333">=</span> sprite.entity
 
-partianim:setSizeInitializer(<span style="color: #0000DD; font-weight: bold">10</span>, <span style="color: #0000DD; font-weight: bold">50</span>)
+particles:setLifeInitializer(<span style="color: #0000DD; font-weight: bold">10</span>)
 
-<span style="color: #888888">--partianim:setSpriteIntializer(0, 2)</span>
-<span style="color: #888888">--partianim:setSpriteModifier(5, 8, {0,1,2})</span>
+particles:setPositionInitializer(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>), Vector3(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>))
+<span style="color: #888888">--particles:setPositionModifier(2,4, Vector3(0,0,0), Vector3(0,300,0))</span>
 
-<span style="color: #888888">--partianim:setRotationInitializer(90)</span>
-<span style="color: #888888">--partianim:setRotationModifier(1, 5, 0, 360)</span>
+particles:setVelocityInitializer(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>), Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #0000DD; font-weight: bold">0</span>))
+particles:setVelocityModifier(<span style="color: #0000DD; font-weight: bold">5</span>, <span style="color: #0000DD; font-weight: bold">8</span>, Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>), Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>), EaseType.CUBIC_IN_OUT)
+
+<span style="color: #888888">--particles:setAccelerationInitializer(Vector3(0,100,0), Vector3(0,200,0))</span>
+
+particles:setColorInitializer(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>), Vector3(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>))
+<span style="color: #888888">--particles:setColorModifier(2, 5, Vector3(1,1,1), Vector3(1,0,0))</span>
+
+<span style="color: #888888">--particles:setAlphaInitializer(0, 1)</span>
+particles:setAlphaModifier(<span style="color: #0000DD; font-weight: bold">4</span>, <span style="color: #0000DD; font-weight: bold">6</span>, <span style="color: #0000DD; font-weight: bold">1</span>, <span style="color: #6600EE; font-weight: bold">0.2</span>)
+
+particles:setSizeInitializer(<span style="color: #0000DD; font-weight: bold">10</span>, <span style="color: #0000DD; font-weight: bold">50</span>)
+particles:setScaleInitializer(<span style="color: #6600EE; font-weight: bold">1.0</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">5.0</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>)
+
+particles:setSpriteIntializer(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">2</span>)
+particles:setSpriteModifier(<span style="color: #0000DD; font-weight: bold">1</span>, <span style="color: #0000DD; font-weight: bold">8</span>, {<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">6</span>,<span style="color: #0000DD; font-weight: bold">7</span>,<span style="color: #0000DD; font-weight: bold">8</span>})
+
+<span style="color: #888888">--particles:setRotationInitializer(90)</span>
+<span style="color: #888888">--particles:setRotationModifier(1, 5, 0, 360)</span>
 
 Engine.setScene(scene)
+Engine.onKeyDown <span style="color: #333333">=</span> onKeyDown
 
-partianim:start()
+particles:start()
 </pre></div>
 
     </div>
