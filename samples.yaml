@@ -42,11 +42,17 @@ samples:
       - lua
 
   - name: "Particles"
-    desc: "Using a mouse to set particles origin"
+    desc: "Two types of particles: with points and sprites"
     path: particles
     langs:
       - cpp
       - lua
+
+  - name: "3D Particles and Instances"
+    desc: "Using two types of particles in a 3D environment with instances trees"
+    path: particles3d_and_instances
+    langs:
+      - cpp
 
   - name: "User Interface"
     desc: "User interface sample with windows and other components"
