@@ -327,6 +327,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>Body2D<span style="color: #bbbbbb"> </span>body<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb">  </span>crates[<span style="color: #0000DD; font-weight: bold">0</span>]<span style="color: #333333">-&gt;</span>getBody2D();
 <span style="color: #bbbbbb">    </span>body.createCenteredBoxShape(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span>Vector2(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
 <span style="color: #bbbbbb">    </span>body.setShapeDensity(<span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>body.setType(BodyType<span style="color: #333333">::</span>DYNAMIC);
 <span style="color: #bbbbbb">    </span>body.load();
 
 <span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">1</span>]<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;crate.png&quot;</span>);
@@ -339,7 +340,6 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>body1.setShapeDensity(<span style="color: #6600EE; font-weight: bold">1.0</span>);
 <span style="color: #bbbbbb">    </span>body1.setShapeEnableHitEvents(<span style="color: #007020">true</span>);
 <span style="color: #bbbbbb">    </span>body1.setShapePreSolveEvents(<span style="color: #007020">true</span>);
-<span style="color: #bbbbbb">    </span>body1.setType(BodyType<span style="color: #333333">::</span>STATIC);
 <span style="color: #bbbbbb">    </span>body1.load();
 
 <span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">2</span>]<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;crate.png&quot;</span>);
@@ -350,6 +350,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>Body2D<span style="color: #bbbbbb"> </span>body2<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>crates[<span style="color: #0000DD; font-weight: bold">2</span>]<span style="color: #333333">-&gt;</span>getBody2D();
 <span style="color: #bbbbbb">    </span>body2.createCenteredBoxShape(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
 <span style="color: #bbbbbb">    </span>body2.setShapeDensity(<span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>body2.setType(BodyType<span style="color: #333333">::</span>DYNAMIC);
 <span style="color: #bbbbbb">    </span>body2.load();
 
 <span style="color: #bbbbbb">    </span>crates[<span style="color: #0000DD; font-weight: bold">3</span>]<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;crate.png&quot;</span>);
@@ -360,7 +361,6 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>Body2D<span style="color: #bbbbbb"> </span>body3<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>crates[<span style="color: #0000DD; font-weight: bold">3</span>]<span style="color: #333333">-&gt;</span>getBody2D();
 <span style="color: #bbbbbb">    </span>body3.createCenteredBoxShape(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
 <span style="color: #bbbbbb">    </span>body3.setShapeDensity(<span style="color: #6600EE; font-weight: bold">1.0</span>);
-<span style="color: #bbbbbb">    </span>body3.setType(BodyType<span style="color: #333333">::</span>STATIC);
 <span style="color: #bbbbbb">    </span>body3.load();
 
 <span style="color: #bbbbbb">    </span>ball<span style="color: #333333">-&gt;</span>setTexture(<span style="background-color: #fff0f0">&quot;SoccerBall.png&quot;</span>);
@@ -371,6 +371,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>Body2D<span style="color: #bbbbbb"> </span>bodyball<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>ball<span style="color: #333333">-&gt;</span>getBody2D();
 <span style="color: #bbbbbb">    </span>bodyball.createCircleShape(Vector2(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">25</span>);
 <span style="color: #bbbbbb">    </span>bodyball.setShapeDensity(<span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #bbbbbb">    </span>bodyball.setType(BodyType<span style="color: #333333">::</span>DYNAMIC);
 <span style="color: #bbbbbb">    </span>bodyball.load();
 
 <span style="color: #bbbbbb">    </span>startPositions();
@@ -386,6 +387,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>joint.setDistanceJoint(body2.getEntity(),<span style="color: #bbbbbb"> </span>body3.getEntity(),<span style="color: #bbbbbb"> </span>Vector2(crates[<span style="color: #0000DD; font-weight: bold">2</span>]<span style="color: #333333">-&gt;</span>getPosition()),<span style="color: #bbbbbb"> </span>Vector2(crates[<span style="color: #0000DD; font-weight: bold">3</span>]<span style="color: #333333">-&gt;</span>getPosition()),<span style="color: #bbbbbb"> </span><span style="color: #007020">false</span>);
 
 <span style="color: #bbbbbb">    </span>lines.addLine(Vector3(<span style="color: #0000DD; font-weight: bold">725</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">725</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">500</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>));
+
 <span style="color: #bbbbbb">    </span>points.addPoint(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>Vector4(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>),<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">10</span>);
 <span style="color: #bbbbbb">    </span>points.setPointVisible(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">false</span>);
 
