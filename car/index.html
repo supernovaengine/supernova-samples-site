@@ -270,7 +270,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){
 
-<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.5</span>);
+<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.3</span>);
 <span style="color: #bbbbbb">    </span>scene.setBackgroundColor(<span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.8</span>);
 
 <span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());
@@ -368,7 +368,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>car.setRotation(<span style="color: #0000DD; font-weight: bold">0</span>,rotation,<span style="color: #0000DD; font-weight: bold">0</span>);
 <span style="color: #bbbbbb">    </span>car.setPosition(car.getPosition()<span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>(vDir<span style="color: #333333">*</span>speed));
 
-<span style="color: #bbbbbb">    </span>camera.setView(car.getPosition());
+<span style="color: #bbbbbb">    </span>camera.setTarget(car.getPosition());
 }
 </pre></div>
 

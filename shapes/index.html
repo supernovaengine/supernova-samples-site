@@ -264,7 +264,7 @@ TimedAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; fon
 <span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());
 
 <span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">30</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">30</span>);
-<span style="color: #bbbbbb">    </span>camera.setView(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>);
+<span style="color: #bbbbbb">    </span>camera.setTarget(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>);
 <span style="color: #bbbbbb">    </span>camera.setName(<span style="background-color: #fff0f0">&quot;camera&quot;</span>);
 
 <span style="color: #bbbbbb">    </span>torus.createTorus(<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>);
@@ -286,7 +286,7 @@ TimedAction<span style="color: #bbbbbb"> </span><span style="color: #0066BB; fon
 <span style="color: #bbbbbb">    </span>plane.createPlane(<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>);
 <span style="color: #bbbbbb">    </span>plane.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
 <span style="color: #bbbbbb">    </span>plane.setPosition(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>);
-<span style="color: #bbbbbb">    </span>plane.setEnableFaceCulling(<span style="color: #007020">false</span>);
+<span style="color: #bbbbbb">    </span>plane.setFaceCulling(<span style="color: #007020">false</span>);
 
 <span style="color: #bbbbbb">    </span>capsule.createCapsule(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">3</span>);
 <span style="color: #bbbbbb">    </span>capsule.setTexture(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);

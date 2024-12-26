@@ -280,7 +280,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 
 <span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());
 
-<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.2</span>);
+<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.1</span>);
 
 <span style="color: #bbbbbb">    </span>sun.setType(LightType<span style="color: #333333">::</span>DIRECTIONAL);
 <span style="color: #bbbbbb">    </span>sun.setDirection(<span style="color: #6600EE; font-weight: bold">0.0f</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">-0.3</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">-0.8</span>);
@@ -334,12 +334,12 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods){
 <span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(key<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>S_KEY_X){
 <span style="color: #bbbbbb">        </span>camera.setPosition(camera.getPosition().x,<span style="color: #bbbbbb"> </span>camera.getPosition().y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span>camera.getPosition().z);
-<span style="color: #bbbbbb">        </span>camera.setView(camera.getView().x,<span style="color: #bbbbbb"> </span>camera.getView().y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span>camera.getView().z);
+<span style="color: #bbbbbb">        </span>camera.setTarget(camera.getTarget().x,<span style="color: #bbbbbb"> </span>camera.getTarget().y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span>camera.getTarget().z);
 <span style="color: #bbbbbb">    </span>}
 
 <span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(key<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>S_KEY_Z){
 <span style="color: #bbbbbb">        </span>camera.setPosition(camera.getPosition().x,<span style="color: #bbbbbb"> </span>camera.getPosition().y<span style="color: #0000DD; font-weight: bold">-10</span>,<span style="color: #bbbbbb"> </span>camera.getPosition().z);
-<span style="color: #bbbbbb">        </span>camera.setView(camera.getView().x,<span style="color: #bbbbbb"> </span>camera.getView().y<span style="color: #0000DD; font-weight: bold">-10</span>,<span style="color: #bbbbbb"> </span>camera.getView().z);
+<span style="color: #bbbbbb">        </span>camera.setTarget(camera.getTarget().x,<span style="color: #bbbbbb"> </span>camera.getTarget().y<span style="color: #0000DD; font-weight: bold">-10</span>,<span style="color: #bbbbbb"> </span>camera.getTarget().z);
 <span style="color: #bbbbbb">    </span>}
 }
 

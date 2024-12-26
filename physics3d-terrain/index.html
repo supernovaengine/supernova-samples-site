@@ -316,7 +316,7 @@ Shape<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>s
 <span style="color: #bbbbbb">    </span>bodyterrain.createHeightFieldShape();
 <span style="color: #bbbbbb">    </span>bodyterrain.load();
 
-<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.4</span>);
+<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.2</span>);
 <span style="color: #bbbbbb">    </span>scene.setBackgroundColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #6600EE; font-weight: bold">0.5</span>,<span style="color: #6600EE; font-weight: bold">1.0</span>));
 
 <span style="color: #bbbbbb">    </span>sun.setType(LightType<span style="color: #333333">::</span>DIRECTIONAL);
@@ -371,12 +371,12 @@ Shape<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>s
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods){
 <span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(key<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>S_KEY_X){
 <span style="color: #bbbbbb">        </span>camera.setPosition(camera.getPosition().x,<span style="color: #bbbbbb"> </span>camera.getPosition().y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span>camera.getPosition().z);
-<span style="color: #bbbbbb">        </span>camera.setView(camera.getView().x,<span style="color: #bbbbbb"> </span>camera.getView().y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span>camera.getView().z);
+<span style="color: #bbbbbb">        </span>camera.setTarget(camera.getTarget().x,<span style="color: #bbbbbb"> </span>camera.getTarget().y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span>camera.getTarget().z);
 <span style="color: #bbbbbb">    </span>}
 
 <span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(key<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>S_KEY_Z){
 <span style="color: #bbbbbb">        </span>camera.setPosition(camera.getPosition().x,<span style="color: #bbbbbb"> </span>camera.getPosition().y<span style="color: #0000DD; font-weight: bold">-10</span>,<span style="color: #bbbbbb"> </span>camera.getPosition().z);
-<span style="color: #bbbbbb">        </span>camera.setView(camera.getView().x,<span style="color: #bbbbbb"> </span>camera.getView().y<span style="color: #0000DD; font-weight: bold">-10</span>,<span style="color: #bbbbbb"> </span>camera.getView().z);
+<span style="color: #bbbbbb">        </span>camera.setTarget(camera.getTarget().x,<span style="color: #bbbbbb"> </span>camera.getTarget().y<span style="color: #0000DD; font-weight: bold">-10</span>,<span style="color: #bbbbbb"> </span>camera.getTarget().z);
 <span style="color: #bbbbbb">    </span>}
 
 <span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(key<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>S_KEY_SPACE){

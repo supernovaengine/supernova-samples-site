@@ -302,12 +302,12 @@ text4 <span style="color: #333333">=</span> Text(uiscene)
 <span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onKeyDown</span>(key, rep, mods)
     <span style="color: #008800; font-weight: bold">if</span> (key <span style="color: #333333">==</span> Input.KEY_X) <span style="color: #008800; font-weight: bold">then</span>
         camera:setPosition(camera.position.x, camera.position.y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.position.z);
-        camera:setView(camera.view.x, camera.view.y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.view.z);
+        camera:setTarget(camera.view.x, camera.view.y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.view.z);
     <span style="color: #008800; font-weight: bold">end</span>
 
     <span style="color: #008800; font-weight: bold">if</span> (key <span style="color: #333333">==</span> Input.KEY_Z) <span style="color: #008800; font-weight: bold">then</span>
         camera:setPosition(camera.position.x, camera.position.y<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.position.z);
-        camera:setView(camera.view.x, camera.view.y<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.view.z);
+        camera:setTarget(camera.view.x, camera.view.y<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.view.z);
     <span style="color: #008800; font-weight: bold">end</span>
 <span style="color: #008800; font-weight: bold">end</span>
 
@@ -335,7 +335,7 @@ terrain:setTextureDetailBlue(<span style="background-color: #fff0f0">&quot;block
 
 scene.camera <span style="color: #333333">=</span> camera.entity;
 
-scene.ambientLightFactor <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">0.2</span>;
+scene.ambientLightIntensity <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">0.1</span>;
 
 sun:setType(LightType.DIRECTIONAL)
 sun:setDirection(<span style="color: #6600EE; font-weight: bold">0.0</span>, <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.3</span>, <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.8</span>)

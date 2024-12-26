@@ -296,12 +296,12 @@ up, down, left, right <span style="color: #333333">=</span> <span style="color: 
     car:setRotation(<span style="color: #0000DD; font-weight: bold">0</span>, rotation, <span style="color: #0000DD; font-weight: bold">0</span>);
     car.position <span style="color: #333333">=</span> car.position <span style="color: #333333">+</span> (vDir<span style="color: #333333">*</span>speed)
 
-    camera.view <span style="color: #333333">=</span> car.position
+    camera.target <span style="color: #333333">=</span> car.position
 <span style="color: #008800; font-weight: bold">end</span>
 
 scene.camera <span style="color: #333333">=</span> camera.entity
 
-scene.ambientLightFactor <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">0.5</span>;
+scene.ambientLightIntensity <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">0.3</span>;
 scene:setBackgroundColor(<span style="color: #6600EE; font-weight: bold">0.8</span>, <span style="color: #6600EE; font-weight: bold">0.8</span>, <span style="color: #6600EE; font-weight: bold">0.8</span>);
 
 fog.type <span style="color: #333333">=</span> FogType.LINEAR

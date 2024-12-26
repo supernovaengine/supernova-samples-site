@@ -259,14 +259,14 @@ Scene<span style="color: #bbbbbb"> </span>uiscene;
 Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>uiscene);
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){
-<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.2</span>);
+<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.1</span>);
 <span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());
 
 <span style="color: #bbbbbb">    </span>text.setText(<span style="background-color: #fff0f0">&quot;Press any key to start&quot;</span>);
 <span style="color: #bbbbbb">    </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_TOP);
 
 <span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">7</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">-20</span>);
-<span style="color: #bbbbbb">    </span>camera.setView(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>camera.setTarget(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
 
 <span style="color: #bbbbbb">    </span>terrain.createPlane(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);
 <span style="color: #bbbbbb">    </span>terrain.setTexture(<span style="background-color: #fff0f0">&quot;ground.png&quot;</span>);

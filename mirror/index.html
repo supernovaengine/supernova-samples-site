@@ -262,7 +262,7 @@ Sprite<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-wei
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){
 <span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());
-<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.7</span>);
+<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.5</span>);
 
 <span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">7</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">40</span>);
 <span style="color: #bbbbbb">    </span>camera.setName(<span style="background-color: #fff0f0">&quot;camera&quot;</span>);
@@ -275,7 +275,7 @@ Sprite<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-wei
 <span style="color: #bbbbbb">    </span>terrain.setName(<span style="background-color: #fff0f0">&quot;terrain&quot;</span>);
 
 <span style="color: #bbbbbb">    </span>cameramirror.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
-<span style="color: #bbbbbb">    </span>cameramirror.setView(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">40</span>);
+<span style="color: #bbbbbb">    </span>cameramirror.setTarget(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">40</span>);
 <span style="color: #bbbbbb">    </span>cameramirror.setRenderToTexture(<span style="color: #007020">true</span>);
 <span style="color: #bbbbbb">    </span>cameramirror.setName(<span style="background-color: #fff0f0">&quot;cameramirror&quot;</span>);
 
@@ -330,7 +330,7 @@ Sprite<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-wei
 
 <span style="color: #bbbbbb">    </span>Vector3<span style="color: #bbbbbb"> </span>camVec<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>mirror.getPosition()<span style="color: #bbbbbb"> </span><span style="color: #333333">-</span><span style="color: #bbbbbb"> </span>camera.getPosition();
 <span style="color: #bbbbbb">    </span>Vector3<span style="color: #bbbbbb"> </span>reflVec<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>camVec.reflect(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">1</span>));
-<span style="color: #bbbbbb">    </span>cameramirror.setView(cameramirror.getPosition()<span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>reflVec);
+<span style="color: #bbbbbb">    </span>cameramirror.setTarget(cameramirror.getPosition()<span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>reflVec);
 }
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods){

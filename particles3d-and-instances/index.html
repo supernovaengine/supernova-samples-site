@@ -280,11 +280,11 @@ ParticlesType<span style="color: #bbbbbb"> </span>type;
 <span style="color: #bbbbbb">    </span>text.setText(<span style="background-color: #fff0f0">&quot;Sprite&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>parttext);
 <span style="color: #bbbbbb">    </span>type<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>ParticlesType<span style="color: #333333">::</span>SPRITE;
 
-<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.2</span>);
+<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.1</span>);
 <span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());
 
 <span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">7</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">40</span>);
-<span style="color: #bbbbbb">    </span>camera.setView(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">7</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>camera.setTarget(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">7</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
 
 <span style="color: #bbbbbb">    </span>terrain.createPlane(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">200</span>);
 <span style="color: #bbbbbb">    </span>terrain.setTexture(<span style="background-color: #fff0f0">&quot;ground.png&quot;</span>);

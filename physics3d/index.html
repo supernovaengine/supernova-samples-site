@@ -357,7 +357,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 
 <span style="color: #bbbbbb">    </span>lastTouchPos<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>Vector2(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
 
-<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.5</span>);
+<span style="color: #bbbbbb">    </span>scene.setAmbientLight(<span style="color: #6600EE; font-weight: bold">0.3</span>);
 <span style="color: #bbbbbb">    </span>scene.setCamera(camera.getEntity());
 
 <span style="color: #bbbbbb">    </span>text.setText(<span style="background-color: #fff0f0">&quot;Press any key to reset&quot;</span>);
@@ -365,7 +365,7 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 <span style="color: #bbbbbb">    </span>text.setName(<span style="background-color: #fff0f0">&quot;text&quot;</span>);
 
 <span style="color: #bbbbbb">    </span>camera.setPosition(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">7</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">-20</span>);
-<span style="color: #bbbbbb">    </span>camera.setView(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>camera.setTarget(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
 
 <span style="color: #bbbbbb">    </span>terrain.createPlane(terrainSize,<span style="color: #bbbbbb"> </span>terrainSize);
 <span style="color: #bbbbbb">    </span>terrain.setTexture(<span style="background-color: #fff0f0">&quot;ground.png&quot;</span>);
@@ -416,8 +416,8 @@ Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weigh
 }
 
 <span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onMouseScroll</span>(<span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>xoffset,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">float</span><span style="color: #bbbbbb"> </span>yoffset,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods){
-<span style="color: #bbbbbb">    </span>camera.moveForward(<span style="color: #6600EE; font-weight: bold">0.5</span><span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>yoffset);
-<span style="color: #bbbbbb">    </span>camera.setView(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
+<span style="color: #bbbbbb">    </span>camera.slideForward(<span style="color: #6600EE; font-weight: bold">0.5</span><span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>yoffset);
+<span style="color: #bbbbbb">    </span>camera.setTarget(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
 }
 </pre></div>
 
