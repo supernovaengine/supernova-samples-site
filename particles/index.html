@@ -238,106 +238,106 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span>
-<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #579">#include</span><span style="color: #BBB"> </span><span style="color: #888">&quot;Supernova.h&quot;</span>
+<span style="color: #080; font-weight: bold">using</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">namespace</span><span style="color: #BBB"> </span><span style="color: #0E84B5; font-weight: bold">Supernova</span>;
 
-<span style="color: #008800; font-weight: bold">enum</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">class</span><span style="color: #bbbbbb"> </span><span style="color: #BB0066; font-weight: bold">ParticlesType</span>{
-<span style="color: #bbbbbb">    </span>POINTS,
-<span style="color: #bbbbbb">    </span>SPRITES
+<span style="color: #080; font-weight: bold">enum</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">class</span><span style="color: #BBB"> </span><span style="color: #B06; font-weight: bold">ParticlesType</span>{
+<span style="color: #BBB">    </span>POINTS,
+<span style="color: #BBB">    </span>SPRITES
 };
 
-std<span style="color: #333333">::</span>string<span style="color: #bbbbbb"> </span>parttext(<span style="background-color: #fff0f0">&quot; particles (press any key to change)&quot;</span>);
+std<span style="color: #333">::</span>string<span style="color: #BBB"> </span>parttext(<span style="background-color: #FFF0F0">&quot; particles (press any key to change)&quot;</span>);
 
-Scene<span style="color: #bbbbbb"> </span>scene;
+Scene<span style="color: #BBB"> </span>scene;
 
-Text<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">text</span>(<span style="color: #333333">&amp;</span>scene);
+Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">text</span>(<span style="color: #333">&amp;</span>scene);
 
-Points<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">points</span>(<span style="color: #333333">&amp;</span>scene);
-Sprite<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">sprite</span>(<span style="color: #333333">&amp;</span>scene);
-Particles<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">particles</span>(<span style="color: #333333">&amp;</span>scene);
+Points<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">points</span>(<span style="color: #333">&amp;</span>scene);
+Sprite<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">sprite</span>(<span style="color: #333">&amp;</span>scene);
+Particles<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">particles</span>(<span style="color: #333">&amp;</span>scene);
 
-ParticlesType<span style="color: #bbbbbb"> </span>type;
+ParticlesType<span style="color: #BBB"> </span>type;
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods);
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onKeyDown</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods);
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){
-<span style="color: #bbbbbb">    </span>text.setAnchorPreset(AnchorPreset<span style="color: #333333">::</span>CENTER_TOP);
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">init</span>(){
+<span style="color: #BBB">    </span>text.setAnchorPreset(AnchorPreset<span style="color: #333">::</span>CENTER_TOP);
 
-<span style="color: #bbbbbb">    </span>text.setText(<span style="background-color: #fff0f0">&quot;Sprite&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>parttext);
-<span style="color: #bbbbbb">    </span>type<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>ParticlesType<span style="color: #333333">::</span>SPRITES;
+<span style="color: #BBB">    </span>text.setText(<span style="background-color: #FFF0F0">&quot;Sprite&quot;</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span>parttext);
+<span style="color: #BBB">    </span>type<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>ParticlesType<span style="color: #333">::</span>SPRITES;
 
-<span style="color: #bbbbbb">    </span>sprite.setPosition(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
-<span style="color: #bbbbbb">    </span>sprite.setPivotPreset(PivotPreset<span style="color: #333333">::</span>CENTER);
-<span style="color: #bbbbbb">    </span>sprite.setTexture(<span style="background-color: #fff0f0">&quot;explosion.png&quot;</span>);
-<span style="color: #bbbbbb">    </span>sprite.setSize(<span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>);
-<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">3</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #333333">++</span>){
-<span style="color: #bbbbbb">        </span><span style="color: #008800; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>j<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"> </span>j<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">3</span>;<span style="color: #bbbbbb"> </span>j<span style="color: #333333">++</span>){
-<span style="color: #bbbbbb">            </span>sprite.addFrame((i<span style="color: #333333">+</span>(j<span style="color: #333333">*</span><span style="color: #0000DD; font-weight: bold">3</span>)),<span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;&quot;</span>,<span style="color: #bbbbbb"> </span>Rect(i<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>((<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>)),<span style="color: #bbbbbb"> </span>j<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>((<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>)),<span style="color: #bbbbbb"> </span>(<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>),<span style="color: #bbbbbb"> </span>(<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>)));
-<span style="color: #bbbbbb">        </span>}
-<span style="color: #bbbbbb">    </span>}
+<span style="color: #BBB">    </span>sprite.setPosition(<span style="color: #00D; font-weight: bold">300</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
+<span style="color: #BBB">    </span>sprite.setPivotPreset(PivotPreset<span style="color: #333">::</span>CENTER);
+<span style="color: #BBB">    </span>sprite.setTexture(<span style="background-color: #FFF0F0">&quot;explosion.png&quot;</span>);
+<span style="color: #BBB">    </span>sprite.setSize(<span style="color: #00D; font-weight: bold">50</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">50</span>);
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">for</span><span style="color: #BBB"> </span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>i<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>;<span style="color: #BBB"> </span>i<span style="color: #BBB"> </span><span style="color: #333">&lt;</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">3</span>;<span style="color: #BBB"> </span>i<span style="color: #333">++</span>){
+<span style="color: #BBB">        </span><span style="color: #080; font-weight: bold">for</span><span style="color: #BBB"> </span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>j<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>;<span style="color: #BBB"> </span>j<span style="color: #BBB"> </span><span style="color: #333">&lt;</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">3</span>;<span style="color: #BBB"> </span>j<span style="color: #333">++</span>){
+<span style="color: #BBB">            </span>sprite.addFrame((i<span style="color: #333">+</span>(j<span style="color: #333">*</span><span style="color: #00D; font-weight: bold">3</span>)),<span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;&quot;</span>,<span style="color: #BBB"> </span>Rect(i<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>((<span style="color: #00D; font-weight: bold">1</span><span style="color: #333">/</span><span style="color: #60E; font-weight: bold">3.0</span>)),<span style="color: #BBB"> </span>j<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>((<span style="color: #00D; font-weight: bold">1</span><span style="color: #333">/</span><span style="color: #60E; font-weight: bold">3.0</span>)),<span style="color: #BBB"> </span>(<span style="color: #00D; font-weight: bold">1</span><span style="color: #333">/</span><span style="color: #60E; font-weight: bold">3.0</span>),<span style="color: #BBB"> </span>(<span style="color: #00D; font-weight: bold">1</span><span style="color: #333">/</span><span style="color: #60E; font-weight: bold">3.0</span>)));
+<span style="color: #BBB">        </span>}
+<span style="color: #BBB">    </span>}
 
-<span style="color: #bbbbbb">    </span>points.setPosition(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
-<span style="color: #bbbbbb">    </span>points.setTexture(<span style="background-color: #fff0f0">&quot;explosion.png&quot;</span>);
-<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">3</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #333333">++</span>){
-<span style="color: #bbbbbb">        </span><span style="color: #008800; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>j<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>;<span style="color: #bbbbbb"> </span>j<span style="color: #bbbbbb"> </span><span style="color: #333333">&lt;</span><span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">3</span>;<span style="color: #bbbbbb"> </span>j<span style="color: #333333">++</span>){
-<span style="color: #bbbbbb">            </span>points.addSpriteFrame((i<span style="color: #333333">+</span>(j<span style="color: #333333">*</span><span style="color: #0000DD; font-weight: bold">3</span>)),<span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;&quot;</span>,<span style="color: #bbbbbb"> </span>Rect(i<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>((<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>)),<span style="color: #bbbbbb"> </span>j<span style="color: #bbbbbb"> </span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>((<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>)),<span style="color: #bbbbbb"> </span>(<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>),<span style="color: #bbbbbb"> </span>(<span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">3.0</span>)));
-<span style="color: #bbbbbb">        </span>}
-<span style="color: #bbbbbb">    </span>}
+<span style="color: #BBB">    </span>points.setPosition(<span style="color: #00D; font-weight: bold">300</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
+<span style="color: #BBB">    </span>points.setTexture(<span style="background-color: #FFF0F0">&quot;explosion.png&quot;</span>);
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">for</span><span style="color: #BBB"> </span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>i<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>;<span style="color: #BBB"> </span>i<span style="color: #BBB"> </span><span style="color: #333">&lt;</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">3</span>;<span style="color: #BBB"> </span>i<span style="color: #333">++</span>){
+<span style="color: #BBB">        </span><span style="color: #080; font-weight: bold">for</span><span style="color: #BBB"> </span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>j<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>;<span style="color: #BBB"> </span>j<span style="color: #BBB"> </span><span style="color: #333">&lt;</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">3</span>;<span style="color: #BBB"> </span>j<span style="color: #333">++</span>){
+<span style="color: #BBB">            </span>points.addSpriteFrame((i<span style="color: #333">+</span>(j<span style="color: #333">*</span><span style="color: #00D; font-weight: bold">3</span>)),<span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;&quot;</span>,<span style="color: #BBB"> </span>Rect(i<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>((<span style="color: #00D; font-weight: bold">1</span><span style="color: #333">/</span><span style="color: #60E; font-weight: bold">3.0</span>)),<span style="color: #BBB"> </span>j<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>((<span style="color: #00D; font-weight: bold">1</span><span style="color: #333">/</span><span style="color: #60E; font-weight: bold">3.0</span>)),<span style="color: #BBB"> </span>(<span style="color: #00D; font-weight: bold">1</span><span style="color: #333">/</span><span style="color: #60E; font-weight: bold">3.0</span>),<span style="color: #BBB"> </span>(<span style="color: #00D; font-weight: bold">1</span><span style="color: #333">/</span><span style="color: #60E; font-weight: bold">3.0</span>)));
+<span style="color: #BBB">        </span>}
+<span style="color: #BBB">    </span>}
 
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.addParticle(Vector3(30, 30, 0), Vector4(1.0, 1.0, 1.0, 1.0), 50, 40);</span>
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.addParticle(Vector3(20, 60, 0), Vector4(0.0, 1.0, 0.0, 1.0), 40, 0, Rect(0, 0, 0.5, 0.5));</span>
+<span style="color: #BBB">    </span><span style="color: #888">//particles.addParticle(Vector3(30, 30, 0), Vector4(1.0, 1.0, 1.0, 1.0), 50, 40);</span>
+<span style="color: #BBB">    </span><span style="color: #888">//particles.addParticle(Vector3(20, 60, 0), Vector4(0.0, 1.0, 0.0, 1.0), 40, 0, Rect(0, 0, 0.5, 0.5));</span>
 
-<span style="color: #bbbbbb">    </span>particles.setTarget(<span style="color: #333333">&amp;</span>sprite);
+<span style="color: #BBB">    </span>particles.setTarget(<span style="color: #333">&amp;</span>sprite);
 
-<span style="color: #bbbbbb">    </span>particles.setLifeInitializer(<span style="color: #0000DD; font-weight: bold">10</span>);
+<span style="color: #BBB">    </span>particles.setLifeInitializer(<span style="color: #00D; font-weight: bold">10</span>);
 
-<span style="color: #bbbbbb">    </span>particles.setPositionInitializer(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>));
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.setPositionModifier(2,4, Vector3(0,0,0), Vector3(0,300,0));</span>
+<span style="color: #BBB">    </span>particles.setPositionInitializer(Vector3(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">0</span>),<span style="color: #BBB"> </span>Vector3(<span style="color: #00D; font-weight: bold">300</span>,<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">0</span>));
+<span style="color: #BBB">    </span><span style="color: #888">//particles.setPositionModifier(2,4, Vector3(0,0,0), Vector3(0,300,0));</span>
 
-<span style="color: #bbbbbb">    </span>particles.setVelocityInitializer(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #0000DD; font-weight: bold">0</span>));
-<span style="color: #bbbbbb">    </span>particles.setVelocityModifier(<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">8</span>,<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>EaseType<span style="color: #333333">::</span>CUBIC_IN_OUT);
+<span style="color: #BBB">    </span>particles.setVelocityInitializer(Vector3(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">10</span>,<span style="color: #00D; font-weight: bold">0</span>),<span style="color: #BBB"> </span>Vector3(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">50</span>,<span style="color: #00D; font-weight: bold">0</span>));
+<span style="color: #BBB">    </span>particles.setVelocityModifier(<span style="color: #00D; font-weight: bold">5</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">8</span>,<span style="color: #BBB"> </span>Vector3(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">10</span>,<span style="color: #00D; font-weight: bold">0</span>),<span style="color: #BBB"> </span>Vector3(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">300</span>,<span style="color: #00D; font-weight: bold">0</span>),<span style="color: #BBB"> </span>EaseType<span style="color: #333">::</span>CUBIC_IN_OUT);
 
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.setAccelerationInitializer(Vector3(0,100,0), Vector3(0,200,0));</span>
+<span style="color: #BBB">    </span><span style="color: #888">//particles.setAccelerationInitializer(Vector3(0,100,0), Vector3(0,200,0));</span>
 
-<span style="color: #bbbbbb">    </span>particles.setColorInitializer(Vector3(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>),<span style="color: #bbbbbb"> </span>Vector3(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>));
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.setColorModifier(2, 5, Vector3(1,1,1), Vector3(1,0,0));</span>
+<span style="color: #BBB">    </span>particles.setColorInitializer(Vector3(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">0</span>),<span style="color: #BBB"> </span>Vector3(<span style="color: #00D; font-weight: bold">1</span>,<span style="color: #00D; font-weight: bold">1</span>,<span style="color: #00D; font-weight: bold">1</span>));
+<span style="color: #BBB">    </span><span style="color: #888">//particles.setColorModifier(2, 5, Vector3(1,1,1), Vector3(1,0,0));</span>
 
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.setAlphaInitializer(0, 1);</span>
-<span style="color: #bbbbbb">    </span>particles.setAlphaModifier(<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">6</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>);
+<span style="color: #BBB">    </span><span style="color: #888">//particles.setAlphaInitializer(0, 1);</span>
+<span style="color: #BBB">    </span>particles.setAlphaModifier(<span style="color: #00D; font-weight: bold">4</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">6</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.2</span>);
 
-<span style="color: #bbbbbb">    </span>particles.setSizeInitializer(<span style="color: #0000DD; font-weight: bold">10</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">50</span>);<span style="color: #bbbbbb"> </span><span style="color: #888888">//for points</span>
-<span style="color: #bbbbbb">    </span>particles.setScaleInitializer(<span style="color: #6600EE; font-weight: bold">1.0</span><span style="color: #333333">/</span><span style="color: #6600EE; font-weight: bold">5.0</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>);
+<span style="color: #BBB">    </span>particles.setSizeInitializer(<span style="color: #00D; font-weight: bold">10</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">50</span>);<span style="color: #BBB"> </span><span style="color: #888">//for points</span>
+<span style="color: #BBB">    </span>particles.setScaleInitializer(<span style="color: #60E; font-weight: bold">1.0</span><span style="color: #333">/</span><span style="color: #60E; font-weight: bold">5.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>);
 
-<span style="color: #bbbbbb">    </span>particles.setSpriteIntializer(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">2</span>);
-<span style="color: #bbbbbb">    </span>particles.setSpriteModifier(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">8</span>,<span style="color: #bbbbbb"> </span>{<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">3</span>,<span style="color: #0000DD; font-weight: bold">4</span>,<span style="color: #0000DD; font-weight: bold">5</span>,<span style="color: #0000DD; font-weight: bold">6</span>,<span style="color: #0000DD; font-weight: bold">7</span>,<span style="color: #0000DD; font-weight: bold">8</span>});
+<span style="color: #BBB">    </span>particles.setSpriteIntializer(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">2</span>);
+<span style="color: #BBB">    </span>particles.setSpriteModifier(<span style="color: #00D; font-weight: bold">1</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">8</span>,<span style="color: #BBB"> </span>{<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">1</span>,<span style="color: #00D; font-weight: bold">2</span>,<span style="color: #00D; font-weight: bold">3</span>,<span style="color: #00D; font-weight: bold">4</span>,<span style="color: #00D; font-weight: bold">5</span>,<span style="color: #00D; font-weight: bold">6</span>,<span style="color: #00D; font-weight: bold">7</span>,<span style="color: #00D; font-weight: bold">8</span>});
 
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.setRotationInitializer(0, 90);</span>
-<span style="color: #bbbbbb">    </span><span style="color: #888888">//particles.setRotationModifier(1, 5, 0, 359);</span>
+<span style="color: #BBB">    </span><span style="color: #888">//particles.setRotationInitializer(0, 90);</span>
+<span style="color: #BBB">    </span><span style="color: #888">//particles.setRotationModifier(1, 5, 0, 359);</span>
 
-<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);
-<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>onKeyDown<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onKeyDown;
+<span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>setScene(<span style="color: #333">&amp;</span>scene);
+<span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>onKeyDown<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>onKeyDown;
 
-<span style="color: #bbbbbb">    </span>particles.start();
+<span style="color: #BBB">    </span>particles.start();
 }
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onKeyDown</span>(<span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>key,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">bool</span><span style="color: #bbbbbb"> </span>repeat,<span style="color: #bbbbbb"> </span><span style="color: #333399; font-weight: bold">int</span><span style="color: #bbbbbb"> </span>mods){
-<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(type<span style="color: #bbbbbb"> </span><span style="color: #333333">==</span><span style="color: #bbbbbb"> </span>ParticlesType<span style="color: #333333">::</span>SPRITES){
-<span style="color: #bbbbbb">        </span>text.setText(<span style="background-color: #fff0f0">&quot;Points&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>parttext);
-<span style="color: #bbbbbb">        </span>type<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>ParticlesType<span style="color: #333333">::</span>POINTS;
-<span style="color: #bbbbbb">        </span>particles.setTarget(<span style="color: #333333">&amp;</span>points);
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onKeyDown</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(type<span style="color: #BBB"> </span><span style="color: #333">==</span><span style="color: #BBB"> </span>ParticlesType<span style="color: #333">::</span>SPRITES){
+<span style="color: #BBB">        </span>text.setText(<span style="background-color: #FFF0F0">&quot;Points&quot;</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span>parttext);
+<span style="color: #BBB">        </span>type<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>ParticlesType<span style="color: #333">::</span>POINTS;
+<span style="color: #BBB">        </span>particles.setTarget(<span style="color: #333">&amp;</span>points);
 
-<span style="color: #bbbbbb">        </span>sprite.clearInstances();
-<span style="color: #bbbbbb">        </span>sprite.setVisible(<span style="color: #007020">false</span>);
-<span style="color: #bbbbbb">        </span>points.setVisible(<span style="color: #007020">true</span>);
-<span style="color: #bbbbbb">    </span>}<span style="color: #008800; font-weight: bold">else</span>{
-<span style="color: #bbbbbb">        </span>text.setText(<span style="background-color: #fff0f0">&quot;Sprite&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span>parttext);
-<span style="color: #bbbbbb">        </span>type<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>ParticlesType<span style="color: #333333">::</span>SPRITES;
-<span style="color: #bbbbbb">        </span>particles.setTarget(<span style="color: #333333">&amp;</span>sprite);
+<span style="color: #BBB">        </span>sprite.clearInstances();
+<span style="color: #BBB">        </span>sprite.setVisible(<span style="color: #007020">false</span>);
+<span style="color: #BBB">        </span>points.setVisible(<span style="color: #007020">true</span>);
+<span style="color: #BBB">    </span>}<span style="color: #080; font-weight: bold">else</span>{
+<span style="color: #BBB">        </span>text.setText(<span style="background-color: #FFF0F0">&quot;Sprite&quot;</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span>parttext);
+<span style="color: #BBB">        </span>type<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>ParticlesType<span style="color: #333">::</span>SPRITES;
+<span style="color: #BBB">        </span>particles.setTarget(<span style="color: #333">&amp;</span>sprite);
 
-<span style="color: #bbbbbb">        </span>points.clearPoints();
-<span style="color: #bbbbbb">        </span>points.setVisible(<span style="color: #007020">false</span>);
-<span style="color: #bbbbbb">        </span>sprite.setVisible(<span style="color: #007020">true</span>);
-<span style="color: #bbbbbb">    </span>}
+<span style="color: #BBB">        </span>points.clearPoints();
+<span style="color: #BBB">        </span>points.setVisible(<span style="color: #007020">false</span>);
+<span style="color: #BBB">        </span>sprite.setVisible(<span style="color: #007020">true</span>);
+<span style="color: #BBB">    </span>}
 }
 </pre></div>
 
@@ -346,7 +346,7 @@ ParticlesType<span style="color: #bbbbbb"> </span>type;
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2024, Supernova Engine</p>
+  <p>Copyright © 2025, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

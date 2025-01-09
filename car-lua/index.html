@@ -238,126 +238,126 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span>scene <span style="color: #333333">=</span> Scene()
-uiscene <span style="color: #333333">=</span> Scene()
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #963">scene</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Scene</span>()
+<span style="color: #963">uiscene</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Scene</span>()
 
-camera <span style="color: #333333">=</span> Camera(scene)
-terrain <span style="color: #333333">=</span> Shape(scene)
-car <span style="color: #333333">=</span> Model(scene)
-house <span style="color: #333333">=</span> Model(scene)
-sky <span style="color: #333333">=</span> SkyBox(scene)
-carengine <span style="color: #333333">=</span> Audio(scene)
-fog <span style="color: #333333">=</span> Fog(scene)
+<span style="color: #963">camera</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Camera</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">terrain</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Shape</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">car</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Model</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">house</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Model</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">sky</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">SkyBox</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">carengine</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Audio</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">fog</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Fog</span>(<span style="color: #963">scene</span>)
 
-text <span style="color: #333333">=</span> Text(uiscene)
+<span style="color: #963">text</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Text</span>(<span style="color: #963">uiscene</span>)
 
-curve <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
-speed <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
-rotation <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
+<span style="color: #963">curve</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>
+<span style="color: #963">speed</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>
+<span style="color: #963">rotation</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>
 
-up, down, left, right <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span>
+<span style="color: #963">up</span>,<span style="color: #BBB"> </span><span style="color: #963">down</span>,<span style="color: #BBB"> </span><span style="color: #963">left</span>,<span style="color: #BBB"> </span><span style="color: #963">right</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">false</span>
 
-<span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onUpdate</span>()
+<span style="color: #080; font-weight: bold">function</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onUpdate</span>()
 
-    text.text <span style="color: #333333">=</span> <span style="color: #007020">tostring</span>(Engine.framerate)
+<span style="color: #BBB">    </span><span style="color: #963">text</span>.text<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #007020">tostring</span>(<span style="color: #963">Engine</span>.framerate)
 
-    <span style="color: #008800; font-weight: bold">if</span> (Input.isKeyPressed(Input.KEY_UP)) <span style="color: #008800; font-weight: bold">then</span>
-        speed <span style="color: #333333">=</span> speed <span style="color: #333333">+</span> <span style="color: #6600EE; font-weight: bold">0.1</span>
-    <span style="color: #008800; font-weight: bold">elseif</span> (Input.isKeyPressed(Input.KEY_DOWN)) <span style="color: #008800; font-weight: bold">then</span>
-        speed <span style="color: #333333">=</span> speed <span style="color: #333333">-</span> <span style="color: #6600EE; font-weight: bold">0.1</span>
-    <span style="color: #008800; font-weight: bold">end</span>
-    speed <span style="color: #333333">=</span> speed <span style="color: #333333">*</span> <span style="color: #6600EE; font-weight: bold">0.95</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #963">Input</span>.<span style="color: #06B; font-weight: bold">isKeyPressed</span>(<span style="color: #963">Input</span>.KEY_UP))<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #963">speed</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">speed</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.1</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">elseif</span><span style="color: #BBB"> </span>(<span style="color: #963">Input</span>.<span style="color: #06B; font-weight: bold">isKeyPressed</span>(<span style="color: #963">Input</span>.KEY_DOWN))<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #963">speed</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">speed</span><span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.1</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #963">speed</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">speed</span><span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.95</span>
 
-    carengine.volume <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">1.0</span> <span style="color: #333333">+</span> (<span style="color: #007020">math.abs</span>(speed) <span style="color: #333333">*</span> <span style="color: #6600EE; font-weight: bold">0.5</span>)
-    carengine.speed <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">1.0</span> <span style="color: #333333">+</span> (<span style="color: #007020">math.abs</span>(speed) <span style="color: #333333">*</span> <span style="color: #6600EE; font-weight: bold">0.5</span>)
+<span style="color: #BBB">    </span><span style="color: #963">carengine</span>.volume<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span>(<span style="color: #007020">math.abs</span>(<span style="color: #963">speed</span>)<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.5</span>)
+<span style="color: #BBB">    </span><span style="color: #963">carengine</span>.speed<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span>(<span style="color: #007020">math.abs</span>(<span style="color: #963">speed</span>)<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.5</span>)
 
-    <span style="color: #008800; font-weight: bold">if</span> (Input.isKeyPressed(Input.KEY_LEFT)) <span style="color: #008800; font-weight: bold">then</span>
-        <span style="color: #008800; font-weight: bold">if</span> (curve <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">3</span>) <span style="color: #008800; font-weight: bold">then</span>
-            curve <span style="color: #333333">=</span> curve <span style="color: #333333">+</span> <span style="color: #6600EE; font-weight: bold">0.4</span>
-        <span style="color: #008800; font-weight: bold">end</span>
-    <span style="color: #008800; font-weight: bold">elseif</span> (Input.isKeyPressed(Input.KEY_RIGHT)) <span style="color: #008800; font-weight: bold">then</span>
-        <span style="color: #008800; font-weight: bold">if</span> (curve <span style="color: #333333">&gt;</span> <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">3</span>) <span style="color: #008800; font-weight: bold">then</span>
-            curve <span style="color: #333333">=</span> curve <span style="color: #333333">-</span> <span style="color: #6600EE; font-weight: bold">0.4</span>
-        <span style="color: #008800; font-weight: bold">end</span>
-    <span style="color: #008800; font-weight: bold">else</span>
-        curve <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
-    <span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #963">Input</span>.<span style="color: #06B; font-weight: bold">isKeyPressed</span>(<span style="color: #963">Input</span>.KEY_LEFT))<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #963">curve</span><span style="color: #BBB"> </span><span style="color: #333">&lt;</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">3</span>)<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">            </span><span style="color: #963">curve</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">curve</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.4</span>
+<span style="color: #BBB">        </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">elseif</span><span style="color: #BBB"> </span>(<span style="color: #963">Input</span>.<span style="color: #06B; font-weight: bold">isKeyPressed</span>(<span style="color: #963">Input</span>.KEY_RIGHT))<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #963">curve</span><span style="color: #BBB"> </span><span style="color: #333">&gt;</span><span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #00D; font-weight: bold">3</span>)<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">            </span><span style="color: #963">curve</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">curve</span><span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.4</span>
+<span style="color: #BBB">        </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">else</span>
+<span style="color: #BBB">        </span><span style="color: #963">curve</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
 
-    rotation <span style="color: #333333">=</span> rotation <span style="color: #333333">+</span> curve
-    <span style="color: #008800; font-weight: bold">if</span> (rotation <span style="color: #333333">&gt;</span> <span style="color: #0000DD; font-weight: bold">360</span>) <span style="color: #008800; font-weight: bold">then</span>
-        rotation <span style="color: #333333">=</span> rotation <span style="color: #333333">-</span> <span style="color: #0000DD; font-weight: bold">360</span>
-    <span style="color: #008800; font-weight: bold">end</span>
-    <span style="color: #008800; font-weight: bold">if</span> (rotation <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">0</span>) <span style="color: #008800; font-weight: bold">then</span>
-        rotation <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">360</span> <span style="color: #333333">+</span> rotation
-    <span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #963">rotation</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">rotation</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span><span style="color: #963">curve</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #963">rotation</span><span style="color: #BBB"> </span><span style="color: #333">&gt;</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">360</span>)<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #963">rotation</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">rotation</span><span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">360</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #963">rotation</span><span style="color: #BBB"> </span><span style="color: #333">&lt;</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #963">rotation</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">360</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span><span style="color: #963">rotation</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
 
-    vDir <span style="color: #333333">=</span> Vector3(<span style="color: #007020">math.cos</span>(Angle.degToRad(rotation<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">90</span>)), <span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #333333">-</span><span style="color: #007020">math.sin</span>(Angle.degToRad(rotation<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">90</span>)))
+<span style="color: #BBB">    </span><span style="color: #963">vDir</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Vector3</span>(<span style="color: #007020">math.cos</span>(<span style="color: #963">Angle</span>.<span style="color: #06B; font-weight: bold">degToRad</span>(<span style="color: #963">rotation</span><span style="color: #333">-</span><span style="color: #00D; font-weight: bold">90</span>)),<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #007020">math.sin</span>(<span style="color: #963">Angle</span>.<span style="color: #06B; font-weight: bold">degToRad</span>(<span style="color: #963">rotation</span><span style="color: #333">-</span><span style="color: #00D; font-weight: bold">90</span>)))
 
-    car:setRotation(<span style="color: #0000DD; font-weight: bold">0</span>, rotation, <span style="color: #0000DD; font-weight: bold">0</span>);
-    car.position <span style="color: #333333">=</span> car.position <span style="color: #333333">+</span> (vDir<span style="color: #333333">*</span>speed)
+<span style="color: #BBB">    </span><span style="color: #963">car</span>:<span style="color: #06B; font-weight: bold">setRotation</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #963">rotation</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
+<span style="color: #BBB">    </span><span style="color: #963">car</span>.position<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">car</span>.position<span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span>(<span style="color: #963">vDir</span><span style="color: #333">*</span><span style="color: #963">speed</span>)
 
-    camera.target <span style="color: #333333">=</span> car.position
-<span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #963">camera</span>.target<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">car</span>.position
+<span style="color: #080; font-weight: bold">end</span>
 
-scene.camera <span style="color: #333333">=</span> camera.entity
+<span style="color: #963">scene</span>.camera<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">camera</span>.entity
 
-scene.ambientLightIntensity <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">0.3</span>;
-scene:setBackgroundColor(<span style="color: #6600EE; font-weight: bold">0.8</span>, <span style="color: #6600EE; font-weight: bold">0.8</span>, <span style="color: #6600EE; font-weight: bold">0.8</span>);
+<span style="color: #963">scene</span>.ambientLightIntensity<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.3</span>;
+<span style="color: #963">scene</span>:<span style="color: #06B; font-weight: bold">setBackgroundColor</span>(<span style="color: #60E; font-weight: bold">0.8</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.8</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.8</span>);
 
-fog.type <span style="color: #333333">=</span> FogType.LINEAR
-fog.linearStart <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">30</span>
-fog.linearEnd <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">100</span>
+<span style="color: #963">fog</span>.type<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">FogType</span>.LINEAR
+<span style="color: #963">fog</span>.linearStart<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">30</span>
+<span style="color: #963">fog</span>.linearEnd<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>
 
-camera:setPosition(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">5</span>, <span style="color: #0000DD; font-weight: bold">20</span>)
+<span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">5</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">20</span>)
 
-house:loadModel(<span style="background-color: #fff0f0">&quot;old-house/old-house.obj&quot;</span>)
-house:setRotation(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">0</span>)
-house:setRotation(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">90</span>,<span style="color: #0000DD; font-weight: bold">180</span>,<span style="color: #0000DD; font-weight: bold">0</span>)
-house:setPosition(<span style="color: #0000DD; font-weight: bold">6</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">6</span>)
+<span style="color: #963">house</span>:<span style="color: #06B; font-weight: bold">loadModel</span>(<span style="background-color: #FFF0F0">&quot;old-house/old-house.obj&quot;</span>)
+<span style="color: #963">house</span>:<span style="color: #06B; font-weight: bold">setRotation</span>(<span style="color: #333">-</span><span style="color: #00D; font-weight: bold">1</span>,<span style="color: #00D; font-weight: bold">2</span>,<span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">house</span>:<span style="color: #06B; font-weight: bold">setRotation</span>(<span style="color: #333">-</span><span style="color: #00D; font-weight: bold">90</span>,<span style="color: #00D; font-weight: bold">180</span>,<span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">house</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #00D; font-weight: bold">6</span>,<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">6</span>)
 
-terrain:createPlane(<span style="color: #0000DD; font-weight: bold">200</span>, <span style="color: #0000DD; font-weight: bold">200</span>)
-terrain:setTexture(<span style="background-color: #fff0f0">&quot;road.png&quot;</span>)
+<span style="color: #963">terrain</span>:<span style="color: #06B; font-weight: bold">createPlane</span>(<span style="color: #00D; font-weight: bold">200</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">200</span>)
+<span style="color: #963">terrain</span>:<span style="color: #06B; font-weight: bold">setTexture</span>(<span style="background-color: #FFF0F0">&quot;road.png&quot;</span>)
 
-car:loadModel(<span style="background-color: #fff0f0">&quot;jeep/Jeep.obj&quot;</span>)
-car:setScale(<span style="color: #6600EE; font-weight: bold">0.5</span>)
-car:addChild(carengine)
+<span style="color: #963">car</span>:<span style="color: #06B; font-weight: bold">loadModel</span>(<span style="background-color: #FFF0F0">&quot;jeep/Jeep.obj&quot;</span>)
+<span style="color: #963">car</span>:<span style="color: #06B; font-weight: bold">setScale</span>(<span style="color: #60E; font-weight: bold">0.5</span>)
+<span style="color: #963">car</span>:<span style="color: #06B; font-weight: bold">addChild</span>(<span style="color: #963">carengine</span>)
 
-carengine:loadAudio(<span style="background-color: #fff0f0">&quot;engine.wav&quot;</span>)
-carengine.sound3D <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>
-carengine.lopping <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>
-carengine.dopplerFactor <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">10.0</span>
-carengine:setMinMaxDistance(<span style="color: #0000DD; font-weight: bold">1</span>, <span style="color: #0000DD; font-weight: bold">100</span>)
-carengine.attenuationModel <span style="color: #333333">=</span> AudioAttenuation.LINEAR_DISTANCE
-carengine:play()
+<span style="color: #963">carengine</span>:<span style="color: #06B; font-weight: bold">loadAudio</span>(<span style="background-color: #FFF0F0">&quot;engine.wav&quot;</span>)
+<span style="color: #963">carengine</span>.sound3D<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">true</span>
+<span style="color: #963">carengine</span>.lopping<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">true</span>
+<span style="color: #963">carengine</span>.dopplerFactor<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">10.0</span>
+<span style="color: #963">carengine</span>:<span style="color: #06B; font-weight: bold">setMinMaxDistance</span>(<span style="color: #00D; font-weight: bold">1</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>)
+<span style="color: #963">carengine</span>.attenuationModel<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">AudioAttenuation</span>.LINEAR_DISTANCE
+<span style="color: #963">carengine</span>:<span style="color: #06B; font-weight: bold">play</span>()
 
-sky:setTextureFront(<span style="background-color: #fff0f0">&quot;ely_hills/hills_lf.tga&quot;</span>)
-sky:setTextureBack(<span style="background-color: #fff0f0">&quot;ely_hills/hills_rt.tga&quot;</span>)
-sky:setTextureLeft(<span style="background-color: #fff0f0">&quot;ely_hills/hills_bk.tga&quot;</span>)
-sky:setTextureRight(<span style="background-color: #fff0f0">&quot;ely_hills/hills_ft.tga&quot;</span>)
-sky:setTextureUp(<span style="background-color: #fff0f0">&quot;ely_hills/hills_up.tga&quot;</span>)
-sky:setTextureDown(<span style="background-color: #fff0f0">&quot;ely_hills/hills_dn.tga&quot;</span>)
-sky.alpha <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">0.2</span>
+<span style="color: #963">sky</span>:<span style="color: #06B; font-weight: bold">setTextureFront</span>(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_lf.tga&quot;</span>)
+<span style="color: #963">sky</span>:<span style="color: #06B; font-weight: bold">setTextureBack</span>(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_rt.tga&quot;</span>)
+<span style="color: #963">sky</span>:<span style="color: #06B; font-weight: bold">setTextureLeft</span>(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_bk.tga&quot;</span>)
+<span style="color: #963">sky</span>:<span style="color: #06B; font-weight: bold">setTextureRight</span>(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_ft.tga&quot;</span>)
+<span style="color: #963">sky</span>:<span style="color: #06B; font-weight: bold">setTextureUp</span>(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_up.tga&quot;</span>)
+<span style="color: #963">sky</span>:<span style="color: #06B; font-weight: bold">setTextureDown</span>(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_dn.tga&quot;</span>)
+<span style="color: #963">sky</span>.alpha<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.2</span>
 
-carlight <span style="color: #333333">=</span> Light(scene)
-carlight.type <span style="color: #333333">=</span> LightType.SPOT
-carlight:setConeAngle(<span style="color: #0000DD; font-weight: bold">80</span>, <span style="color: #0000DD; font-weight: bold">100</span>)
-carlight:setPosition(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">5</span>, <span style="color: #0000DD; font-weight: bold">8</span>)
-carlight:setDirection(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">30</span>)
-carlight.intensity <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">50</span>
-carlight.shadows <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>
-car:addChild(carlight)
+<span style="color: #963">carlight</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Light</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">carlight</span>.type<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">LightType</span>.SPOT
+<span style="color: #963">carlight</span>:<span style="color: #06B; font-weight: bold">setConeAngle</span>(<span style="color: #00D; font-weight: bold">80</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>)
+<span style="color: #963">carlight</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">5</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">8</span>)
+<span style="color: #963">carlight</span>:<span style="color: #06B; font-weight: bold">setDirection</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">30</span>)
+<span style="color: #963">carlight</span>.intensity<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">50</span>
+<span style="color: #963">carlight</span>.shadows<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">true</span>
+<span style="color: #963">car</span>:<span style="color: #06B; font-weight: bold">addChild</span>(<span style="color: #963">carlight</span>)
 
-sun <span style="color: #333333">=</span> Light(scene);
-sun.type <span style="color: #333333">=</span> LightType.DIRECTIONAL
-sun:setDirection(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.4</span>, <span style="color: #6600EE; font-weight: bold">0.6</span>)
-sun.shadows <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>
+<span style="color: #963">sun</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Light</span>(<span style="color: #963">scene</span>);
+<span style="color: #963">sun</span>.type<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">LightType</span>.DIRECTIONAL
+<span style="color: #963">sun</span>:<span style="color: #06B; font-weight: bold">setDirection</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #60E; font-weight: bold">0.4</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.6</span>)
+<span style="color: #963">sun</span>.shadows<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">true</span>
 
-text:setPosition(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
+<span style="color: #963">text</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)
 
-Engine.setScene(scene)
-Engine.addSceneLayer(uiscene)
+<span style="color: #963">Engine</span>.<span style="color: #06B; font-weight: bold">setScene</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">Engine</span>.<span style="color: #06B; font-weight: bold">addSceneLayer</span>(<span style="color: #963">uiscene</span>)
 
-Engine.onUpdate <span style="color: #333333">=</span> onUpdate
+<span style="color: #963">Engine</span>.onUpdate<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">onUpdate</span>
 </pre></div>
 
     </div>
@@ -365,7 +365,7 @@ Engine.onUpdate <span style="color: #333333">=</span> onUpdate
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2024, Supernova Engine</p>
+  <p>Copyright © 2025, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

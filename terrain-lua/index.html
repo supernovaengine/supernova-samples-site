@@ -238,125 +238,125 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span>lastX <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
-lastY <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
-lastPressX <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
-lastPressY <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #963">lastX</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>
+<span style="color: #963">lastY</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>
+<span style="color: #963">lastPressX</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>
+<span style="color: #963">lastPressY</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>
 
-scene <span style="color: #333333">=</span> Scene()
-uiscene <span style="color: #333333">=</span> Scene()
+<span style="color: #963">scene</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Scene</span>()
+<span style="color: #963">uiscene</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Scene</span>()
 
-camera <span style="color: #333333">=</span> Camera(scene)
-terrain <span style="color: #333333">=</span> Terrain(scene)
-sun <span style="color: #333333">=</span> Light(scene)
+<span style="color: #963">camera</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Camera</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">terrain</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Terrain</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">sun</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Light</span>(<span style="color: #963">scene</span>)
 
-textcontainer <span style="color: #333333">=</span> Container(uiscene)
-text <span style="color: #333333">=</span> Text(uiscene)
-text2 <span style="color: #333333">=</span> Text(uiscene)
-text3 <span style="color: #333333">=</span> Text(uiscene)
-text4 <span style="color: #333333">=</span> Text(uiscene)
+<span style="color: #963">textcontainer</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Container</span>(<span style="color: #963">uiscene</span>)
+<span style="color: #963">text</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Text</span>(<span style="color: #963">uiscene</span>)
+<span style="color: #963">text2</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Text</span>(<span style="color: #963">uiscene</span>)
+<span style="color: #963">text3</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Text</span>(<span style="color: #963">uiscene</span>)
+<span style="color: #963">text4</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Text</span>(<span style="color: #963">uiscene</span>)
 
-<span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onUpdate</span>()
-    text.text <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;FPS: &quot;</span> <span style="color: #333333">..</span> <span style="color: #007020">tostring</span>(Engine.framerate)
-    text2.text <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Camera X: &quot;</span> <span style="color: #333333">..</span> <span style="color: #007020">tostring</span>(camera.position.x)
-    text3.text <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Camera Y: &quot;</span> <span style="color: #333333">..</span> <span style="color: #007020">tostring</span>(camera.position.y)
-    text4.text <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Camera Z: &quot;</span> <span style="color: #333333">..</span> <span style="color: #007020">tostring</span>(camera.position.z)
+<span style="color: #080; font-weight: bold">function</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onUpdate</span>()
+<span style="color: #BBB">    </span><span style="color: #963">text</span>.text<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;FPS: &quot;</span><span style="color: #BBB"> </span><span style="color: #333">..</span><span style="color: #BBB"> </span><span style="color: #007020">tostring</span>(<span style="color: #963">Engine</span>.framerate)
+<span style="color: #BBB">    </span><span style="color: #963">text2</span>.text<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Camera X: &quot;</span><span style="color: #BBB"> </span><span style="color: #333">..</span><span style="color: #BBB"> </span><span style="color: #007020">tostring</span>(<span style="color: #963">camera</span>.position.x)
+<span style="color: #BBB">    </span><span style="color: #963">text3</span>.text<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Camera Y: &quot;</span><span style="color: #BBB"> </span><span style="color: #333">..</span><span style="color: #BBB"> </span><span style="color: #007020">tostring</span>(<span style="color: #963">camera</span>.position.y)
+<span style="color: #BBB">    </span><span style="color: #963">text4</span>.text<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Camera Z: &quot;</span><span style="color: #BBB"> </span><span style="color: #333">..</span><span style="color: #BBB"> </span><span style="color: #007020">tostring</span>(<span style="color: #963">camera</span>.position.z)
 
-    <span style="color: #008800; font-weight: bold">if</span> (Input.isKeyPressed(Input.KEY_UP) <span style="color: #000000; font-weight: bold">or</span> Input.isKeyPressed(Input.KEY_UP)) <span style="color: #008800; font-weight: bold">then</span>
-        camera:walkForward(<span style="color: #0000DD; font-weight: bold">1</span>)
-    <span style="color: #008800; font-weight: bold">end</span>
-    <span style="color: #008800; font-weight: bold">if</span> (Input.isKeyPressed(Input.KEY_DOWN) <span style="color: #000000; font-weight: bold">or</span> Input.isKeyPressed(Input.KEY_S)) <span style="color: #008800; font-weight: bold">then</span>
-        camera:walkForward(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>)
-    <span style="color: #008800; font-weight: bold">end</span>
-    <span style="color: #008800; font-weight: bold">if</span> Input.isKeyPressed(Input.KEY_LEFT) <span style="color: #008800; font-weight: bold">then</span>
-        camera:rotateView(<span style="color: #0000DD; font-weight: bold">1</span>)
-    <span style="color: #008800; font-weight: bold">end</span>
-    <span style="color: #008800; font-weight: bold">if</span> Input.isKeyPressed(Input.KEY_RIGHT) <span style="color: #008800; font-weight: bold">then</span>
-        camera:rotateView(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>)
-    <span style="color: #008800; font-weight: bold">end</span>
-    <span style="color: #008800; font-weight: bold">if</span> Input.isKeyPressed(Input.KEY_A) <span style="color: #008800; font-weight: bold">then</span>
-        camera:slide(<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>)
-    <span style="color: #008800; font-weight: bold">end</span>
-    <span style="color: #008800; font-weight: bold">if</span> Input.isKeyPressed(Input.KEY_D) <span style="color: #008800; font-weight: bold">then</span>
-        camera:slide(<span style="color: #0000DD; font-weight: bold">1</span>)
-    <span style="color: #008800; font-weight: bold">end</span>
-<span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #963">Input</span>.<span style="color: #06B; font-weight: bold">isKeyPressed</span>(<span style="color: #963">Input</span>.KEY_UP)<span style="color: #BBB"> </span><span style="color: #000; font-weight: bold">or</span><span style="color: #BBB"> </span><span style="color: #963">Input</span>.<span style="color: #06B; font-weight: bold">isKeyPressed</span>(<span style="color: #963">Input</span>.KEY_W))<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">walkForward</span>(<span style="color: #00D; font-weight: bold">1</span>)
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #963">Input</span>.<span style="color: #06B; font-weight: bold">isKeyPressed</span>(<span style="color: #963">Input</span>.KEY_DOWN)<span style="color: #BBB"> </span><span style="color: #000; font-weight: bold">or</span><span style="color: #BBB"> </span><span style="color: #963">Input</span>.<span style="color: #06B; font-weight: bold">isKeyPressed</span>(<span style="color: #963">Input</span>.KEY_S))<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">walkForward</span>(<span style="color: #333">-</span><span style="color: #00D; font-weight: bold">1</span>)
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span><span style="color: #963">Input</span>.<span style="color: #06B; font-weight: bold">isKeyPressed</span>(<span style="color: #963">Input</span>.KEY_LEFT)<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">rotateView</span>(<span style="color: #00D; font-weight: bold">1</span>)
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span><span style="color: #963">Input</span>.<span style="color: #06B; font-weight: bold">isKeyPressed</span>(<span style="color: #963">Input</span>.KEY_RIGHT)<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">rotateView</span>(<span style="color: #333">-</span><span style="color: #00D; font-weight: bold">1</span>)
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span><span style="color: #963">Input</span>.<span style="color: #06B; font-weight: bold">isKeyPressed</span>(<span style="color: #963">Input</span>.KEY_A)<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">slide</span>(<span style="color: #333">-</span><span style="color: #00D; font-weight: bold">1</span>)
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span><span style="color: #963">Input</span>.<span style="color: #06B; font-weight: bold">isKeyPressed</span>(<span style="color: #963">Input</span>.KEY_D)<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">slide</span>(<span style="color: #00D; font-weight: bold">1</span>)
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #080; font-weight: bold">end</span>
 
-<span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onTouchStart</span>(pointer, x, y)
-    lastX <span style="color: #333333">=</span> x
-    lastY <span style="color: #333333">=</span> y
-    lastPressX <span style="color: #333333">=</span> x
-    lastPressY <span style="color: #333333">=</span> y
-<span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #080; font-weight: bold">function</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchStart</span>(<span style="color: #963">pointer</span>,<span style="color: #BBB"> </span><span style="color: #963">x</span>,<span style="color: #BBB"> </span><span style="color: #963">y</span>)
+<span style="color: #BBB">    </span><span style="color: #963">lastX</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">x</span>
+<span style="color: #BBB">    </span><span style="color: #963">lastY</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">y</span>
+<span style="color: #BBB">    </span><span style="color: #963">lastPressX</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">x</span>
+<span style="color: #BBB">    </span><span style="color: #963">lastPressY</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">y</span>
+<span style="color: #080; font-weight: bold">end</span>
 
-<span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onTouchMove</span>(pointer, x, y)
-    difX <span style="color: #333333">=</span> lastX <span style="color: #333333">-</span> x
-    lastX <span style="color: #333333">=</span> x
-    camera:rotateView(<span style="color: #6600EE; font-weight: bold">0.1</span> <span style="color: #333333">*</span> difX)
+<span style="color: #080; font-weight: bold">function</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchMove</span>(<span style="color: #963">pointer</span>,<span style="color: #BBB"> </span><span style="color: #963">x</span>,<span style="color: #BBB"> </span><span style="color: #963">y</span>)
+<span style="color: #BBB">    </span><span style="color: #963">difX</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">lastX</span><span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span><span style="color: #963">x</span>
+<span style="color: #BBB">    </span><span style="color: #963">lastX</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">x</span>
+<span style="color: #BBB">    </span><span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">rotateView</span>(<span style="color: #60E; font-weight: bold">0.1</span><span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span><span style="color: #963">difX</span>)
 
-    difY <span style="color: #333333">=</span> lastY <span style="color: #333333">-</span> y
-    lastY <span style="color: #333333">=</span> y
-    camera:elevateView(<span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.1</span> <span style="color: #333333">*</span> difY)
-<span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #963">difY</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">lastY</span><span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span><span style="color: #963">y</span>
+<span style="color: #BBB">    </span><span style="color: #963">lastY</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">y</span>
+<span style="color: #BBB">    </span><span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">elevateView</span>(<span style="color: #333">-</span><span style="color: #60E; font-weight: bold">0.1</span><span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span><span style="color: #963">difY</span>)
+<span style="color: #080; font-weight: bold">end</span>
 
-<span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onKeyDown</span>(key, rep, mods)
-    <span style="color: #008800; font-weight: bold">if</span> (key <span style="color: #333333">==</span> Input.KEY_X) <span style="color: #008800; font-weight: bold">then</span>
-        camera:setPosition(camera.position.x, camera.position.y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.position.z);
-        camera:setTarget(camera.view.x, camera.view.y<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.view.z);
-    <span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #080; font-weight: bold">function</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onKeyDown</span>(<span style="color: #963">key</span>,<span style="color: #BBB"> </span><span style="color: #963">rep</span>,<span style="color: #BBB"> </span><span style="color: #963">mods</span>)
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #963">key</span><span style="color: #BBB"> </span><span style="color: #333">==</span><span style="color: #BBB"> </span><span style="color: #963">Input</span>.KEY_X)<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #963">camera</span>.position.x,<span style="color: #BBB"> </span><span style="color: #963">camera</span>.position.y<span style="color: #333">+</span><span style="color: #00D; font-weight: bold">10</span>,<span style="color: #BBB"> </span><span style="color: #963">camera</span>.position.z);
+<span style="color: #BBB">        </span><span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">setTarget</span>(<span style="color: #963">camera</span>.view.x,<span style="color: #BBB"> </span><span style="color: #963">camera</span>.view.y<span style="color: #333">+</span><span style="color: #00D; font-weight: bold">10</span>,<span style="color: #BBB"> </span><span style="color: #963">camera</span>.view.z);
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
 
-    <span style="color: #008800; font-weight: bold">if</span> (key <span style="color: #333333">==</span> Input.KEY_Z) <span style="color: #008800; font-weight: bold">then</span>
-        camera:setPosition(camera.position.x, camera.position.y<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.position.z);
-        camera:setTarget(camera.view.x, camera.view.y<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">10</span>, camera.view.z);
-    <span style="color: #008800; font-weight: bold">end</span>
-<span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #963">key</span><span style="color: #BBB"> </span><span style="color: #333">==</span><span style="color: #BBB"> </span><span style="color: #963">Input</span>.KEY_Z)<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #963">camera</span>.position.x,<span style="color: #BBB"> </span><span style="color: #963">camera</span>.position.y<span style="color: #333">-</span><span style="color: #00D; font-weight: bold">10</span>,<span style="color: #BBB"> </span><span style="color: #963">camera</span>.position.z);
+<span style="color: #BBB">        </span><span style="color: #963">camera</span>:<span style="color: #06B; font-weight: bold">setTarget</span>(<span style="color: #963">camera</span>.view.x,<span style="color: #BBB"> </span><span style="color: #963">camera</span>.view.y<span style="color: #333">-</span><span style="color: #00D; font-weight: bold">10</span>,<span style="color: #BBB"> </span><span style="color: #963">camera</span>.view.z);
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #080; font-weight: bold">end</span>
 
-<span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onKeyUp</span>(key, rep, mods)
-    <span style="color: #008800; font-weight: bold">if</span> (key <span style="color: #333333">==</span> Input.KEY_F) <span style="color: #008800; font-weight: bold">then</span>
-        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #000000; font-weight: bold">not</span> System.isFullscreen()) <span style="color: #008800; font-weight: bold">then</span>
-            System.requestFullscreen();
-        <span style="color: #008800; font-weight: bold">else</span>
-            System.exitFullscreen();
-        <span style="color: #008800; font-weight: bold">end</span>
-    <span style="color: #008800; font-weight: bold">end</span>
-<span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #080; font-weight: bold">function</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onKeyUp</span>(<span style="color: #963">key</span>,<span style="color: #BBB"> </span><span style="color: #963">rep</span>,<span style="color: #BBB"> </span><span style="color: #963">mods</span>)
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #963">key</span><span style="color: #BBB"> </span><span style="color: #333">==</span><span style="color: #BBB"> </span><span style="color: #963">Input</span>.KEY_F)<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">        </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #000; font-weight: bold">not</span><span style="color: #BBB"> </span><span style="color: #963">System</span>.<span style="color: #06B; font-weight: bold">isFullscreen</span>())<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">then</span>
+<span style="color: #BBB">            </span><span style="color: #963">System</span>.<span style="color: #06B; font-weight: bold">requestFullscreen</span>();
+<span style="color: #BBB">        </span><span style="color: #080; font-weight: bold">else</span>
+<span style="color: #BBB">            </span><span style="color: #963">System</span>.<span style="color: #06B; font-weight: bold">exitFullscreen</span>();
+<span style="color: #BBB">        </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">end</span>
+<span style="color: #080; font-weight: bold">end</span>
 
-camera.position <span style="color: #333333">=</span> Vector3(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">15</span>, <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">60</span>)
+<span style="color: #963">camera</span>.position<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Vector3</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">15</span>,<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #00D; font-weight: bold">60</span>)
 
-terrain.name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;terrain&quot;</span>
+<span style="color: #963">terrain</span>.name<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;terrain&quot;</span>
 
-terrain:setHeightMap(<span style="background-color: #fff0f0">&quot;heightmap.png&quot;</span>)
-terrain:setTexture(<span style="background-color: #fff0f0">&quot;ground.png&quot;</span>)
-terrain:setBlendMap(<span style="background-color: #fff0f0">&quot;blendmap.png&quot;</span>)
+<span style="color: #963">terrain</span>:<span style="color: #06B; font-weight: bold">setHeightMap</span>(<span style="background-color: #FFF0F0">&quot;heightmap.png&quot;</span>)
+<span style="color: #963">terrain</span>:<span style="color: #06B; font-weight: bold">setTexture</span>(<span style="background-color: #FFF0F0">&quot;ground.png&quot;</span>)
+<span style="color: #963">terrain</span>:<span style="color: #06B; font-weight: bold">setBlendMap</span>(<span style="background-color: #FFF0F0">&quot;blendmap.png&quot;</span>)
 
-terrain:setTextureDetailRed(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
-terrain:setTextureDetailGreen(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
-terrain:setTextureDetailBlue(<span style="background-color: #fff0f0">&quot;block.png&quot;</span>);
+<span style="color: #963">terrain</span>:<span style="color: #06B; font-weight: bold">setTextureDetailRed</span>(<span style="background-color: #FFF0F0">&quot;block.png&quot;</span>);
+<span style="color: #963">terrain</span>:<span style="color: #06B; font-weight: bold">setTextureDetailGreen</span>(<span style="background-color: #FFF0F0">&quot;block.png&quot;</span>);
+<span style="color: #963">terrain</span>:<span style="color: #06B; font-weight: bold">setTextureDetailBlue</span>(<span style="background-color: #FFF0F0">&quot;block.png&quot;</span>);
 
-scene.camera <span style="color: #333333">=</span> camera.entity;
+<span style="color: #963">scene</span>.camera<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">camera</span>.entity;
 
-scene.ambientLightIntensity <span style="color: #333333">=</span> <span style="color: #6600EE; font-weight: bold">0.1</span>;
+<span style="color: #963">scene</span>.ambientLightIntensity<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.1</span>;
 
-sun:setType(LightType.DIRECTIONAL)
-sun:setDirection(<span style="color: #6600EE; font-weight: bold">0.0</span>, <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.3</span>, <span style="color: #333333">-</span><span style="color: #6600EE; font-weight: bold">0.8</span>)
-sun:setShadows(<span style="color: #008800; font-weight: bold">true</span>)
+<span style="color: #963">sun</span>:<span style="color: #06B; font-weight: bold">setType</span>(<span style="color: #963">LightType</span>.DIRECTIONAL)
+<span style="color: #963">sun</span>:<span style="color: #06B; font-weight: bold">setDirection</span>(<span style="color: #60E; font-weight: bold">0.0</span>,<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #60E; font-weight: bold">0.3</span>,<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #60E; font-weight: bold">0.8</span>)
+<span style="color: #963">sun</span>:<span style="color: #06B; font-weight: bold">setShadows</span>(<span style="color: #080; font-weight: bold">true</span>)
 
-textcontainer.anchorPreset <span style="color: #333333">=</span> AnchorPreset.TOP_LEFT
-textcontainer:addChild(text)
-textcontainer:addChild(text2)
-textcontainer:addChild(text3)
-textcontainer:addChild(text4)
+<span style="color: #963">textcontainer</span>.anchorPreset<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">AnchorPreset</span>.TOP_LEFT
+<span style="color: #963">textcontainer</span>:<span style="color: #06B; font-weight: bold">addChild</span>(<span style="color: #963">text</span>)
+<span style="color: #963">textcontainer</span>:<span style="color: #06B; font-weight: bold">addChild</span>(<span style="color: #963">text2</span>)
+<span style="color: #963">textcontainer</span>:<span style="color: #06B; font-weight: bold">addChild</span>(<span style="color: #963">text3</span>)
+<span style="color: #963">textcontainer</span>:<span style="color: #06B; font-weight: bold">addChild</span>(<span style="color: #963">text4</span>)
 
-Engine.setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">480</span>)
-Engine.setScene(scene)
-Engine.addSceneLayer(uiscene)
-Engine.callTouchInMouseEvent <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>
+<span style="color: #963">Engine</span>.<span style="color: #06B; font-weight: bold">setCanvasSize</span>(<span style="color: #00D; font-weight: bold">1000</span>,<span style="color: #00D; font-weight: bold">480</span>)
+<span style="color: #963">Engine</span>.<span style="color: #06B; font-weight: bold">setScene</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">Engine</span>.<span style="color: #06B; font-weight: bold">addSceneLayer</span>(<span style="color: #963">uiscene</span>)
+<span style="color: #963">Engine</span>.callTouchInMouseEvent<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">true</span>
 
-Engine.onUpdate <span style="color: #333333">=</span> onUpdate
-Engine.onTouchStart <span style="color: #333333">=</span> onTouchStart
-Engine.onTouchMove <span style="color: #333333">=</span> onTouchMove
-Engine.onKeyDown <span style="color: #333333">=</span> onKeyDown
-Engine.onKeyUp <span style="color: #333333">=</span> onKeyUp
+<span style="color: #963">Engine</span>.onUpdate<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">onUpdate</span>
+<span style="color: #963">Engine</span>.onTouchStart<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">onTouchStart</span>
+<span style="color: #963">Engine</span>.onTouchMove<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">onTouchMove</span>
+<span style="color: #963">Engine</span>.onKeyDown<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">onKeyDown</span>
+<span style="color: #963">Engine</span>.onKeyUp<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">onKeyUp</span>
 </pre></div>
 
     </div>
@@ -364,7 +364,7 @@ Engine.onKeyUp <span style="color: #333333">=</span> onKeyUp
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2024, Supernova Engine</p>
+  <p>Copyright © 2025, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

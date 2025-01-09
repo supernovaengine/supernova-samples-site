@@ -240,108 +240,108 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #557799">#include</span><span style="color: #bbbbbb"> </span><span style="color: #888888">&quot;Supernova.h&quot;</span>
-<span style="color: #008800; font-weight: bold">using</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">namespace</span><span style="color: #bbbbbb"> </span><span style="color: #0e84b5; font-weight: bold">Supernova</span>;
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #579">#include</span><span style="color: #BBB"> </span><span style="color: #888">&quot;Supernova.h&quot;</span>
+<span style="color: #080; font-weight: bold">using</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">namespace</span><span style="color: #BBB"> </span><span style="color: #0E84B5; font-weight: bold">Supernova</span>;
 
-Scene<span style="color: #bbbbbb"> </span>scene;
+Scene<span style="color: #BBB"> </span>scene;
 
-Button<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">button_save</span>(<span style="color: #333333">&amp;</span>scene);
-Button<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">button_read</span>(<span style="color: #333333">&amp;</span>scene);
-Button<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">button_storage_save</span>(<span style="color: #333333">&amp;</span>scene);
-Button<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">button_storage_read</span>(<span style="color: #333333">&amp;</span>scene);
+Button<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">button_save</span>(<span style="color: #333">&amp;</span>scene);
+Button<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">button_read</span>(<span style="color: #333">&amp;</span>scene);
+Button<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">button_storage_save</span>(<span style="color: #333">&amp;</span>scene);
+Button<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">button_storage_read</span>(<span style="color: #333">&amp;</span>scene);
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onButton_save</span>(){
-<span style="color: #bbbbbb">    </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;Save file path: %s&quot;</span>,<span style="color: #bbbbbb"> </span>FileData<span style="color: #333333">::</span>getSystemPath(<span style="background-color: #fff0f0">&quot;data://test.txt&quot;</span>).c_str());
-<span style="color: #bbbbbb">    </span>File<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>file<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>File(<span style="background-color: #fff0f0">&quot;data://test.txt&quot;</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">true</span>);
-<span style="color: #bbbbbb">    </span>file<span style="color: #333333">-&gt;</span>writeString(<span style="background-color: #fff0f0">&quot;The string has words and keyword</span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>);
-<span style="color: #bbbbbb">    </span>file<span style="color: #333333">-&gt;</span>writeString(<span style="background-color: #fff0f0">&quot;This is a string which is written to a file</span><span style="color: #666666; font-weight: bold; background-color: #fff0f0">\n</span><span style="background-color: #fff0f0">&quot;</span>);
-<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">delete</span><span style="color: #bbbbbb"> </span>file;
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onButton_save</span>(){
+<span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Save file path: %s&quot;</span>,<span style="color: #BBB"> </span>FileData<span style="color: #333">::</span>getSystemPath(<span style="background-color: #FFF0F0">&quot;data://test.txt&quot;</span>).c_str());
+<span style="color: #BBB">    </span>File<span style="color: #333">*</span><span style="color: #BBB"> </span>file<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">new</span><span style="color: #BBB"> </span>File(<span style="background-color: #FFF0F0">&quot;data://test.txt&quot;</span>,<span style="color: #BBB"> </span><span style="color: #007020">true</span>);
+<span style="color: #BBB">    </span>file<span style="color: #333">-&gt;</span>writeString(<span style="background-color: #FFF0F0">&quot;The string has words and keyword</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>);
+<span style="color: #BBB">    </span>file<span style="color: #333">-&gt;</span>writeString(<span style="background-color: #FFF0F0">&quot;This is a string which is written to a file</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>);
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">delete</span><span style="color: #BBB"> </span>file;
 }
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onButton_read</span>(){
-<span style="color: #bbbbbb">    </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;Read file path: %s&quot;</span>,<span style="color: #bbbbbb"> </span>FileData<span style="color: #333333">::</span>getSystemPath(<span style="background-color: #fff0f0">&quot;data://test.txt&quot;</span>).c_str());
-<span style="color: #bbbbbb">    </span>File<span style="color: #333333">*</span><span style="color: #bbbbbb"> </span>file<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="color: #008800; font-weight: bold">new</span><span style="color: #bbbbbb"> </span>File();
-<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(file<span style="color: #333333">-&gt;</span>open(<span style="background-color: #fff0f0">&quot;data://test.txt&quot;</span>)<span style="color: #333333">==</span>FileErrors<span style="color: #333333">::</span>FILEDATA_OK)<span style="color: #bbbbbb"> </span>{
-<span style="color: #bbbbbb">        </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;%s&quot;</span>,<span style="color: #bbbbbb"> </span>file<span style="color: #333333">-&gt;</span>readString().c_str());
-<span style="color: #bbbbbb">    </span>}
-<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">delete</span><span style="color: #bbbbbb"> </span>file;
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onButton_read</span>(){
+<span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Read file path: %s&quot;</span>,<span style="color: #BBB"> </span>FileData<span style="color: #333">::</span>getSystemPath(<span style="background-color: #FFF0F0">&quot;data://test.txt&quot;</span>).c_str());
+<span style="color: #BBB">    </span>File<span style="color: #333">*</span><span style="color: #BBB"> </span>file<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">new</span><span style="color: #BBB"> </span>File();
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(file<span style="color: #333">-&gt;</span>open(<span style="background-color: #FFF0F0">&quot;data://test.txt&quot;</span>)<span style="color: #333">==</span>FileErrors<span style="color: #333">::</span>FILEDATA_OK)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">        </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;%s&quot;</span>,<span style="color: #BBB"> </span>file<span style="color: #333">-&gt;</span>readString().c_str());
+<span style="color: #BBB">    </span>}
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">delete</span><span style="color: #BBB"> </span>file;
 }
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onButton_storage_save</span>(){
-<span style="color: #bbbbbb">    </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;Save key-value&quot;</span>);
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onButton_storage_save</span>(){
+<span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Save key-value&quot;</span>);
 
-<span style="color: #bbbbbb">    </span>UserSettings<span style="color: #333333">::</span>setBoolForKey(<span style="background-color: #fff0f0">&quot;key1&quot;</span>,<span style="color: #bbbbbb"> </span><span style="color: #007020">true</span>);
-<span style="color: #bbbbbb">    </span>UserSettings<span style="color: #333333">::</span>setIntegerForKey(<span style="background-color: #fff0f0">&quot;key2&quot;</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">55</span>);
-<span style="color: #bbbbbb">    </span>UserSettings<span style="color: #333333">::</span>setLongForKey(<span style="background-color: #fff0f0">&quot;key3&quot;</span>,<span style="color: #bbbbbb"> </span>(<span style="color: #333399; font-weight: bold">long</span>)<span style="color: #0000DD; font-weight: bold">5454545454545454545</span>);
-<span style="color: #bbbbbb">    </span>UserSettings<span style="color: #333333">::</span>setFloatForKey(<span style="background-color: #fff0f0">&quot;key4&quot;</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">23.54f</span>);
-<span style="color: #bbbbbb">    </span>UserSettings<span style="color: #333333">::</span>setDoubleForKey(<span style="background-color: #fff0f0">&quot;key5&quot;</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">23434.645454</span>);
-<span style="color: #bbbbbb">    </span>UserSettings<span style="color: #333333">::</span>setStringForKey(<span style="background-color: #fff0f0">&quot;key6&quot;</span>,<span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;testing string&quot;</span>);
-<span style="color: #bbbbbb">    </span>Data<span style="color: #bbbbbb"> </span>data(<span style="background-color: #fff0f0">&quot;data://test.txt&quot;</span>);
-<span style="color: #bbbbbb">    </span>UserSettings<span style="color: #333333">::</span>setDataForKey(<span style="background-color: #fff0f0">&quot;key7&quot;</span>,<span style="color: #bbbbbb"> </span>data);
+<span style="color: #BBB">    </span>UserSettings<span style="color: #333">::</span>setBoolForKey(<span style="background-color: #FFF0F0">&quot;key1&quot;</span>,<span style="color: #BBB"> </span><span style="color: #007020">true</span>);
+<span style="color: #BBB">    </span>UserSettings<span style="color: #333">::</span>setIntegerForKey(<span style="background-color: #FFF0F0">&quot;key2&quot;</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">55</span>);
+<span style="color: #BBB">    </span>UserSettings<span style="color: #333">::</span>setLongForKey(<span style="background-color: #FFF0F0">&quot;key3&quot;</span>,<span style="color: #BBB"> </span>(<span style="color: #339; font-weight: bold">long</span>)<span style="color: #00D; font-weight: bold">5454545454545454545</span>);
+<span style="color: #BBB">    </span>UserSettings<span style="color: #333">::</span>setFloatForKey(<span style="background-color: #FFF0F0">&quot;key4&quot;</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">23.54f</span>);
+<span style="color: #BBB">    </span>UserSettings<span style="color: #333">::</span>setDoubleForKey(<span style="background-color: #FFF0F0">&quot;key5&quot;</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">23434.645454</span>);
+<span style="color: #BBB">    </span>UserSettings<span style="color: #333">::</span>setStringForKey(<span style="background-color: #FFF0F0">&quot;key6&quot;</span>,<span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;testing string&quot;</span>);
+<span style="color: #BBB">    </span>Data<span style="color: #BBB"> </span>data(<span style="background-color: #FFF0F0">&quot;data://test.txt&quot;</span>);
+<span style="color: #BBB">    </span>UserSettings<span style="color: #333">::</span>setDataForKey(<span style="background-color: #FFF0F0">&quot;key7&quot;</span>,<span style="color: #BBB"> </span>data);
 }
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">onButton_storage_read</span>(){
-<span style="color: #bbbbbb">    </span>std<span style="color: #333333">::</span>string<span style="color: #bbbbbb"> </span>boolStr<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;false&quot;</span>;
-<span style="color: #bbbbbb">    </span><span style="color: #008800; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(UserSettings<span style="color: #333333">::</span>getBoolForKey(<span style="background-color: #fff0f0">&quot;key1&quot;</span>))<span style="color: #bbbbbb"> </span>{
-<span style="color: #bbbbbb">        </span>boolStr<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;true&quot;</span>;
-<span style="color: #bbbbbb">    </span>}
-<span style="color: #bbbbbb">    </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;Read bool key-value: %s&quot;</span>,<span style="color: #bbbbbb"> </span>boolStr.c_str());
-<span style="color: #bbbbbb">    </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;Read integer key-value: %i&quot;</span>,<span style="color: #bbbbbb"> </span>UserSettings<span style="color: #333333">::</span>getIntegerForKey(<span style="background-color: #fff0f0">&quot;key2&quot;</span>));
-<span style="color: #bbbbbb">    </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;Read long key-value: %ld&quot;</span>,<span style="color: #bbbbbb"> </span>UserSettings<span style="color: #333333">::</span>getLongForKey(<span style="background-color: #fff0f0">&quot;key3&quot;</span>));
-<span style="color: #bbbbbb">    </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;Read float key-value: %f&quot;</span>,<span style="color: #bbbbbb"> </span>UserSettings<span style="color: #333333">::</span>getFloatForKey(<span style="background-color: #fff0f0">&quot;key4&quot;</span>));
-<span style="color: #bbbbbb">    </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;Read double key-value: %f&quot;</span>,<span style="color: #bbbbbb"> </span>UserSettings<span style="color: #333333">::</span>getDoubleForKey(<span style="background-color: #fff0f0">&quot;key5&quot;</span>));
-<span style="color: #bbbbbb">    </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;Read string key-value: %s&quot;</span>,<span style="color: #bbbbbb"> </span>UserSettings<span style="color: #333333">::</span>getStringForKey(<span style="background-color: #fff0f0">&quot;key6&quot;</span>).c_str());
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onButton_storage_read</span>(){
+<span style="color: #BBB">    </span>std<span style="color: #333">::</span>string<span style="color: #BBB"> </span>boolStr<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;false&quot;</span>;
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(UserSettings<span style="color: #333">::</span>getBoolForKey(<span style="background-color: #FFF0F0">&quot;key1&quot;</span>))<span style="color: #BBB"> </span>{
+<span style="color: #BBB">        </span>boolStr<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;true&quot;</span>;
+<span style="color: #BBB">    </span>}
+<span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Read bool key-value: %s&quot;</span>,<span style="color: #BBB"> </span>boolStr.c_str());
+<span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Read integer key-value: %i&quot;</span>,<span style="color: #BBB"> </span>UserSettings<span style="color: #333">::</span>getIntegerForKey(<span style="background-color: #FFF0F0">&quot;key2&quot;</span>));
+<span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Read long key-value: %ld&quot;</span>,<span style="color: #BBB"> </span>UserSettings<span style="color: #333">::</span>getLongForKey(<span style="background-color: #FFF0F0">&quot;key3&quot;</span>));
+<span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Read float key-value: %f&quot;</span>,<span style="color: #BBB"> </span>UserSettings<span style="color: #333">::</span>getFloatForKey(<span style="background-color: #FFF0F0">&quot;key4&quot;</span>));
+<span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Read double key-value: %f&quot;</span>,<span style="color: #BBB"> </span>UserSettings<span style="color: #333">::</span>getDoubleForKey(<span style="background-color: #FFF0F0">&quot;key5&quot;</span>));
+<span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Read string key-value: %s&quot;</span>,<span style="color: #BBB"> </span>UserSettings<span style="color: #333">::</span>getStringForKey(<span style="background-color: #FFF0F0">&quot;key6&quot;</span>).c_str());
 
-<span style="color: #bbbbbb">    </span>Data<span style="color: #bbbbbb"> </span>data<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>UserSettings<span style="color: #333333">::</span>getDataForKey(<span style="background-color: #fff0f0">&quot;key7&quot;</span>);
-<span style="color: #bbbbbb">    </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;Read data key-value: %s&quot;</span>,<span style="color: #bbbbbb"> </span>data.readString().c_str());
+<span style="color: #BBB">    </span>Data<span style="color: #BBB"> </span>data<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>UserSettings<span style="color: #333">::</span>getDataForKey(<span style="background-color: #FFF0F0">&quot;key7&quot;</span>);
+<span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Read data key-value: %s&quot;</span>,<span style="color: #BBB"> </span>data.readString().c_str());
 
-<span style="color: #bbbbbb">    </span>Log<span style="color: #333333">::</span>verbose(<span style="background-color: #fff0f0">&quot;Deleting key4&quot;</span>);
-<span style="color: #bbbbbb">    </span>UserSettings<span style="color: #333333">::</span>removeKey(<span style="background-color: #fff0f0">&quot;key4&quot;</span>);
+<span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Deleting key4&quot;</span>);
+<span style="color: #BBB">    </span>UserSettings<span style="color: #333">::</span>removeKey(<span style="background-color: #FFF0F0">&quot;key4&quot;</span>);
 }
 
-<span style="color: #333399; font-weight: bold">void</span><span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-weight: bold">init</span>(){
-<span style="color: #bbbbbb">    </span>button_save.setTexture(<span style="background-color: #fff0f0">&quot;asset://Button_Normal.png&quot;</span>);
-<span style="color: #bbbbbb">    </span>button_save.setTexturePressed(<span style="background-color: #fff0f0">&quot;/Button_Disable.png&quot;</span>);
-<span style="color: #bbbbbb">    </span>button_save.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
-<span style="color: #bbbbbb">    </span>button_save.setSize(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
-<span style="color: #bbbbbb">    </span>button_save.setPatchMargin(<span style="color: #0000DD; font-weight: bold">5</span>);
-<span style="color: #bbbbbb">    </span>button_save.setLabel(<span style="background-color: #fff0f0">&quot;Save&quot;</span>);
-<span style="color: #bbbbbb">    </span>button_save.setLabelFontSize(<span style="color: #0000DD; font-weight: bold">40</span>);
-<span style="color: #bbbbbb">    </span>button_save.setLabelColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));
-<span style="color: #bbbbbb">    </span>button_save.getComponent<span style="color: #333333">&lt;</span>ButtonComponent<span style="color: #333333">&gt;</span>().onRelease<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onButton_save;
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">init</span>(){
+<span style="color: #BBB">    </span>button_save.setTexture(<span style="background-color: #FFF0F0">&quot;asset://Button_Normal.png&quot;</span>);
+<span style="color: #BBB">    </span>button_save.setTexturePressed(<span style="background-color: #FFF0F0">&quot;/Button_Disable.png&quot;</span>);
+<span style="color: #BBB">    </span>button_save.setPosition(<span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
+<span style="color: #BBB">    </span>button_save.setSize(<span style="color: #00D; font-weight: bold">200</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>);
+<span style="color: #BBB">    </span>button_save.setPatchMargin(<span style="color: #00D; font-weight: bold">5</span>);
+<span style="color: #BBB">    </span>button_save.setLabel(<span style="background-color: #FFF0F0">&quot;Save&quot;</span>);
+<span style="color: #BBB">    </span>button_save.setLabelFontSize(<span style="color: #00D; font-weight: bold">40</span>);
+<span style="color: #BBB">    </span>button_save.setLabelColor(Vector4(<span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>));
+<span style="color: #BBB">    </span>button_save.getComponent<span style="color: #333">&lt;</span>ButtonComponent<span style="color: #333">&gt;</span>().onRelease<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>onButton_save;
 
-<span style="color: #bbbbbb">    </span>button_read.setTexture(<span style="background-color: #fff0f0">&quot;Button_Normal.png&quot;</span>);
-<span style="color: #bbbbbb">    </span>button_read.setTexturePressed(<span style="background-color: #fff0f0">&quot;Button_Disable.png&quot;</span>);
-<span style="color: #bbbbbb">    </span>button_read.setPosition(<span style="color: #0000DD; font-weight: bold">500</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
-<span style="color: #bbbbbb">    </span>button_read.setSize(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
-<span style="color: #bbbbbb">    </span>button_read.setPatchMargin(<span style="color: #0000DD; font-weight: bold">5</span>);
-<span style="color: #bbbbbb">    </span>button_read.setLabel(<span style="background-color: #fff0f0">&quot;Read&quot;</span>);
-<span style="color: #bbbbbb">    </span>button_read.setLabelFontSize(<span style="color: #0000DD; font-weight: bold">40</span>);
-<span style="color: #bbbbbb">    </span>button_read.setLabelColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));
-<span style="color: #bbbbbb">    </span>button_read.getComponent<span style="color: #333333">&lt;</span>ButtonComponent<span style="color: #333333">&gt;</span>().onRelease<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onButton_read;
+<span style="color: #BBB">    </span>button_read.setTexture(<span style="background-color: #FFF0F0">&quot;Button_Normal.png&quot;</span>);
+<span style="color: #BBB">    </span>button_read.setTexturePressed(<span style="background-color: #FFF0F0">&quot;Button_Disable.png&quot;</span>);
+<span style="color: #BBB">    </span>button_read.setPosition(<span style="color: #00D; font-weight: bold">500</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
+<span style="color: #BBB">    </span>button_read.setSize(<span style="color: #00D; font-weight: bold">200</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>);
+<span style="color: #BBB">    </span>button_read.setPatchMargin(<span style="color: #00D; font-weight: bold">5</span>);
+<span style="color: #BBB">    </span>button_read.setLabel(<span style="background-color: #FFF0F0">&quot;Read&quot;</span>);
+<span style="color: #BBB">    </span>button_read.setLabelFontSize(<span style="color: #00D; font-weight: bold">40</span>);
+<span style="color: #BBB">    </span>button_read.setLabelColor(Vector4(<span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>));
+<span style="color: #BBB">    </span>button_read.getComponent<span style="color: #333">&lt;</span>ButtonComponent<span style="color: #333">&gt;</span>().onRelease<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>onButton_read;
 
-<span style="color: #bbbbbb">    </span>button_storage_save.setTexture(<span style="background-color: #fff0f0">&quot;Button_Normal.png&quot;</span>);
-<span style="color: #bbbbbb">    </span>button_storage_save.setTexturePressed(<span style="background-color: #fff0f0">&quot;Button_Disable.png&quot;</span>);
-<span style="color: #bbbbbb">    </span>button_storage_save.setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
-<span style="color: #bbbbbb">    </span>button_storage_save.setSize(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
-<span style="color: #bbbbbb">    </span>button_storage_save.setPatchMargin(<span style="color: #0000DD; font-weight: bold">5</span>);
-<span style="color: #bbbbbb">    </span>button_storage_save.setLabel(<span style="background-color: #fff0f0">&quot;Save user setting&quot;</span>);
-<span style="color: #bbbbbb">    </span>button_storage_save.setLabelFontSize(<span style="color: #0000DD; font-weight: bold">40</span>);
-<span style="color: #bbbbbb">    </span>button_storage_save.setLabelColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));
-<span style="color: #bbbbbb">    </span>button_storage_save.getComponent<span style="color: #333333">&lt;</span>ButtonComponent<span style="color: #333333">&gt;</span>().onRelease<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onButton_storage_save;
+<span style="color: #BBB">    </span>button_storage_save.setTexture(<span style="background-color: #FFF0F0">&quot;Button_Normal.png&quot;</span>);
+<span style="color: #BBB">    </span>button_storage_save.setTexturePressed(<span style="background-color: #FFF0F0">&quot;Button_Disable.png&quot;</span>);
+<span style="color: #BBB">    </span>button_storage_save.setPosition(<span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">300</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
+<span style="color: #BBB">    </span>button_storage_save.setSize(<span style="color: #00D; font-weight: bold">300</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>);
+<span style="color: #BBB">    </span>button_storage_save.setPatchMargin(<span style="color: #00D; font-weight: bold">5</span>);
+<span style="color: #BBB">    </span>button_storage_save.setLabel(<span style="background-color: #FFF0F0">&quot;Save user setting&quot;</span>);
+<span style="color: #BBB">    </span>button_storage_save.setLabelFontSize(<span style="color: #00D; font-weight: bold">40</span>);
+<span style="color: #BBB">    </span>button_storage_save.setLabelColor(Vector4(<span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>));
+<span style="color: #BBB">    </span>button_storage_save.getComponent<span style="color: #333">&lt;</span>ButtonComponent<span style="color: #333">&gt;</span>().onRelease<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>onButton_storage_save;
 
-<span style="color: #bbbbbb">    </span>button_storage_read.setTexture(<span style="background-color: #fff0f0">&quot;Button_Normal.png&quot;</span>);
-<span style="color: #bbbbbb">    </span>button_storage_read.setTexturePressed(<span style="background-color: #fff0f0">&quot;Button_Disable.png&quot;</span>);
-<span style="color: #bbbbbb">    </span>button_storage_read.setPosition(<span style="color: #0000DD; font-weight: bold">500</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">0</span>);
-<span style="color: #bbbbbb">    </span>button_storage_read.setSize(<span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #bbbbbb"> </span><span style="color: #0000DD; font-weight: bold">100</span>);
-<span style="color: #bbbbbb">    </span>button_storage_read.setPatchMargin(<span style="color: #0000DD; font-weight: bold">5</span>);
-<span style="color: #bbbbbb">    </span>button_storage_read.setLabel(<span style="background-color: #fff0f0">&quot;Read user setting&quot;</span>);
-<span style="color: #bbbbbb">    </span>button_storage_read.setLabelFontSize(<span style="color: #0000DD; font-weight: bold">40</span>);
-<span style="color: #bbbbbb">    </span>button_storage_read.setLabelColor(Vector4(<span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">0.2</span>,<span style="color: #bbbbbb"> </span><span style="color: #6600EE; font-weight: bold">1.0</span>));
-<span style="color: #bbbbbb">    </span>button_storage_read.getComponent<span style="color: #333333">&lt;</span>ButtonComponent<span style="color: #333333">&gt;</span>().onRelease<span style="color: #bbbbbb"> </span><span style="color: #333333">=</span><span style="color: #bbbbbb"> </span>onButton_storage_read;
+<span style="color: #BBB">    </span>button_storage_read.setTexture(<span style="background-color: #FFF0F0">&quot;Button_Normal.png&quot;</span>);
+<span style="color: #BBB">    </span>button_storage_read.setTexturePressed(<span style="background-color: #FFF0F0">&quot;Button_Disable.png&quot;</span>);
+<span style="color: #BBB">    </span>button_storage_read.setPosition(<span style="color: #00D; font-weight: bold">500</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">300</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
+<span style="color: #BBB">    </span>button_storage_read.setSize(<span style="color: #00D; font-weight: bold">300</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>);
+<span style="color: #BBB">    </span>button_storage_read.setPatchMargin(<span style="color: #00D; font-weight: bold">5</span>);
+<span style="color: #BBB">    </span>button_storage_read.setLabel(<span style="background-color: #FFF0F0">&quot;Read user setting&quot;</span>);
+<span style="color: #BBB">    </span>button_storage_read.setLabelFontSize(<span style="color: #00D; font-weight: bold">40</span>);
+<span style="color: #BBB">    </span>button_storage_read.setLabelColor(Vector4(<span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>));
+<span style="color: #BBB">    </span>button_storage_read.getComponent<span style="color: #333">&lt;</span>ButtonComponent<span style="color: #333">&gt;</span>().onRelease<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>onButton_storage_read;
 
-<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setCanvasSize(<span style="color: #0000DD; font-weight: bold">1000</span>,<span style="color: #0000DD; font-weight: bold">480</span>);
-<span style="color: #bbbbbb">    </span>Engine<span style="color: #333333">::</span>setScene(<span style="color: #333333">&amp;</span>scene);
+<span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>setCanvasSize(<span style="color: #00D; font-weight: bold">1000</span>,<span style="color: #00D; font-weight: bold">480</span>);
+<span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>setScene(<span style="color: #333">&amp;</span>scene);
 }
 </pre></div>
 
@@ -350,7 +350,7 @@ Button<span style="color: #bbbbbb"> </span><span style="color: #0066BB; font-wei
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2024, Supernova Engine</p>
+  <p>Copyright © 2025, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

@@ -238,52 +238,52 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span>scene <span style="color: #333333">=</span> Scene()
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #963">scene</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Scene</span>()
 
-camera <span style="color: #333333">=</span> Camera(scene);
+<span style="color: #963">camera</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Camera</span>(<span style="color: #963">scene</span>);
 
-sprite <span style="color: #333333">=</span> Sprite(scene)
-sprite2 <span style="color: #333333">=</span> Sprite(scene)
-spriteanim <span style="color: #333333">=</span> SpriteAnimation(scene)
+<span style="color: #963">sprite</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Sprite</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">sprite2</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Sprite</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">spriteanim</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">SpriteAnimation</span>(<span style="color: #963">scene</span>)
 
-<span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onActionStart</span>()
-    Log.verbose(<span style="background-color: #fff0f0">&quot;Sprite start&quot;</span>);
-<span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #080; font-weight: bold">function</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onActionStart</span>()
+<span style="color: #BBB">    </span><span style="color: #963">Log</span>.<span style="color: #06B; font-weight: bold">verbose</span>(<span style="background-color: #FFF0F0">&quot;Sprite start&quot;</span>);
+<span style="color: #080; font-weight: bold">end</span>
 
-<span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onTouchStart</span>(pointer, x, y)
-    spriteanim:start()
-    sprite2:startAnimation(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">7</span>, <span style="color: #0000DD; font-weight: bold">200</span>, <span style="color: #008800; font-weight: bold">true</span>)
-<span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #080; font-weight: bold">function</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchStart</span>(<span style="color: #963">pointer</span>,<span style="color: #BBB"> </span><span style="color: #963">x</span>,<span style="color: #BBB"> </span><span style="color: #963">y</span>)
+<span style="color: #BBB">    </span><span style="color: #963">spriteanim</span>:<span style="color: #06B; font-weight: bold">start</span>()
+<span style="color: #BBB">    </span><span style="color: #963">sprite2</span>:<span style="color: #06B; font-weight: bold">startAnimation</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">7</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">200</span>,<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">true</span>)
+<span style="color: #080; font-weight: bold">end</span>
 
-camera.type <span style="color: #333333">=</span> CameraType.CAMERA_ORTHO
-scene.camera <span style="color: #333333">=</span> camera.entity
+<span style="color: #963">camera</span>.type<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">CameraType</span>.CAMERA_ORTHO
+<span style="color: #963">scene</span>.camera<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">camera</span>.entity
 
-sprite:setTexture(<span style="background-color: #fff0f0">&quot;dino.png&quot;</span>)
-<span style="color: #008800; font-weight: bold">for</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">7</span> <span style="color: #008800; font-weight: bold">do</span>
-    sprite:addFrame(i, <span style="background-color: #fff0f0">&quot;&quot;</span>, Rect((i<span style="color: #333333">+</span><span style="color: #6600EE; font-weight: bold">1.0</span>)<span style="color: #333333">/</span><span style="color: #0000DD; font-weight: bold">8</span>, <span style="color: #6600EE; font-weight: bold">0.0</span>, <span style="color: #6600EE; font-weight: bold">1.0</span><span style="color: #333333">/</span><span style="color: #0000DD; font-weight: bold">8</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>))
-<span style="color: #008800; font-weight: bold">end</span>
-sprite:setFrame(<span style="color: #0000DD; font-weight: bold">0</span>)
-sprite.name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Sprite&quot;</span>
-sprite:setPosition(<span style="color: #0000DD; font-weight: bold">100</span>,<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #0000DD; font-weight: bold">0</span>)
-sprite:setSize(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #0000DD; font-weight: bold">200</span>)
+<span style="color: #963">sprite</span>:<span style="color: #06B; font-weight: bold">setTexture</span>(<span style="background-color: #FFF0F0">&quot;dino.png&quot;</span>)
+<span style="color: #080; font-weight: bold">for</span><span style="color: #BBB"> </span><span style="color: #963">i</span><span style="color: #333">=</span><span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">7</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">do</span>
+<span style="color: #BBB">    </span><span style="color: #963">sprite</span>:<span style="color: #06B; font-weight: bold">addFrame</span>(<span style="color: #963">i</span>,<span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;&quot;</span>,<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Rect</span>((<span style="color: #963">i</span><span style="color: #333">+</span><span style="color: #60E; font-weight: bold">1.0</span>)<span style="color: #333">/</span><span style="color: #00D; font-weight: bold">8</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span><span style="color: #333">/</span><span style="color: #00D; font-weight: bold">8</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>))
+<span style="color: #080; font-weight: bold">end</span>
+<span style="color: #963">sprite</span>:<span style="color: #06B; font-weight: bold">setFrame</span>(<span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">sprite</span>.name<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Sprite&quot;</span>
+<span style="color: #963">sprite</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #00D; font-weight: bold">100</span>,<span style="color: #00D; font-weight: bold">200</span>,<span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">sprite</span>:<span style="color: #06B; font-weight: bold">setSize</span>(<span style="color: #00D; font-weight: bold">200</span>,<span style="color: #00D; font-weight: bold">200</span>)
 
-spriteanim.target <span style="color: #333333">=</span> sprite.entity
-spriteanim:setAnimation(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">7</span>, <span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #008800; font-weight: bold">true</span>)
-spriteanim:getActionComponent().onStart <span style="color: #333333">=</span> onActionStart
+<span style="color: #963">spriteanim</span>.target<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">sprite</span>.entity
+<span style="color: #963">spriteanim</span>:<span style="color: #06B; font-weight: bold">setAnimation</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">7</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">true</span>)
+<span style="color: #963">spriteanim</span>:<span style="color: #06B; font-weight: bold">getActionComponent</span>().<span style="color: #963">onStart</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">onActionStart</span>
 
-sprite2:setTexture(<span style="background-color: #fff0f0">&quot;dino.png&quot;</span>)
-<span style="color: #008800; font-weight: bold">for</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">7</span> <span style="color: #008800; font-weight: bold">do</span>
-    sprite2:addFrame(i, <span style="background-color: #fff0f0">&quot;&quot;</span>, Rect((i<span style="color: #333333">+</span><span style="color: #6600EE; font-weight: bold">1.0</span>)<span style="color: #333333">/</span><span style="color: #0000DD; font-weight: bold">8</span>, <span style="color: #6600EE; font-weight: bold">0.0</span>, <span style="color: #6600EE; font-weight: bold">1.0</span><span style="color: #333333">/</span><span style="color: #0000DD; font-weight: bold">8</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>))
-<span style="color: #008800; font-weight: bold">end</span>
-sprite2:setFrame(<span style="color: #0000DD; font-weight: bold">0</span>)
-sprite2.name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Sprite2&quot;</span>
-sprite2:setPosition(<span style="color: #0000DD; font-weight: bold">400</span>,<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #0000DD; font-weight: bold">0</span>)
-sprite2:setSize(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #0000DD; font-weight: bold">200</span>)
+<span style="color: #963">sprite2</span>:<span style="color: #06B; font-weight: bold">setTexture</span>(<span style="background-color: #FFF0F0">&quot;dino.png&quot;</span>)
+<span style="color: #080; font-weight: bold">for</span><span style="color: #BBB"> </span><span style="color: #963">i</span><span style="color: #333">=</span><span style="color: #00D; font-weight: bold">0</span>,<span style="color: #00D; font-weight: bold">7</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">do</span>
+<span style="color: #BBB">    </span><span style="color: #963">sprite2</span>:<span style="color: #06B; font-weight: bold">addFrame</span>(<span style="color: #963">i</span>,<span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;&quot;</span>,<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Rect</span>((<span style="color: #963">i</span><span style="color: #333">+</span><span style="color: #60E; font-weight: bold">1.0</span>)<span style="color: #333">/</span><span style="color: #00D; font-weight: bold">8</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span><span style="color: #333">/</span><span style="color: #00D; font-weight: bold">8</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>))
+<span style="color: #080; font-weight: bold">end</span>
+<span style="color: #963">sprite2</span>:<span style="color: #06B; font-weight: bold">setFrame</span>(<span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">sprite2</span>.name<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Sprite2&quot;</span>
+<span style="color: #963">sprite2</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #00D; font-weight: bold">400</span>,<span style="color: #00D; font-weight: bold">200</span>,<span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">sprite2</span>:<span style="color: #06B; font-weight: bold">setSize</span>(<span style="color: #00D; font-weight: bold">200</span>,<span style="color: #00D; font-weight: bold">200</span>)
 
-Engine.setScene(scene);
-Engine.setCallTouchInMouseEvent(<span style="color: #008800; font-weight: bold">true</span>);
+<span style="color: #963">Engine</span>.<span style="color: #06B; font-weight: bold">setScene</span>(<span style="color: #963">scene</span>);
+<span style="color: #963">Engine</span>.<span style="color: #06B; font-weight: bold">setCallTouchInMouseEvent</span>(<span style="color: #080; font-weight: bold">true</span>);
 
-Engine.onTouchStart <span style="color: #333333">=</span> onTouchStart
+<span style="color: #963">Engine</span>.onTouchStart<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">onTouchStart</span>
 </pre></div>
 
     </div>
@@ -291,7 +291,7 @@ Engine.onTouchStart <span style="color: #333333">=</span> onTouchStart
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2024, Supernova Engine</p>
+  <p>Copyright © 2025, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

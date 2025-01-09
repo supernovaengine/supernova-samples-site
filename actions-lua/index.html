@@ -240,106 +240,106 @@
     </div>
 
     <div id="code-snippet" style="display: none;">
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span>scene <span style="color: #333333">=</span> Scene()
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray; border-width:.1em .1em .1em .8em; padding:.2em .6em; margin: 50px auto;"><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #963">scene</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Scene</span>()
 
-text <span style="color: #333333">=</span> Text(scene)
+<span style="color: #963">text</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Text</span>(<span style="color: #963">scene</span>)
 
-polygon <span style="color: #333333">=</span> MeshPolygon(scene)
-polygon2 <span style="color: #333333">=</span> MeshPolygon(scene)
-polygon3 <span style="color: #333333">=</span> Polygon(scene)
-polygon4 <span style="color: #333333">=</span> Polygon(scene)
+<span style="color: #963">polygon</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">MeshPolygon</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">polygon2</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">MeshPolygon</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">polygon3</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Polygon</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">polygon4</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Polygon</span>(<span style="color: #963">scene</span>)
 
-positionaction <span style="color: #333333">=</span> PositionAction(scene)
-rotationaction <span style="color: #333333">=</span> RotationAction(scene)
-scaleaction <span style="color: #333333">=</span> ScaleAction(scene)
-coloraction <span style="color: #333333">=</span> ColorAction(scene)
-alphaaction <span style="color: #333333">=</span> AlphaAction(scene)
-timedaction <span style="color: #333333">=</span> TimedAction(scene)
+<span style="color: #963">positionaction</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">PositionAction</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">rotationaction</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">RotationAction</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">scaleaction</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">ScaleAction</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">coloraction</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">ColorAction</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">alphaaction</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">AlphaAction</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">timedaction</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">TimedAction</span>(<span style="color: #963">scene</span>)
 
-<span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onActionStep</span>()
-    angle <span style="color: #333333">=</span> <span style="color: #007020">math.pi</span> <span style="color: #333333">*</span> <span style="color: #6600EE; font-weight: bold">2.0</span> <span style="color: #333333">*</span> timedaction:getValue()
-    polygon4:setPosition(<span style="color: #007020">math.cos</span>(angle)<span style="color: #333333">*</span><span style="color: #0000DD; font-weight: bold">100</span> <span style="color: #333333">+</span> <span style="color: #0000DD; font-weight: bold">450</span>, <span style="color: #007020">math.sin</span>(angle)<span style="color: #333333">*</span><span style="color: #0000DD; font-weight: bold">100</span> <span style="color: #333333">+</span> <span style="color: #0000DD; font-weight: bold">300</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-<span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #080; font-weight: bold">function</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onActionStep</span>()
+<span style="color: #BBB">    </span><span style="color: #963">angle</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #007020">math.pi</span><span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">2.0</span><span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span><span style="color: #963">timedaction</span>:<span style="color: #06B; font-weight: bold">getValue</span>()
+<span style="color: #BBB">    </span><span style="color: #963">polygon4</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #007020">math.cos</span>(<span style="color: #963">angle</span>)<span style="color: #333">*</span><span style="color: #00D; font-weight: bold">100</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">450</span>,<span style="color: #BBB"> </span><span style="color: #007020">math.sin</span>(<span style="color: #963">angle</span>)<span style="color: #333">*</span><span style="color: #00D; font-weight: bold">100</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">300</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
+<span style="color: #080; font-weight: bold">end</span>
 
-<span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onActionStart</span>()
-    Log.verbose(<span style="background-color: #fff0f0">&quot;Rotation action start&quot;</span>)
-<span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #080; font-weight: bold">function</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onActionStart</span>()
+<span style="color: #BBB">    </span><span style="color: #963">Log</span>.<span style="color: #06B; font-weight: bold">verbose</span>(<span style="background-color: #FFF0F0">&quot;Rotation action start&quot;</span>)
+<span style="color: #080; font-weight: bold">end</span>
 
-<span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">onTouchStart</span>(pointer, x, y)
-    positionaction:start()
-    rotationaction:start()
-    scaleaction:start()
-    coloraction:start()
-    alphaaction:start()
-    timedaction:start()
-<span style="color: #008800; font-weight: bold">end</span>
+<span style="color: #080; font-weight: bold">function</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchStart</span>(<span style="color: #963">pointer</span>,<span style="color: #BBB"> </span><span style="color: #963">x</span>,<span style="color: #BBB"> </span><span style="color: #963">y</span>)
+<span style="color: #BBB">    </span><span style="color: #963">positionaction</span>:<span style="color: #06B; font-weight: bold">start</span>()
+<span style="color: #BBB">    </span><span style="color: #963">rotationaction</span>:<span style="color: #06B; font-weight: bold">start</span>()
+<span style="color: #BBB">    </span><span style="color: #963">scaleaction</span>:<span style="color: #06B; font-weight: bold">start</span>()
+<span style="color: #BBB">    </span><span style="color: #963">coloraction</span>:<span style="color: #06B; font-weight: bold">start</span>()
+<span style="color: #BBB">    </span><span style="color: #963">alphaaction</span>:<span style="color: #06B; font-weight: bold">start</span>()
+<span style="color: #BBB">    </span><span style="color: #963">timedaction</span>:<span style="color: #06B; font-weight: bold">start</span>()
+<span style="color: #080; font-weight: bold">end</span>
 
-text.text <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Click on screen to start&quot;</span>
-text.anchorPreset <span style="color: #333333">=</span> AnchorPreset.CENTER_TOP
+<span style="color: #963">text</span>.text<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Click on screen to start&quot;</span>
+<span style="color: #963">text</span>.anchorPreset<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">AnchorPreset</span>.CENTER_TOP
 
-polygon:addVertex(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-polygon:addVertex(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-polygon:addVertex(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">100</span>);
-polygon:addVertex(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">100</span>);
-polygon:setColor(<span style="color: #6600EE; font-weight: bold">1.0</span>, <span style="color: #6600EE; font-weight: bold">0.3</span>, <span style="color: #6600EE; font-weight: bold">0.8</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>);
-polygon:setPosition(<span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">0</span>);
-polygon.name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Polygon1&quot;</span>;
+<span style="color: #963">polygon</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
+<span style="color: #963">polygon</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
+<span style="color: #963">polygon</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>);
+<span style="color: #963">polygon</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>);
+<span style="color: #963">polygon</span>:<span style="color: #06B; font-weight: bold">setColor</span>(<span style="color: #60E; font-weight: bold">1.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.3</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.8</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>);
+<span style="color: #963">polygon</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #00D; font-weight: bold">50</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">50</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
+<span style="color: #963">polygon</span>.name<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Polygon1&quot;</span>;
 
-polygon2:addVertex(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
-polygon2:addVertex(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
-polygon2:addVertex(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">100</span>)
-polygon2:addVertex(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">100</span>)
-polygon2:setColor(<span style="color: #6600EE; font-weight: bold">1.0</span>, <span style="color: #6600EE; font-weight: bold">0.5</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>)
-polygon2:setPosition(<span style="color: #0000DD; font-weight: bold">450</span>, <span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
-polygon2.name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Polygon2&quot;</span>
+<span style="color: #963">polygon2</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">polygon2</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">polygon2</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>)
+<span style="color: #963">polygon2</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>)
+<span style="color: #963">polygon2</span>:<span style="color: #06B; font-weight: bold">setColor</span>(<span style="color: #60E; font-weight: bold">1.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.5</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>)
+<span style="color: #963">polygon2</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #00D; font-weight: bold">450</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">50</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">polygon2</span>.name<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Polygon2&quot;</span>
 
-polygon3:addVertex(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
-polygon3:addVertex(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
-polygon3:addVertex(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">100</span>)
-polygon3:addVertex(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">100</span>)
-polygon3:setColor(<span style="color: #6600EE; font-weight: bold">0.5</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>)
-polygon3:setPosition(<span style="color: #0000DD; font-weight: bold">800</span>, <span style="color: #0000DD; font-weight: bold">50</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
-polygon3.name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Polygon3&quot;</span>
+<span style="color: #963">polygon3</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">polygon3</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">polygon3</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>)
+<span style="color: #963">polygon3</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>)
+<span style="color: #963">polygon3</span>:<span style="color: #06B; font-weight: bold">setColor</span>(<span style="color: #60E; font-weight: bold">0.5</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>)
+<span style="color: #963">polygon3</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #00D; font-weight: bold">800</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">50</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">polygon3</span>.name<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Polygon3&quot;</span>
 
-polygon4:addVertex(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
-polygon4:addVertex(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
-polygon4:addVertex(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">100</span>)
-polygon4:addVertex(<span style="color: #0000DD; font-weight: bold">100</span>, <span style="color: #0000DD; font-weight: bold">100</span>)
-polygon4:setColor(<span style="color: #6600EE; font-weight: bold">0.5</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>, <span style="color: #6600EE; font-weight: bold">0.3</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>)
-polygon4:setPosition(<span style="color: #0000DD; font-weight: bold">450</span>, <span style="color: #0000DD; font-weight: bold">300</span>, <span style="color: #0000DD; font-weight: bold">0</span>)
-polygon4.name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Polygon4&quot;</span>
+<span style="color: #963">polygon4</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">polygon4</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">polygon4</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>)
+<span style="color: #963">polygon4</span>:<span style="color: #06B; font-weight: bold">addVertex</span>(<span style="color: #00D; font-weight: bold">100</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">100</span>)
+<span style="color: #963">polygon4</span>:<span style="color: #06B; font-weight: bold">setColor</span>(<span style="color: #60E; font-weight: bold">0.5</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.3</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>)
+<span style="color: #963">polygon4</span>:<span style="color: #06B; font-weight: bold">setPosition</span>(<span style="color: #00D; font-weight: bold">450</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">300</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)
+<span style="color: #963">polygon4</span>.name<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Polygon4&quot;</span>
 
-polygon2:moveToTop();
+<span style="color: #963">polygon2</span>:<span style="color: #06B; font-weight: bold">moveToTop</span>();
 
-startRot <span style="color: #333333">=</span> Quaternion()
-endRot <span style="color: #333333">=</span> Quaternion()
-startRot:fromAngle(Angle.degToDefault(<span style="color: #0000DD; font-weight: bold">0</span>))
-endRot:fromAngle(Angle.degToDefault(<span style="color: #0000DD; font-weight: bold">180</span>))
-rotationaction:setAction(startRot, endRot, <span style="color: #0000DD; font-weight: bold">5</span>, <span style="color: #008800; font-weight: bold">false</span>)
-rotationaction.target <span style="color: #333333">=</span> polygon3.entity
-rotationaction:getActionComponent().onStart <span style="color: #333333">=</span> onActionStart
+<span style="color: #963">startRot</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Quaternion</span>()
+<span style="color: #963">endRot</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Quaternion</span>()
+<span style="color: #963">startRot</span>:<span style="color: #06B; font-weight: bold">fromAngle</span>(<span style="color: #963">Angle</span>.<span style="color: #06B; font-weight: bold">degToDefault</span>(<span style="color: #00D; font-weight: bold">0</span>))
+<span style="color: #963">endRot</span>:<span style="color: #06B; font-weight: bold">fromAngle</span>(<span style="color: #963">Angle</span>.<span style="color: #06B; font-weight: bold">degToDefault</span>(<span style="color: #00D; font-weight: bold">180</span>))
+<span style="color: #963">rotationaction</span>:<span style="color: #06B; font-weight: bold">setAction</span>(<span style="color: #963">startRot</span>,<span style="color: #BBB"> </span><span style="color: #963">endRot</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">5</span>,<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">false</span>)
+<span style="color: #963">rotationaction</span>.target<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">polygon3</span>.entity
+<span style="color: #963">rotationaction</span>:<span style="color: #06B; font-weight: bold">getActionComponent</span>().<span style="color: #963">onStart</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">onActionStart</span>
 
-scaleaction:setAction(Vector3(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>,<span style="color: #0000DD; font-weight: bold">1</span>), Vector3(<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">2</span>,<span style="color: #0000DD; font-weight: bold">2</span>), <span style="color: #0000DD; font-weight: bold">10</span>, <span style="color: #008800; font-weight: bold">false</span>)
-scaleaction.target <span style="color: #333333">=</span> polygon2.entity
+<span style="color: #963">scaleaction</span>:<span style="color: #06B; font-weight: bold">setAction</span>(<span style="color: #06B; font-weight: bold">Vector3</span>(<span style="color: #00D; font-weight: bold">1</span>,<span style="color: #00D; font-weight: bold">1</span>,<span style="color: #00D; font-weight: bold">1</span>),<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Vector3</span>(<span style="color: #00D; font-weight: bold">2</span>,<span style="color: #00D; font-weight: bold">2</span>,<span style="color: #00D; font-weight: bold">2</span>),<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">10</span>,<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">false</span>)
+<span style="color: #963">scaleaction</span>.target<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">polygon2</span>.entity
 
-coloraction:setAction(polygon.color, Vector4(<span style="color: #6600EE; font-weight: bold">0.0</span>, <span style="color: #6600EE; font-weight: bold">0.0</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>, <span style="color: #6600EE; font-weight: bold">1.0</span>), <span style="color: #0000DD; font-weight: bold">5</span>, <span style="color: #008800; font-weight: bold">false</span>)
-coloraction.target <span style="color: #333333">=</span> polygon.entity
+<span style="color: #963">coloraction</span>:<span style="color: #06B; font-weight: bold">setAction</span>(<span style="color: #963">polygon</span>.color,<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Vector4</span>(<span style="color: #60E; font-weight: bold">0.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>),<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">5</span>,<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">false</span>)
+<span style="color: #963">coloraction</span>.target<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">polygon</span>.entity
 
-alphaaction:setAction(<span style="color: #6600EE; font-weight: bold">1.0</span>, <span style="color: #6600EE; font-weight: bold">0.3</span>, <span style="color: #0000DD; font-weight: bold">5</span>, <span style="color: #008800; font-weight: bold">false</span>)
-alphaaction.target <span style="color: #333333">=</span> polygon2.entity
+<span style="color: #963">alphaaction</span>:<span style="color: #06B; font-weight: bold">setAction</span>(<span style="color: #60E; font-weight: bold">1.0</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.3</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">5</span>,<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">false</span>)
+<span style="color: #963">alphaaction</span>.target<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">polygon2</span>.entity
 
-positionaction:setAction(Vector3(<span style="color: #0000DD; font-weight: bold">20</span>,<span style="color: #0000DD; font-weight: bold">20</span>,<span style="color: #0000DD; font-weight: bold">0</span>), Vector3(<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #0000DD; font-weight: bold">200</span>,<span style="color: #0000DD; font-weight: bold">0</span>), <span style="color: #0000DD; font-weight: bold">5</span>, <span style="color: #008800; font-weight: bold">true</span>)
-positionaction.target <span style="color: #333333">=</span> polygon.entity
-positionaction:setFunctionType(EaseType.ELASTIC_IN_OUT)
-positionaction.speed <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">1</span>
+<span style="color: #963">positionaction</span>:<span style="color: #06B; font-weight: bold">setAction</span>(<span style="color: #06B; font-weight: bold">Vector3</span>(<span style="color: #00D; font-weight: bold">20</span>,<span style="color: #00D; font-weight: bold">20</span>,<span style="color: #00D; font-weight: bold">0</span>),<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">Vector3</span>(<span style="color: #00D; font-weight: bold">200</span>,<span style="color: #00D; font-weight: bold">200</span>,<span style="color: #00D; font-weight: bold">0</span>),<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">5</span>,<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">true</span>)
+<span style="color: #963">positionaction</span>.target<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">polygon</span>.entity
+<span style="color: #963">positionaction</span>:<span style="color: #06B; font-weight: bold">setFunctionType</span>(<span style="color: #963">EaseType</span>.ELASTIC_IN_OUT)
+<span style="color: #963">positionaction</span>.speed<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>
 
-timedaction.duration <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">10</span>
-timedaction:getActionComponent().onStep <span style="color: #333333">=</span> onActionStep;
+<span style="color: #963">timedaction</span>.duration<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">10</span>
+<span style="color: #963">timedaction</span>:<span style="color: #06B; font-weight: bold">getActionComponent</span>().<span style="color: #963">onStep</span><span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">onActionStep</span>;
 
-Engine.setScene(scene)
-Engine.setCallTouchInMouseEvent(<span style="color: #008800; font-weight: bold">true</span>)
+<span style="color: #963">Engine</span>.<span style="color: #06B; font-weight: bold">setScene</span>(<span style="color: #963">scene</span>)
+<span style="color: #963">Engine</span>.<span style="color: #06B; font-weight: bold">setCallTouchInMouseEvent</span>(<span style="color: #080; font-weight: bold">true</span>)
 
-Engine.onTouchStart <span style="color: #333333">=</span> onTouchStart
+<span style="color: #963">Engine</span>.onTouchStart<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #963">onTouchStart</span>
 </pre></div>
 
     </div>
@@ -347,7 +347,7 @@ Engine.onTouchStart <span style="color: #333333">=</span> onTouchStart
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2024, Supernova Engine</p>
+  <p>Copyright © 2025, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>
