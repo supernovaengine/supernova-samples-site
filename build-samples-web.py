@@ -189,6 +189,13 @@ def build_all():
     cloneRepo(supernovaRepo, 'supernova', repoRef)
     cloneRepo(samplesRepo, 'samples', samplesRef)
 
+    # Call supershader.py before building any samples
+    supernova_root = os.path.abspath('supernova')
+    supershader_tool = os.path.join(supernova_root, 'tools', 'supershader.py')
+
+    print("Running supershader.py...", flush=True)
+    subprocess.run([sys.executable, supershader_tool, "-l", "glsl300es"]).check_returncode()
+
     ### Create samples index
     samples_list = []
     for sl in samples_list_yaml: 
