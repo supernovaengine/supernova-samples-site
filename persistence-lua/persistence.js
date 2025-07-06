@@ -35,7 +35,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /tmp/tmpui9l9459.js
+// include: /tmp/tmp3_oek1cq.js
 
   if (!Module.expectedDataFileDownloads) {
     Module.expectedDataFileDownloads = 0;
@@ -215,7 +215,7 @@ var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
 
   })();
 
-// end include: /tmp/tmpui9l9459.js
+// end include: /tmp/tmp3_oek1cq.js
 
 
 // Sometimes an existing Module object exists with properties
